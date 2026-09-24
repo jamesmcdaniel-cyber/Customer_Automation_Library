@@ -17,7 +17,7 @@ Most updates don't touch code.
 | The overview video, Intercom links, or MCP / library URLs | `site.json` |
 | Page copy (Get It, Trust It, Stretch It) | `app.js`, in the page functions |
 
-- **Videos:** set `videoUrl` (or `overviewVideoUrl`) to a YouTube, Loom, or Vimeo
+- **Videos:** set `videoUrl` (or `overviewVideoUrl`) to a YouTube, Loom, Vimeo, or Zight
   link. Share links are converted to embeds automatically. Leave it empty to show
   a "Video coming soon" placeholder.
 - **Intercom links:** fill in the `intercom` keys in `site.json`. Empty values

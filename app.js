@@ -57,6 +57,7 @@
     let m;
     if ((m = url.match(/youtube\.com\/watch\?v=([\w-]+)/)) || (m = url.match(/youtu\.be\/([\w-]+)/))) return `https://www.youtube-nocookie.com/embed/${m[1]}`;
     if ((m = url.match(/loom\.com\/share\/(\w+)/))) return `https://www.loom.com/embed/${m[1]}`;
+    if ((m = url.match(/share\.zight\.com\/([\w-]+)/))) return `https://share.zight.com/${m[1]}?embed=true`;
     if ((m = url.match(/vimeo\.com\/(\d+)/)) && !/player\.vimeo/.test(url)) return `https://player.vimeo.com/video/${m[1]}`;
     return url;
   }

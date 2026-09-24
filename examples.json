@@ -20,7 +20,7 @@
       "You know the account name as it appears in your CRM"
     ],
     "caveat": "Backstory can't read your calendar, so name the account in your prompt rather than asking for \"my next meeting\".",
-    "videoUrl": "",
+    "videoUrl": "https://share.zight.com/01a0d576-4b72-7d91-9833-5b5da6630380",
     "stretchLink": "https://backstory-workflows.vercel.app/workflow/02-meeting-brief",
     "stretchLabel": "Meeting Brief — delivered automatically before every meeting"
   },
