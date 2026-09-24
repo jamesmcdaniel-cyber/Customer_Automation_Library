@@ -21,7 +21,7 @@
     ],
     "caveat": "Backstory can't read your calendar, so name the account in your prompt rather than asking for \"my next meeting\".",
     "videoUrl": "https://share.zight.com/01a0d576-4b72-7d91-9833-5b5da6630380",
-    "stretchLink": "https://backstory-workflows.vercel.app/workflow/02-meeting-brief",
+    "stretchLink": "https://backstory-workflows.vercel.app/#/workflow/02-meeting-brief",
     "stretchLabel": "Meeting Brief — delivered automatically before every meeting"
   },
   {
@@ -46,7 +46,7 @@
     ],
     "caveat": "",
     "videoUrl": "https://share.zight.com/01a0d57f-1cfd-7d25-8af2-ebc8438df06e",
-    "stretchLink": "https://backstory-workflows.vercel.app/workflow/37-deal-risk-next-actions",
+    "stretchLink": "https://backstory-workflows.vercel.app/#/workflow/37-deal-risk-next-actions",
     "stretchLabel": "Deal Risk + Next Actions — scheduled across your whole pipeline"
   },
   {
@@ -71,7 +71,7 @@
     ],
     "caveat": "Backstory works from summaries of recent activity, not full call transcripts. Check any specific detail before you send.",
     "videoUrl": "https://share.zight.com/01a0d583-6f42-7913-a8ba-29aac26be76e",
-    "stretchLink": "https://backstory-workflows.vercel.app/workflow/35-grounded-follow-up",
+    "stretchLink": "https://backstory-workflows.vercel.app/#/workflow/35-grounded-follow-up",
     "stretchLabel": "Grounded Follow-Up — drafted automatically after customer meetings"
   },
   {
@@ -96,7 +96,7 @@
     ],
     "caveat": "\"Top deals\" means about 20 of the most relevant records you can see. It isn't a full pipeline export, and it can't show week-over-week changes.",
     "videoUrl": "https://share.zight.com/01a0d585-e237-7a45-9758-9512e13b306c",
-    "stretchLink": "https://backstory-workflows.vercel.app/workflow/36-pipeline-forecast-digest",
+    "stretchLink": "https://backstory-workflows.vercel.app/#/workflow/36-pipeline-forecast-digest",
     "stretchLabel": "Pipeline & Forecast Digest — a weekly team review delivered to Slack or email"
   }
 ]

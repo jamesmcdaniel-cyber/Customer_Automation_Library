@@ -1,8 +1,8 @@
 {
   "mcpUrl": "https://mcp.backstory.ai/mcp",
   "overviewVideoUrl": "",
-  "fullLibraryUrl": "https://backstory-workflows.vercel.app/flows",
-  "mcpReferenceUrl": "https://backstory-workflows.vercel.app/mcp",
+  "fullLibraryUrl": "https://backstory-workflows.vercel.app/#/flows",
+  "mcpReferenceUrl": "https://backstory-workflows.vercel.app/#/mcp",
   "intercom": {
     "connect": "",
     "security": "",
