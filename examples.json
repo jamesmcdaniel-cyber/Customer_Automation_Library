@@ -1,0 +1,102 @@
+[
+  {
+    "id": "meeting-prep",
+    "order": 1,
+    "startHere": true,
+    "title": "Meeting prep brief",
+    "helpsYou": "Walk into any customer meeting knowing where things stand, who's involved, and what to push for — in about a minute.",
+    "whoFor": ["Reps", "CSMs"],
+    "timeToTry": "2 minutes",
+    "prompt": "I'm meeting with Acme Corp tomorrow. Brief me: where things stand, who's engaged on their side, any open risks, and what I should push for in the meeting.",
+    "variations": [
+      "Give me a 5-bullet brief on Acme Corp before my call in 10 minutes.",
+      "Who at Acme Corp has been most engaged in the last 30 days, and what have we been discussing with them?",
+      "Brief me on Acme Corp as a table: status, key contacts, risks, next steps."
+    ],
+    "expectedOutput": "## Acme Corp — meeting brief\n\n**Where things stand:** Renewal is in late-stage evaluation. Engagement is up over the last two weeks, led by their VP of Operations.\n\n**Who's engaged**\n- **Dana Whitfield**, VP Operations — 6 emails, 2 meetings in the last 30 days\n- **Marcus Lee**, IT Director — joined the security review call last week\n- **Priya Shah**, Procurement — first contact 9 days ago\n\n**Open risks**\n- Procurement is newly involved and has not seen pricing\n- No confirmed executive sponsor on their side\n\n**Agreed next steps**\n- Send the updated security questionnaire (owner: you)\n- Schedule a pricing review with Procurement\n\n**Push for in this meeting:** a named executive sponsor and a date for the pricing review.",
+    "checklist": [
+      "Backstory connector added to Claude or ChatGPT",
+      "Signed in with your Backstory account",
+      "You know the account name as it appears in your CRM"
+    ],
+    "caveat": "Backstory can't read your calendar, so name the account in your prompt rather than asking for \"my next meeting\".",
+    "videoUrl": "",
+    "stretchLink": "https://backstory-workflows.vercel.app/workflow/02-meeting-brief",
+    "stretchLabel": "Meeting Brief — delivered automatically before every meeting"
+  },
+  {
+    "id": "deal-risk",
+    "order": 2,
+    "startHere": false,
+    "title": "Deal risk + next actions",
+    "helpsYou": "Find out what could stall a deal and get three concrete things to do about it this week.",
+    "whoFor": ["Reps", "Managers"],
+    "timeToTry": "3 minutes",
+    "prompt": "What's putting the Acme Corp renewal at risk, and what are the three most important things I should do this week to keep it on track?",
+    "variations": [
+      "Is the Acme Corp deal healthy? Give me a one-line verdict, then the evidence.",
+      "What has changed on the Acme Corp opportunity in the last two weeks?",
+      "Have we seen deals like Acme Corp's before? How did they turn out?"
+    ],
+    "expectedOutput": "## Acme Corp renewal — risk review\n\n**Verdict:** At moderate risk. Momentum is good, but the buying group is incomplete.\n\n**What's putting it at risk**\n1. **No economic buyer engaged.** All recent activity is with Operations and IT; nobody with budget authority has joined a call.\n2. **Procurement arrived late.** First contact was 9 days ago, with close planned in 3 weeks.\n3. **Security review still open.** The questionnaire was promised last week and hasn't been sent.\n\n**Do this week**\n1. Send the security questionnaire today and confirm receipt with Marcus Lee.\n2. Ask Dana Whitfield to introduce you to the budget owner before the pricing review.\n3. Book the pricing review with Priya Shah and share the proposal 48 hours ahead.",
+    "checklist": [
+      "Backstory connector added and signed in",
+      "An open opportunity on the account you're asking about",
+      "Tried the meeting prep brief first (optional, but it's a good warm-up)"
+    ],
+    "caveat": "",
+    "videoUrl": "",
+    "stretchLink": "https://backstory-workflows.vercel.app/workflow/37-deal-risk-next-actions",
+    "stretchLabel": "Deal Risk + Next Actions — scheduled across your whole pipeline"
+  },
+  {
+    "id": "follow-up",
+    "order": 3,
+    "startHere": false,
+    "title": "Grounded follow-up email",
+    "helpsYou": "Draft a follow-up email that reflects what's actually happening on the deal, not a generic template.",
+    "whoFor": ["Reps"],
+    "timeToTry": "2 minutes",
+    "prompt": "Draft a follow-up email to Dana Whitfield at Acme Corp based on our recent activity and agreed next steps. Keep it under 150 words, friendly but direct.",
+    "variations": [
+      "Draft a follow-up to Acme Corp that recaps our agreed next steps as a short bulleted list.",
+      "Write a short note to Priya Shah at Acme Corp proposing times for a pricing review.",
+      "Rewrite that email to be more formal and add a clear ask in the first line."
+    ],
+    "expectedOutput": "**Subject:** Next steps on the Acme renewal\n\nHi Dana,\n\nThanks again for the time this week — it was great to hear how the Operations team is using the rollout dashboards.\n\nTo keep things moving, here's what we agreed:\n- I'll send the updated security questionnaire to Marcus by Thursday.\n- We'll set up a pricing review with Priya and your team.\n\nCould you help me get the right budget owner into that pricing review? A 30-minute slot next week would keep us on track for the end-of-month timeline.\n\nBest,\nAlex",
+    "checklist": [
+      "Backstory connector added and signed in",
+      "Recent emails, calls, or meetings with the account in the last 30 days",
+      "Read the draft before you send it — you're still the author"
+    ],
+    "caveat": "Backstory works from summaries of recent activity, not full call transcripts. Check any specific detail before you send.",
+    "videoUrl": "",
+    "stretchLink": "https://backstory-workflows.vercel.app/workflow/35-grounded-follow-up",
+    "stretchLabel": "Grounded Follow-Up — drafted automatically after customer meetings"
+  },
+  {
+    "id": "coaching-review",
+    "order": 4,
+    "startHere": false,
+    "title": "Pipeline coaching review",
+    "helpsYou": "See which deals need attention and which conversations to have with your team before your next one-on-ones.",
+    "whoFor": ["Managers"],
+    "timeToTry": "5 minutes",
+    "prompt": "Review my top deals. Flag any with open risks, missing next steps, or scorecard gaps, and tell me which reps need a coaching conversation and what to cover.",
+    "variations": [
+      "Which of my top deals have no agreed next step?",
+      "Show my top deals as a table: owner, stage, biggest risk, scorecard gaps.",
+      "For the Acme Corp opportunity, which MEDDPICC elements are still missing?"
+    ],
+    "expectedOutput": "## Pipeline coaching review\n\n| Deal | Owner | Biggest risk | Scorecard gaps |\n|---|---|---|---|\n| Acme Corp renewal | Alex Chen | No economic buyer | Economic buyer, Decision process |\n| Northwind expansion | Sam Ortiz | No next step agreed | Paper process |\n| Globex new logo | Alex Chen | Single-threaded | Champion, Competition |\n| Initech upsell | Jordan Kim | None flagged | — |\n\n**Coaching conversations**\n- **Alex Chen** — Two deals depend on a single contact. Work on multi-threading: who else should be in the room at Acme and Globex?\n- **Sam Ortiz** — Northwind has good activity but no agreed next step. Practice closing each call with a dated commitment.\n\n**No action needed:** Initech is well qualified with a clear path to close.",
+    "checklist": [
+      "Backstory connector added and signed in with a manager account",
+      "Your team's deals are visible to you in Backstory",
+      "Your team uses a scorecard (MEDDIC, MEDDPICC, or SPICED) for scorecard gaps"
+    ],
+    "caveat": "\"Top deals\" means about 20 of the most relevant records you can see. It isn't a full pipeline export, and it can't show week-over-week changes.",
+    "videoUrl": "",
+    "stretchLink": "https://backstory-workflows.vercel.app/workflow/36-pipeline-forecast-digest",
+    "stretchLabel": "Pipeline & Forecast Digest — a weekly team review delivered to Slack or email"
+  }
+]
