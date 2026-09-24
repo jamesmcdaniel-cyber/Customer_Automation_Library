@@ -5,7 +5,9 @@ A simplified, public starter guide to the Backstory MCP, organized as
 simple enough to demo in a short video. The full 38-workflow automation library
 is the "Stretch It" destination: it's linked from here, not copied.
 
-This is a plain static site with no build step and no dependencies.
+Built with Vite, React, Tailwind, and Radix primitives. The design copies the full
+library's `web/` app: same Tailwind tokens, `SectionHero`, cards, `Button`,
+`CopyButton`, and `Tabs`.
 
 ## Editing content
 
@@ -13,35 +15,38 @@ Most updates don't touch code.
 
 | To change… | Edit |
 |---|---|
-| A prompt, sample output, checklist, or video | `examples.json` |
-| The overview video, Intercom links, or MCP / library URLs | `site.json` |
-| Page copy (Get It, Trust It, Stretch It) | `app.js`, in the page functions |
+| A prompt, sample output, checklist, or video | `src/data/examples.json` |
+| The overview video, Intercom links, or MCP / library URLs | `src/data/site.json` |
+| Page copy (Get It, Trust It, Use It, Stretch It) | `src/pages/*.jsx` |
 
-- **Videos:** set `videoUrl` (or `overviewVideoUrl`) to a YouTube, Loom, Vimeo, or Zight
-  link. Share links are converted to embeds automatically. Leave it empty to show
-  a "Video coming soon" placeholder.
-- **Intercom links:** fill in the `intercom` keys in `site.json`. Empty values
+- **Videos:** set `videoUrl` (or `overviewVideoUrl`) to a Zight, YouTube, Loom, or
+  Vimeo link. Zight links play as a native video sized exactly to the recording;
+  the others are embedded. Leave it empty to show a "Video coming soon"
+  placeholder.
+- **Intercom links:** fill in the `intercom` keys in `src/data/site.json`. Empty values
   show "(help article coming soon)".
-- **Adding a fifth example:** add an entry to `examples.json` with the next
+- **Adding a fifth example:** add an entry to `src/data/examples.json` with the next
   `order`. It shows up on Home, Use It, and Stretch It automatically.
 
 ## Run locally
 
 ```sh
-python3 -m http.server 8000
-# open http://localhost:8000
+npm install
+npm run dev
 ```
 
 ## Routes
 
-- `#/`
-- `#/get-it`
-- `#/trust-it`
-- `#/use-it`
-- `#/example/<id>`
-- `#/stretch-it`
+- `/`
+- `/get-it`
+- `/trust-it`
+- `/use-it`
+- `/example/<id>`
+- `/stretch-it`
+
+Older `#/...` links redirect to the matching path.
 
 ## Deploy
 
-Hosted on Vercel as static files (see `vercel.json`, which sets no framework and
-no build). Connect this repo in Vercel for auto-deploy on push.
+Hosted on Vercel, which builds with Vite on every push to `main`. `vercel.json`
+rewrites every non-asset path to `index.html` so direct links work.
