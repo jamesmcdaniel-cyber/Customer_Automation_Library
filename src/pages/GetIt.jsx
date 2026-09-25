@@ -5,12 +5,14 @@ import { NextStep } from '../components/NextStep';
 
 // Each drawer is one group of Backstory tools.
 const DRAWERS = [
-  ['Find', 'Look up an account or deal by name or CRM ID.'],
+  ['Find', 'Look up an account or deal by name or Salesforce ID.'],
   ['Lists', 'Pull up to 1,000 accounts or deals from a plain-language filter, like “deals closing this quarter”.'],
   ['Activity', 'Emails, calls, and meetings from the last 30 days, matched to your CRM.'],
   ['Deal context', 'Risks, agreed next steps, topics, and scorecard coverage.'],
   ['People', 'Who is engaged on the customer’s side, and how active they are.'],
-  ['Precedents', 'Similar past deals, and how they turned out.'],
+  ['Analysis', 'Ask Backstory’s Sales AI a harder question about an account or deal, and get a synthesized answer.'],
+  ['News', 'Recent news and filings for publicly traded companies.'],
+  ['Precedents', 'Similar past deals, and how they turned out. In beta, and your organization turns it on.'],
 ];
 
 const GLOSSARY = [

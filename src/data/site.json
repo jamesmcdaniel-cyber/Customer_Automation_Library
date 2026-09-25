@@ -9,6 +9,10 @@
     "permissions": "",
     "troubleshooting": ""
   },
+  "support": {
+    "email": "support@backstory.ai",
+    "helpCenter": "https://help.backstory.ai"
+  },
   "apiDocsUrl": "https://backstory-workflows.vercel.app/#/api-docs",
   "policies": {
     "anthropicCommercial": "https://www.anthropic.com/legal/commercial-terms",

@@ -20,6 +20,14 @@ const PHASES = [
   { id: 'decide', time: '10–15 min', label: 'Decide' },
 ];
 
+const CLIENTS = [
+  ['Claude', 'Recommended for most people.', true],
+  ['ChatGPT', 'Needs a Plus plan or higher.', true],
+  ['Microsoft Copilot', 'Set up by an admin in Copilot Studio.', true],
+  ['Cursor and n8n', 'For developers and workflow automation.', true],
+  ['Perplexity and Grok', 'Not supported yet.', false],
+];
+
 const CONFIRM = [
   { prompt: 'What meetings did I have with Nimbus Robotics in the last 30 days?', proves: 'It can see your captured activity.', outcome: 'Meeting prep' },
   { prompt: 'Who at Nimbus Robotics is most engaged with us right now, and who has gone quiet?', proves: 'It knows the people, not just the account.', outcome: 'Relationship coverage' },
@@ -89,6 +97,8 @@ export function UseIt() {
           <ol>
             <Step n={1} title="Open your AI assistant's connector settings">
               In Claude or ChatGPT, go to <strong className="text-ac-dark">Settings → Connectors → Add custom connector</strong>.
+              Adding a custom connector needs admin access in your assistant. If you don&rsquo;t see the option, ask your workspace
+              admin to add Backstory once for everyone.
               <Screenshot src={shots[0]} alt="the connector settings screen" />
             </Step>
             <Step n={2} title="Add Backstory">
@@ -100,15 +110,29 @@ export function UseIt() {
               <Screenshot src={shots[1]} alt="the Add connector form filled in" />
             </Step>
             <Step n={3} title="Sign in">
-              A Backstory sign-in window opens. Log in as you normally would. Your AI assistant never sees your password.
+              A Backstory sign-in window opens. Log in as you normally do for Backstory (for most teams, that&rsquo;s Salesforce
+              single sign-on). Your AI assistant never sees your password.
               <Screenshot src={shots[2]} alt="the Backstory sign-in window" />
             </Step>
             <Step n={4} title="See what it can pull" last>
               Ask: <em>&ldquo;What Backstory tools do you have access to?&rdquo;</em> You&rsquo;ll see the list of drawers it can
-              open: accounts and lists, activity, deal context, people, scorecards, and precedents. Stuck? <HelpLink k="connect" label="Connecting the Backstory MCP" />.
+              open: accounts and lists, activity, deal context, people, scorecards, Sales AI analysis, company news, and
+              precedents. Stuck? <HelpLink k="connect" label="Connecting the Backstory MCP" />.
               <Screenshot src={shots[3]} alt="the list of Backstory tools in the chat" />
             </Step>
           </ol>
+          <div className="mt-6 rounded-xl border border-ac-light-gray bg-ac-warm-white p-5">
+            <h3 className="mb-3 font-mono text-[11px] font-semibold uppercase tracking-[0.12em] text-ac-coral-dark">Which assistants work</h3>
+            <ul className="space-y-2">
+              {CLIENTS.map(([name, note, ok]) => (
+                <li key={name} className="flex gap-2.5 text-[13.5px] leading-6">
+                  {ok ? <Check size={15} className="mt-1 shrink-0 text-ac-success" /> : <X size={15} className="mt-1 shrink-0 text-ac-med-gray" />}
+                  <span><strong className="text-ac-dark">{name}</strong> <span className="text-ac-dark-secondary">{note}</span></span>
+                </li>
+              ))}
+            </ul>
+            <p className="mt-3 text-[12.5px] text-ac-med-gray">Using something else? Ask your Backstory CSM.</p>
+          </div>
         </Phase>
 
         <Phase {...PHASES[1]} title="Three prompts that prove it's working">

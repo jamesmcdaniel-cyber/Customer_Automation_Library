@@ -1,4 +1,4 @@
-import { ArrowRight, ExternalLink, FileText, Layers, Repeat } from 'lucide-react';
+import { ArrowRight, ExternalLink, FileText, Hash, Layers, Newspaper, Repeat, Sparkles } from 'lucide-react';
 import { SectionHero } from '../components/SectionHero';
 import { Button } from '../components/ui/Button';
 import { Tabs } from '../components/ui/Tabs';
@@ -69,6 +69,26 @@ const DID_YOU_KNOW = [
     title: 'Output as the deliverable',
     body: 'Don’t stop at a summary. Turn it straight into the doc or brief you were going to write anyway.',
     prompt: 'Turn that account summary into a formatted one-page brief for the executive sponsor.',
+  },
+  {
+    icon: Sparkles,
+    title: 'Ask for an answer, not a summary',
+    body: 'Status gives you a quick read. For a question that needs judgment, ask Backstory’s Sales AI directly.',
+    prompt: 'Ask Backstory’s Sales AI: is the Nimbus Robotics deal at risk, and who is the economic buyer?',
+  },
+  {
+    icon: Newspaper,
+    title: 'Add outside context',
+    body: 'For publicly traded accounts, layer in recent news and filings: exec changes, earnings, M&A.',
+    prompt: 'Use Backstory. What’s happened at Nimbus Robotics in the news lately that gives me a reason to reach out?',
+    note: 'Public companies only. Private accounts return no news, and that’s expected.',
+  },
+  {
+    icon: Hash,
+    title: 'Skip the name search',
+    body: 'Have the Salesforce record ID? Paste it and the assistant goes straight to the right account or deal.',
+    prompt: 'Use Backstory to look up Salesforce record [paste the ID] and give me its current status.',
+    note: 'Handy when account names are abbreviated or spelled differently in your CRM.',
   },
 ];
 

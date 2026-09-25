@@ -7,7 +7,7 @@ import { HelpLink } from '../components/HelpLink';
 import { site } from '../lib/content';
 
 const PILLARS = [
-  [KeyRound, 'Sign-in', 'You sign in yourself', 'Connecting opens a standard Backstory sign-in (OAuth 2.0). Your password is never shared with the AI assistant, and you can disconnect at any time.'],
+  [KeyRound, 'Sign-in', 'You sign in yourself', 'Connecting opens the standard Backstory sign-in (OAuth 2.0), with the login you already use. Your password is never shared with the AI assistant, and you can disconnect at any time.'],
   [Eye, 'Access', 'Your permissions, not more', 'Permissions mirror each user’s Backstory access. A rep sees their book; a manager sees their team. No one gets extra visibility.'],
   [Lock, 'Read-only', 'It can look, not change', 'The connector can only read. It cannot update your CRM, send email, or change anything in Backstory.'],
 ];
@@ -27,6 +27,44 @@ const ROUGH = [
     problem: 'Missing data looks like a confident “nothing”',
     what: 'If meetings weren’t captured, the assistant reports only what exists and may not tell you something is missing.',
     fix: 'Ask it to list the records it used.',
+  },
+  {
+    problem: '“My team” comes back empty',
+    what: 'Team questions use the team set up for you in Backstory. If none is set up, they return nothing, even though your reps have deals.',
+    fix: 'Name the rep (“deals owned by Alex Chen”), or ask your admin to set up your team in Backstory.',
+  },
+  {
+    problem: 'Some filters don’t exist yet',
+    what: 'Lists can’t filter on forecast category, renewal date, or deal type yet. The assistant may drop that part of the question or read it as a stage name.',
+    fix: 'Filter by owner, close date, stage, or amount, and check how it says it read your request before you confirm the list.',
+  },
+  {
+    problem: 'Closed deals are hard to reach',
+    what: 'Lists, activity, and engaged people focus on open deals, so “what did our won deals have in common?” comes back thin.',
+    fix: 'Name an open deal and ask for similar past deals and what worked.',
+  },
+];
+
+const TROUBLESHOOTING = [
+  {
+    value: 'not-found',
+    title: 'Account not found',
+    content: 'The account name has to match your CRM closely. Abbreviations, punctuation, and spacing can cause a miss. Try a shorter version of the name, or paste the Salesforce record ID instead.',
+  },
+  {
+    value: 'no-news',
+    title: 'Company news comes back empty',
+    content: 'That’s expected for private companies. News and filings are only available for publicly traded companies.',
+  },
+  {
+    value: 'connection',
+    title: 'The connector won’t connect',
+    content: 'Check that the connector address is exactly https://mcp.backstory.ai/mcp. If it worked before, your sign-in may have expired: disconnect and sign in again.',
+  },
+  {
+    value: 'wrong-info',
+    title: 'The answer has the wrong people or activity',
+    content: 'Answers are only as good as the data behind them. Check the account’s domain and contact records in Salesforce, since that’s how activity gets matched to the right account.',
   },
 ];
 
@@ -69,6 +107,33 @@ export function TrustIt() {
       ),
     },
     {
+      value: 'secured',
+      title: 'How is the connection secured, and how do people sign in?',
+      content: (
+        <>
+          <p>
+            All traffic uses HTTPS/TLS encryption, and every request made through the connector is audit-logged.
+          </p>
+          <p className="mt-2">
+            Sign-in uses OAuth 2.0. By default, people log in through the Backstory app with Salesforce single sign-on, so
+            they need to be able to log in to Backstory already. If your company uses another identity provider, such as Okta or
+            Microsoft Entra ID, your Backstory account team can set up an alternative sign-in.
+          </p>
+        </>
+      ),
+    },
+    {
+      value: 'who-adds',
+      title: 'Who can add the connector?',
+      content: (
+        <p>
+          Adding Backstory as a custom connector needs admin access in your AI assistant (for example, a Claude or ChatGPT
+          workspace admin). Microsoft Copilot is set up by an admin in Copilot Studio. Once it&rsquo;s added, each person signs
+          in with their own Backstory login.
+        </p>
+      ),
+    },
+    {
       value: 'retention',
       title: 'Retention and training: is our data used to train models?',
       content: (
@@ -92,6 +157,8 @@ export function TrustIt() {
             'Accounts and opportunities the user has access to in Backstory, including lists of up to 1,000 at a time',
             'Summaries of emails, calls, and meetings from the last 30 days, matched to those records',
             'Deal risks, next steps, engaged contacts, and scorecard coverage',
+            'Answers from Backstory’s Sales AI, built from the same data',
+            'Similar past deals and how they turned out, where your organization has turned this on (beta)',
             'Public news about publicly traded companies',
           ]}
         />
@@ -106,7 +173,8 @@ export function TrustIt() {
           items={[
             'Change CRM records or anything else in Backstory',
             'Read calendars or full call transcripts',
-            'Report metrics, historical roll-ups, or trends older than 30 days',
+            'Summarize activity older than 30 days (lists can count meetings up to 90 days back, but not summarize them)',
+            'Compare before and now, such as stage changes or engagement trends',
             'See accounts or deals outside the user’s own permissions',
           ]}
         />
@@ -165,13 +233,24 @@ export function TrustIt() {
           </div>
         </section>
 
+        <section>
+          <h2 className="eyebrow mb-3">Troubleshooting</h2>
+          <Accordion items={TROUBLESHOOTING} />
+        </section>
+
         <section className="surface-card p-6">
-          <h2 className="eyebrow mb-4">More detail</h2>
+          <h2 className="eyebrow mb-4">More detail and help</h2>
           <ul className="space-y-2.5 text-[14px]">
             <li><HelpLink k="security" label="Backstory MCP security overview" /></li>
             <li><HelpLink k="permissions" label="How Backstory permissions work" /></li>
             <li><HelpLink k="troubleshooting" label="Troubleshooting the connector" /></li>
             <li><PolicyLink href={site.mcpReferenceUrl}>Technical reference: MCP tools and limits</PolicyLink></li>
+            <li><PolicyLink href={site.support.helpCenter}>Backstory Help Center</PolicyLink></li>
+            <li>
+              Technical support:{' '}
+              <a href={`mailto:${site.support.email}`} className="font-medium text-ac-coral-dark hover:underline">{site.support.email}</a>
+              <span className="text-ac-dark-secondary">, or your Backstory CSM for rollout and new use cases</span>
+            </li>
           </ul>
         </section>
 
