@@ -44,13 +44,14 @@ export function Home() {
 
       <div className="mb-6 grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] lg:items-center">
         <div className="px-1">
-          <div className="eyebrow mb-2">Two-minute overview</div>
-          <h2 className="font-display text-[22px] font-bold leading-tight tracking-[-0.01em]">What is the Backstory MCP?</h2>
+          <div className="eyebrow mb-2">Watch first</div>
+          <h2 className="font-display text-[22px] font-bold leading-tight tracking-[-0.01em]">Connect Backstory to Claude and ChatGPT</h2>
           <p className="mt-3 text-[15px] leading-7 text-ac-dark-secondary">
-            A quick walkthrough of what connecting Backstory to your AI assistant looks like, and what you can ask it on day one.
+            A walkthrough of adding the Backstory MCP to Claude and ChatGPT, signing in, and asking your first question. Using
+            Copilot, Gemini, or n8n? There&rsquo;s a <Link to="/use-it#connect" className="font-medium text-ac-coral-dark hover:underline">step-by-step guide for each</Link>.
           </p>
         </div>
-        <Video url={site.overviewVideoUrl} title="What is the Backstory MCP? (2 min overview)" />
+        <Video url={site.overviewVideoUrl} title="Connect Backstory to Claude and ChatGPT" />
       </div>
 
       <section className="mb-8">
