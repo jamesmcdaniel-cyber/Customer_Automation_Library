@@ -98,22 +98,28 @@ function Mock({ mock }) {
   );
 }
 
+// Each card is a subgrid spanning six rows of its parent grid, so the header, the
+// "Instead of this" text, the "Do this" box, the legend, and "Why" line up across a row.
 export function SwapCard({ s, n }) {
   return (
-    <div className="surface-card flex flex-col overflow-hidden">
+    <div className="surface-card row-span-6 grid grid-rows-subgrid gap-y-0 overflow-hidden">
       <div className={cn('h-1', PATTERN_STYLE[s.pattern].bar)} />
-      <div className="flex flex-1 flex-col p-5">
+      <div className="px-5 pt-5">
         {s.moment && <div className="mb-1 font-mono text-[10.5px] font-semibold uppercase tracking-[0.14em] text-ac-coral-dark">{s.moment}</div>}
-        <div className="mb-3 flex flex-wrap items-start justify-between gap-2">
+        <div className="flex flex-wrap items-start justify-between gap-2">
           <h4 className="font-display text-[17px] font-bold leading-snug">
             {n && <span className="mr-2 font-mono text-[11px] font-medium text-ac-med-gray">{n}</span>}
             {s.title}
           </h4>
           <PatternPill id={s.pattern} />
         </div>
+      </div>
+      <div className="px-5 pt-3">
         <div className="font-mono text-[10.5px] font-semibold uppercase tracking-[0.14em] text-[#C4552B]">Instead of this</div>
         <p className="mt-1 text-[14px] leading-6 text-ac-dark-secondary">{s.instead}</p>
-        <div className="mt-3 flex-1 rounded-lg bg-ac-horizon-700 p-4 text-white">
+      </div>
+      <div className="flex flex-col px-5 pt-3">
+        <div className="flex-1 rounded-lg bg-ac-horizon-700 p-4 text-white">
           <div className="mb-1.5 flex items-center justify-between gap-3">
             <span className="font-mono text-[10.5px] font-semibold uppercase tracking-[0.14em] text-white/70">Do this</span>
             <CopyButton text={s.ask} variant="onDark" />
@@ -122,6 +128,8 @@ export function SwapCard({ s, n }) {
             <Prompt text={s.ask} highlights={s.highlights} />
           </p>
         </div>
+      </div>
+      <div className="px-5">
         {s.highlights && (
           <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-[11.5px] text-ac-dark-secondary">
             <span className="inline-flex items-center gap-1.5"><span className="h-[3px] w-4 bg-[#99C1D1]" /> Filter</span>
@@ -130,6 +138,8 @@ export function SwapCard({ s, n }) {
           </div>
         )}
         {s.mock && <Mock mock={s.mock} />}
+      </div>
+      <div className="px-5 pb-5">
         <p className="mt-3 text-[13.5px] leading-6 text-ac-dark">
           <span className="mr-2 font-mono text-[10.5px] font-semibold uppercase tracking-[0.14em] text-ac-coral-dark">Why</span>
           {s.why}

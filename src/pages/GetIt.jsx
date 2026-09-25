@@ -73,7 +73,7 @@ export function GetIt() {
       <div className="mx-auto max-w-5xl space-y-8">
         <section>
           <h2 className="eyebrow mb-3">Two ways to picture it</h2>
-          <div className="grid gap-4 md:grid-cols-2">
+          <div className="grid items-start gap-4 md:grid-cols-2">
             <Analogy icon={Archive} tag="The filing cabinet" title="Backstory is the filing cabinet. Claude is the analyst.">
               <p>
                 MCP is the badge that opens specific drawers, and each Backstory tool is one drawer. The analyst can only open

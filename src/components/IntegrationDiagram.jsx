@@ -109,7 +109,7 @@ export function BeforeDiagram() {
         <path key={key} d={d} fill="none" markerStart="url(#arrow-before)" className="stroke-ac-med-gray/50" strokeWidth={1.25} />
       ))}
       {!reduced && links.map(({ key, d }, i) => (
-        <Pulse key={`p${key}`} d={d} dur={3.2} begin={-i * 0.37} reverse className="fill-ac-med-gray" />
+        <Pulse key={`p${key}`} d={d} dur={5.6} begin={-i * 0.62} reverse className="fill-ac-med-gray" />
       ))}
       <Columns rightCaption="Your tools" />
       <g>
@@ -137,8 +137,8 @@ export function AfterDiagram() {
       ))}
       {!reduced && (
         <>
-          {inbound.map((d, i) => <Pulse key={`pi${i}`} d={d} dur={1.4} begin={-i * 0.45} className="fill-ac-coral-light" />)}
-          {out.map((d, i) => <Pulse key={`po${i}`} d={d} dur={1.4} begin={0.7 - i * 0.45} reverse className="fill-ac-coral" />)}
+          {inbound.map((d, i) => <Pulse key={`pi${i}`} d={d} dur={2.8} begin={-i * 0.9} className="fill-ac-coral-light" />)}
+          {out.map((d, i) => <Pulse key={`po${i}`} d={d} dur={2.8} begin={1.4 - i * 0.9} reverse className="fill-ac-coral" />)}
         </>
       )}
       <Columns rightCaption="Captured by Backstory" />

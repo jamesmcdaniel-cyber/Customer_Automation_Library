@@ -115,7 +115,7 @@ export function UseIt() {
             ))}
           </div>
           <p className="mt-4 text-[13px] leading-6 text-ac-dark-secondary">
-            <strong className="text-ac-dark">Something else?</strong> Cursor and n8n work too, for developers and automations.
+            <strong className="text-ac-dark">Something else?</strong> Cursor works too, for developers.
             Perplexity and Grok aren&rsquo;t supported yet. For anything else, ask your Backstory CSM.
           </p>
           <p className="mt-2 text-[13px] leading-6 text-ac-dark-secondary">

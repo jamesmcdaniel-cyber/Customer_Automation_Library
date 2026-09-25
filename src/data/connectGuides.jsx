@@ -263,6 +263,51 @@ export const GUIDES = [
       ['No tools after setup', 'Go to Actions → Reload custom actions.'],
     ],
   },
+  {
+    id: 'n8n',
+    name: 'n8n',
+    logo: 'n8n.svg',
+    setup: 'A workflow builder sets it up',
+    time: 'About 5 minutes',
+    summary: 'Create an MCP credential for Backstory, then give an AI Agent node access to it, so workflows run on real deal activity.',
+    need: [
+      'An n8n instance (Cloud or self-hosted) where you can create credentials.',
+      'Your Backstory sign-in. Every workflow using the credential sees what your Backstory user can see.',
+    ],
+    steps: [
+      {
+        title: 'Create a credential',
+        body: <>On the <B>Overview</B> page, select the <B>Credentials</B> tab, then <B>Create credential</B>.</>,
+        image: 'n8n/01-create-credential.jpg',
+      },
+      {
+        title: 'Choose MCP OAuth2 API',
+        body: <>Search for <B>MCP OAuth2 API</B> and select it. A generic OAuth2 or HTTP credential won&rsquo;t work.</>,
+        image: 'n8n/02-mcp-oauth2.jpg',
+      },
+      {
+        title: 'Enter the server details',
+        body: <>Name the credential <B>Backstory MCP</B>, turn on <B>Use Dynamic Client Registration</B>, paste the server URL, and leave the redirect URL as shown. Then select <B>Connect</B>.</>,
+        fields: [['Server URL', MCP_URL]],
+        image: 'n8n/03-server-details.jpg',
+      },
+      {
+        title: 'Sign in and save',
+        body: <>Sign in as you normally do in the window that opens. When the banner turns green, select <B>Save</B>.</>,
+        image: 'n8n/04-sign-in.jpg',
+        narrow: true,
+      },
+      {
+        title: 'Use it in a workflow',
+        body: <>Add an <B>AI Agent</B> node and attach an <B>MCP Client Tool</B>. Set the endpoint to the server URL, choose <B>MCP OAuth2 API</B>, and pick your Backstory credential. Include all tools, or only the ones the workflow needs.</>,
+      },
+    ],
+    troubleshooting: [
+      ['MCP OAuth2 API isn’t in the list', 'Your n8n version is too old, or your role can’t create credentials. Update n8n, or ask your instance admin.'],
+      ['Connect fails', 'Check the URL ends in /mcp with no trailing slash and Use Dynamic Client Registration is on, then retry.'],
+      ['It worked, then started failing', 'The sign-in expired. Open the credential, select Connect again, and save.'],
+    ],
+  },
 ];
 
 export const findGuide = (id) => GUIDES.find((g) => g.id === id);
