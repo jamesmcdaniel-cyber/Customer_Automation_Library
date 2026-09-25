@@ -1,9 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" role="img" aria-labelledby="title">
-  <title>Backstory logo</title>
-  <g fill="#1f2230">
-    <path d="M6 45 18 48 33 8 21 5Z"/>
-    <rect x="23" y="8" width="7" height="40" rx="1"/>
-    <rect x="33" y="8" width="7" height="40" rx="1"/>
-    <rect x="43" y="8" width="7" height="40" rx="1"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 63.44" role="img" aria-labelledby="title">
+  <title id="title">Backstory logo</title>
+  <!-- Official Backstory symbol (/III), from the Backstory Design System. -->
+  <g fill="#272732">
+    <path d="M36.584 5.114 24.897.11 0 58.438l11.687 5.005Z"/>
+    <path d="M36.58 0h12.708v63.439H36.58Z"/>
+    <path d="M51.939 0h12.708v63.439H51.939Z"/>
+    <path d="M67.293 0h12.708v63.439H67.293Z"/>
   </g>
 </svg>

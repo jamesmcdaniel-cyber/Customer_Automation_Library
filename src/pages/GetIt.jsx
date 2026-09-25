@@ -2,6 +2,7 @@ import { Code2, MessageSquare, Plug, Archive } from 'lucide-react';
 import { SectionHero } from '../components/SectionHero';
 import { Accordion } from '../components/ui/Accordion';
 import { NextStep } from '../components/NextStep';
+import { AfterDiagram, BeforeDiagram } from '../components/IntegrationDiagram';
 
 // Each drawer is one group of Backstory tools.
 const DRAWERS = [
@@ -40,32 +41,21 @@ function Analogy({ icon: Icon, tag, title, children }) {
 }
 
 function BeforeAfter() {
-  const clients = ['Claude', 'ChatGPT', 'Copilot'];
-  const tools = ['Backstory', 'CRM', 'Email'];
-  const chip = 'rounded-md border border-ac-light-gray bg-white px-2 py-1.5 text-center';
   return (
     <div className="mt-4 space-y-3 font-mono text-[10.5px] uppercase tracking-[0.06em]">
       <div className="rounded-lg border border-ac-light-gray bg-ac-warm-white p-3">
         <div className="mb-1 text-ac-med-gray">Before MCP</div>
         <p className="mb-2.5 font-sans text-[13px] normal-case tracking-normal text-ac-dark-secondary">
-          Every tool needed a custom integration for every AI client.
+          Every AI assistant needed its own custom integration to every tool.
         </p>
-        <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-2">
-          <div className="space-y-1.5">{clients.map((c) => <div key={c} className={chip}>{c}</div>)}</div>
-          <div className="text-center leading-4 text-ac-med-gray">9 custom<br />links</div>
-          <div className="space-y-1.5">{tools.map((t) => <div key={t} className={chip}>{t}</div>)}</div>
-        </div>
+        <BeforeDiagram />
       </div>
       <div className="rounded-lg border border-ac-coral/40 bg-ac-horizon-50 p-3">
         <div className="mb-1 text-ac-coral-dark">Now</div>
         <p className="mb-2.5 font-sans text-[13px] normal-case tracking-normal text-ac-dark-secondary">
-          One MCP server, and every AI client that speaks MCP can use the tool.
+          Each assistant connects once, to the Backstory MCP server. Backstory already captures your CRM, email, and calls.
         </p>
-        <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-2">
-          <div className="space-y-1.5">{clients.map((c) => <div key={c} className={chip}>{c}</div>)}</div>
-          <div className="rounded-md bg-ac-coral px-2 py-1.5 text-center text-white">MCP</div>
-          <div className="rounded-md border border-ac-coral bg-white px-2 py-1.5 text-center text-ac-coral-dark">Backstory</div>
-        </div>
+        <AfterDiagram />
       </div>
     </div>
   );
