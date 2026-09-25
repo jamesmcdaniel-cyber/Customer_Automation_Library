@@ -21,11 +21,5 @@
     "openaiEnterprise": "https://openai.com/enterprise-privacy/",
     "backstoryPrivacy": "https://backstory.ai/privacy",
     "backstorySecurity": "https://backstory.ai/security"
-  },
-  "connectScreenshots": [
-    "",
-    "",
-    "",
-    ""
-  ]
+  }
 }

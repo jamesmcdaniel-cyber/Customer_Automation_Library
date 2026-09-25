@@ -18,6 +18,7 @@ Most updates don't touch code.
 | A prompt, sample output, checklist, or video | `src/data/examples.json` |
 | The overview video, Intercom links, or MCP / library URLs | `src/data/site.json` |
 | Page copy (Get It, Trust It, Use It, Stretch It) | `src/pages/*.jsx` |
+| A connection guide (Claude, ChatGPT, Copilot, Gemini) | `src/data/connectGuides.jsx`; screenshots in `public/assets/connect/<platform>/` |
 
 - **Videos:** set `videoUrl` (or `overviewVideoUrl`) to a Zight, YouTube, Loom, or
   Vimeo link. Zight links play as a native video sized exactly to the recording;

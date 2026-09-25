@@ -7,6 +7,7 @@ import { UseIt } from './pages/UseIt';
 import { Example } from './pages/Example';
 import { StretchIt } from './pages/StretchIt';
 import { Swaps } from './pages/Swaps';
+import { ConnectGuide } from './pages/ConnectGuide';
 
 export function App() {
   return (
@@ -17,6 +18,7 @@ export function App() {
         <Route path="/trust-it" element={<TrustIt />} />
         <Route path="/use-it" element={<UseIt />} />
         <Route path="/use-it/swaps" element={<Swaps />} />
+        <Route path="/use-it/connect/:platform" element={<ConnectGuide />} />
         <Route path="/example/:id" element={<Example />} />
         <Route path="/stretch-it" element={<StretchIt />} />
         <Route path="*" element={<Navigate to="/" replace />} />

@@ -5,9 +5,10 @@ import { CopyButton } from '../components/ui/CopyButton';
 import { Button } from '../components/ui/Button';
 import { NextStep } from '../components/NextStep';
 import { HelpLink } from '../components/HelpLink';
-import { Screenshot } from '../components/Screenshot';
 import { examples, site, swaps } from '../lib/content';
 import { PatternBars, SwapCard } from './Swaps';
+import { PlatformLogo } from './ConnectGuide';
+import { GUIDES } from '../data/connectGuides';
 
 // One card per pattern, from the account executive set.
 const previewSwaps = swaps.roles[0].groups.flatMap((g) => g.swaps).slice(0, 3);
@@ -18,14 +19,6 @@ const PHASES = [
   { id: 'confirm', time: '5–8 min', label: 'Confirm' },
   { id: 'tell', time: '8–10 min', label: 'Tell' },
   { id: 'decide', time: '10–15 min', label: 'Decide' },
-];
-
-const CLIENTS = [
-  ['Claude', 'Recommended for most people.', true],
-  ['ChatGPT', 'Needs a Plus plan or higher.', true],
-  ['Microsoft Copilot', 'Set up by an admin in Copilot Studio.', true],
-  ['Cursor and n8n', 'For developers and workflow automation.', true],
-  ['Perplexity and Grok', 'Not supported yet.', false],
 ];
 
 const CONFIRM = [
@@ -73,7 +66,6 @@ function Step({ n, title, children, last }) {
 }
 
 export function UseIt() {
-  const shots = site.connectScreenshots || [];
   return (
     <div className="container-page">
       <SectionHero
@@ -94,45 +86,42 @@ export function UseIt() {
 
       <div className="mx-auto max-w-4xl space-y-6">
         <Phase {...PHASES[0]} title="Connect Backstory to your assistant">
-          <ol>
-            <Step n={1} title="Open your AI assistant's connector settings">
-              In Claude or ChatGPT, go to <strong className="text-ac-dark">Settings → Connectors → Add custom connector</strong>.
-              Adding a custom connector needs admin access in your assistant. If you don&rsquo;t see the option, ask your workspace
-              admin to add Backstory once for everyone.
-              <Screenshot src={shots[0]} alt="the connector settings screen" />
-            </Step>
-            <Step n={2} title="Add Backstory">
-              Name it <code className="rounded-md bg-ac-cream px-1.5 py-0.5 font-mono text-[0.86em] text-ac-coral-dark">Backstory</code> and paste this address:
-              <div className="mt-2.5 flex items-center justify-between gap-3 rounded-lg border border-ac-light-gray bg-ac-warm-white px-4 py-3">
-                <code className="min-w-0 break-all font-mono text-[13px] text-ac-dark">{site.mcpUrl}</code>
-                <CopyButton text={site.mcpUrl} />
-              </div>
-              <Screenshot src={shots[1]} alt="the Add connector form filled in" />
-            </Step>
-            <Step n={3} title="Sign in">
-              A Backstory sign-in window opens. Log in as you normally do for Backstory (for most teams, that&rsquo;s Salesforce
-              single sign-on). Your AI assistant never sees your password.
-              <Screenshot src={shots[2]} alt="the Backstory sign-in window" />
-            </Step>
-            <Step n={4} title="See what it can pull" last>
-              Ask: <em>&ldquo;What Backstory tools do you have access to?&rdquo;</em> You&rsquo;ll see the list of drawers it can
-              open: accounts and lists, activity, deal context, people, scorecards, Sales AI analysis, company news, and
-              precedents. Stuck? <HelpLink k="connect" label="Connecting the Backstory MCP" />.
-              <Screenshot src={shots[3]} alt="the list of Backstory tools in the chat" />
-            </Step>
-          </ol>
-          <div className="mt-6 rounded-xl border border-ac-light-gray bg-ac-warm-white p-5">
-            <h3 className="mb-3 font-mono text-[11px] font-semibold uppercase tracking-[0.12em] text-ac-coral-dark">Which assistants work</h3>
-            <ul className="space-y-2">
-              {CLIENTS.map(([name, note, ok]) => (
-                <li key={name} className="flex gap-2.5 text-[13.5px] leading-6">
-                  {ok ? <Check size={15} className="mt-1 shrink-0 text-ac-success" /> : <X size={15} className="mt-1 shrink-0 text-ac-med-gray" />}
-                  <span><strong className="text-ac-dark">{name}</strong> <span className="text-ac-dark-secondary">{note}</span></span>
-                </li>
-              ))}
-            </ul>
-            <p className="mt-3 text-[12.5px] text-ac-med-gray">Using something else? Ask your Backstory CSM.</p>
+          <p className="text-[14px] leading-6 text-ac-dark-secondary">
+            Pick your assistant for a step-by-step guide with screenshots. Every setup points at the same Backstory address, and
+            everyone signs in with their own Backstory login, so they only see what they can already see in Backstory.
+          </p>
+          <div className="mt-4 flex items-center justify-between gap-3 rounded-lg border border-ac-light-gray bg-ac-warm-white px-4 py-3">
+            <code className="min-w-0 break-all font-mono text-[13px] text-ac-dark">{site.mcpUrl}</code>
+            <CopyButton text={site.mcpUrl} />
           </div>
+          <div className="mt-4 grid gap-3 sm:grid-cols-2">
+            {GUIDES.map((g) => (
+              <Link
+                key={g.id}
+                to={`/use-it/connect/${g.id}`}
+                className="group flex items-start gap-3.5 rounded-xl border border-ac-light-gray bg-white p-4 no-underline transition-all duration-200 hover:-translate-y-0.5 hover:border-ac-coral hover:shadow-cardhover"
+              >
+                <span className="grid h-11 w-11 shrink-0 place-items-center rounded-lg border border-ac-light-gray bg-ac-warm-white">
+                  <PlatformLogo guide={g} className="h-6 w-6" />
+                </span>
+                <span className="min-w-0 flex-1">
+                  <span className="flex items-center justify-between gap-2">
+                    <span className="font-display text-[15px] font-bold text-ac-dark">{g.name}</span>
+                    <ArrowRight size={15} className="shrink-0 text-ac-coral-dark transition-transform group-hover:translate-x-0.5" />
+                  </span>
+                  <span className="mt-0.5 block text-[13px] leading-5 text-ac-dark-secondary">{g.setup} · {g.time.toLowerCase()} · {g.steps.length} steps</span>
+                </span>
+              </Link>
+            ))}
+          </div>
+          <p className="mt-4 text-[13px] leading-6 text-ac-dark-secondary">
+            <strong className="text-ac-dark">Something else?</strong> Cursor and n8n work too, for developers and automations.
+            Perplexity and Grok aren&rsquo;t supported yet. For anything else, ask your Backstory CSM.
+          </p>
+          <p className="mt-2 text-[13px] leading-6 text-ac-dark-secondary">
+            <strong className="text-ac-dark">Connected?</strong> Ask <em>&ldquo;What Backstory tools do you have access to?&rdquo;</em> to
+            see every drawer it can open. Stuck? <HelpLink k="connect" label="Connecting the Backstory MCP" />.
+          </p>
         </Phase>
 
         <Phase {...PHASES[1]} title="Three prompts that prove it's working">

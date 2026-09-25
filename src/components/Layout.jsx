@@ -5,10 +5,13 @@ import { Header } from './Header';
 import { BrandMark } from './BrandMark';
 
 export function Layout() {
-  const { pathname } = useLocation();
+  const { pathname, hash } = useLocation();
+  // New page: start at the top, or at the #section a link points to.
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
+    const target = hash && document.getElementById(hash.slice(1));
+    if (target) target.scrollIntoView();
+    else window.scrollTo(0, 0);
+  }, [pathname, hash]);
 
   return (
     <TooltipProvider>

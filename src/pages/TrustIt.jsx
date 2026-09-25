@@ -128,7 +128,8 @@ export function TrustIt() {
       content: (
         <p>
           Adding Backstory as a custom connector needs admin access in your AI assistant (for example, a Claude or ChatGPT
-          workspace admin). Microsoft Copilot is set up by an admin in Copilot Studio. Once it&rsquo;s added, each person signs
+          workspace admin). Microsoft Copilot is set up by an agent builder in Copilot Studio, and Gemini Enterprise by a Google
+          Cloud admin. Once it&rsquo;s added, each person signs
           in with their own Backstory login.
         </p>
       ),
