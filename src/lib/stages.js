@@ -1,6 +1,6 @@
 export const STAGES = [
-  { id: 'get-it', num: '01', label: 'Get it', blurb: 'What MCP is, in plain English, and what Backstory brings to your AI assistant.' },
-  { id: 'trust-it', num: '02', label: 'Trust it', blurb: 'How sign-in works, what the assistant can and can’t see, and what it will never do.' },
-  { id: 'use-it', num: '03', label: 'Use it', blurb: 'Your first 15 minutes: connect, then try four prompts that work on day one.' },
-  { id: 'stretch-it', num: '04', label: 'Stretch it', blurb: 'Ready for more? Turn these prompts into automations that run on their own.' },
+  { id: 'get-it', num: '01', label: 'Get it', blurb: 'MCP in plain English: the filing cabinet, the standard plug, and how it differs from an API.' },
+  { id: 'trust-it', num: '02', label: 'Trust it', blurb: 'What moves, who can see it, and where it’s still rough. For admins and champions.' },
+  { id: 'use-it', num: '03', label: 'Use it', blurb: 'Your first 15 minutes: connect, confirm, tell a real answer from a guess, then decide.' },
+  { id: 'stretch-it', num: '04', label: 'Stretch it', blurb: 'Playbooks by role, what customers are building, and when to use the API.' },
 ];

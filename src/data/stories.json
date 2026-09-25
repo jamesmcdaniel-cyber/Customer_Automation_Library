@@ -1,0 +1,42 @@
+[
+  {
+    "id": "account-planning",
+    "company": "Global enterprise technology company",
+    "status": "Pilot",
+    "headline": "An account-planning agent inside Microsoft Copilot",
+    "summary": "After connecting the Backstory MCP, the team saw an account-planning agent in Copilot generate account-plan briefs, pipeline analysis, and territory design from Backstory's account status, scorecards, engaged people, and open opportunities.",
+    "next": "Their first ask: account-level engagement and activity summaries delivered in Microsoft Teams.",
+    "tools": ["Microsoft Copilot", "Microsoft Teams"],
+    "outcomes": ["Account planning", "Pipeline analysis", "Territory design"]
+  },
+  {
+    "id": "deal-analysis",
+    "company": "GTM software company",
+    "status": "Running end to end",
+    "headline": "A deal-analysis agent built on a defined opportunity set",
+    "summary": "They built an agent that filters a defined set of opportunities, for example deals over $100K that meet close-date criteria, then produces a deal analysis for each. The flow runs end to end.",
+    "next": "Next: using their own customers' feedback to decide which fields and questions to expand.",
+    "tools": ["Custom agent"],
+    "outcomes": ["Deal analysis", "Pipeline focus"]
+  },
+  {
+    "id": "territory-intelligence",
+    "company": "Multinational technology enterprise",
+    "status": "Awaiting IT approval",
+    "headline": "Territory intelligence for GMs and territory leaders",
+    "summary": "A clearly defined territory-intelligence use case: business briefings for general managers, a view of the least-active reps, conversion and territory views, and account-takeover plans that combine opportunity, activity, and public-signal context.",
+    "next": "Designed and waiting on Copilot and gateway approval before a live rollout.",
+    "tools": ["Microsoft Copilot"],
+    "outcomes": ["Executive briefings", "Rep coaching", "Account takeover plans"]
+  },
+  {
+    "id": "cross-crm-overlap",
+    "company": "Enterprise SaaS company",
+    "status": "Scoping",
+    "headline": "Finding overlapping accounts across two CRMs",
+    "summary": "A prospect wants to identify accounts that appear in two separate CRM instances, to coordinate teams and find upsell opportunities. A working demo is being scoped.",
+    "next": "Comparing whole CRMs runs into MCP record limits, so large, repeatable jobs like this one are often a better fit for the API.",
+    "tools": ["Two CRM instances"],
+    "outcomes": ["Account overlap", "Cross-team upsell"]
+  }
+]

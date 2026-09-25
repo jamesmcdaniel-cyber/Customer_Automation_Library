@@ -11,6 +11,8 @@ const VARIANTS = {
     'rounded-md border border-ac-light-gray bg-white px-2.5 py-1 text-[11px] font-semibold text-ac-dark-secondary hover:bg-ac-cream hover:text-ac-dark',
   primary:
     'rounded-lg bg-ac-coral px-3 py-1.5 font-mono text-[11px] font-semibold uppercase tracking-[0.06em] text-white hover:bg-ac-coral-dark',
+  onDark:
+    'rounded-md border border-white/25 bg-white/10 px-2.5 py-1 text-[11px] font-semibold text-white hover:bg-white/20',
 };
 
 export function CopyButton({ text, label = 'Copy', variant = 'default', className }) {

@@ -1,0 +1,292 @@
+{
+  "patterns": [
+    { "id": "ask", "name": "Ask, don’t gather", "desc": "Instead of opening six tabs before a call, ask for the brief." },
+    { "id": "pull", "name": "Pull live, don’t paste", "desc": "Instead of pasting CRM notes into Claude, let it pull them live, so nothing goes stale." },
+    { "id": "specific", "name": "Be specific, not general", "desc": "Instead of “How’s my pipeline?”, ask a question with a filter, a time window and a signal." }
+  ],
+  "roles": [
+    {
+      "id": "ae",
+      "name": "Account executive",
+      "tagline": "Prep, follow-up and deal strategy, without the tab hunt.",
+      "groups": [
+        {
+          "title": "Before the call",
+          "heading": "Ask for the brief. Let it pull live.",
+          "swaps": [
+            {
+              "title": "Pre-call prep",
+              "pattern": "ask",
+              "instead": "Opening six tabs before a call: CRM, inbox, calendar and last week’s recording.",
+              "ask": "Brief me on Vantage Retail: last three meetings, open risks, anyone who’s gone quiet.",
+              "why": "One ask replaces the hunt, and every line comes from captured activity."
+            },
+            {
+              "title": "Deal updates",
+              "pattern": "pull",
+              "instead": "Pasting CRM notes into Claude and hoping they’re current.",
+              "ask": "Using Backstory, what’s changed on Vantage Retail since last Tuesday?",
+              "why": "It pulls the record live, so nothing goes stale."
+            }
+          ]
+        },
+        {
+          "title": "Sharpen the question",
+          "heading": "Add a filter, a time window and a signal",
+          "swaps": [
+            {
+              "title": "Pipeline check",
+              "pattern": "specific",
+              "instead": "“How’s my pipeline?”",
+              "ask": "Which of my deals closing this quarter have no exec contact in 30 days?",
+              "why": "A filter, a time window and a signal turn a vague answer into a to-do list.",
+              "highlights": [
+                { "text": "closing this quarter", "kind": "filter" },
+                { "text": "no exec contact", "kind": "signal" },
+                { "text": "in 30 days", "kind": "window" }
+              ]
+            },
+            {
+              "title": "Stakeholder map",
+              "pattern": "specific",
+              "instead": "Rebuilding the buying group from memory.",
+              "ask": "Who at Vantage Retail have we met with in the last 90 days, and who’s missing from the buying group?",
+              "why": "See who’s engaged and who’s missing, based on real meetings."
+            },
+            {
+              "title": "Deal risk",
+              "pattern": "specific",
+              "instead": "“Is this deal okay?”",
+              "ask": "What are the top three risks on the Vantage Retail opportunity, and what’s the evidence for each?",
+              "why": "Asking for evidence ties each risk to a real meeting or email."
+            }
+          ]
+        },
+        {
+          "title": "After the call",
+          "heading": "Start from what’s captured, not from memory",
+          "swaps": [
+            {
+              "title": "Follow-up email",
+              "pattern": "ask",
+              "instead": "Copying meeting notes into an email and rewriting them as a recap.",
+              "ask": "Using Backstory, draft a follow-up to my last Vantage Retail meeting with the next steps we agreed.",
+              "why": "The meeting is already captured. Start from it, not from memory.",
+              "mock": {
+                "type": "text",
+                "title": "Draft",
+                "subject": "Next steps from Tuesday’s demo",
+                "body": "Thanks for the time, Jordan. As agreed: revised pricing by Friday, security review kickoff next week, and a working session with your ops team on the 14th."
+              }
+            },
+            {
+              "title": "Precedent",
+              "pattern": "ask",
+              "instead": "Asking around Slack for someone who’s closed a deal like this.",
+              "ask": "Find a similar deal to Vantage Retail and tell me how it was won.",
+              "why": "Situation search finds comparable past deals. Available where your workspace has it enabled.",
+              "mock": {
+                "type": "rows",
+                "title": "Situation search",
+                "caption": "Vantage Retail · Retail · $95K · Proposal",
+                "rows": [
+                  { "label": "Northwind Goods", "tag": "Won", "tone": "good" },
+                  { "label": "Pinecrest Market", "tag": "Won", "tone": "good" },
+                  { "label": "Alder & Co.", "tag": "Lost", "tone": "gap" }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "manager",
+      "name": "Sales manager",
+      "tagline": "Forecasts, 1:1s and coaching, grounded in what reps actually did.",
+      "groups": [
+        {
+          "title": "The weekly rhythm",
+          "heading": "Swap the prep behind every standing meeting",
+          "swaps": [
+            {
+              "moment": "Monday · Team review",
+              "title": "Coaching focus",
+              "pattern": "specific",
+              "instead": "Coaching from gut feel on who’s struggling.",
+              "ask": "Which reps have deals with no customer meeting in the last 21 days?",
+              "why": "Meeting gaps captured in Backstory show where coaching matters most."
+            },
+            {
+              "moment": "Tuesday · 1:1s",
+              "title": "1:1 prep",
+              "pattern": "ask",
+              "instead": "Asking the rep to walk through every deal.",
+              "ask": "Before my 1:1 with Priya, summarize her top five deals: recent activity, risks and next steps.",
+              "why": "The 1:1 starts at the conversation, not the status update."
+            },
+            {
+              "moment": "Wednesday · Forecast call",
+              "title": "Forecast prep",
+              "pattern": "pull",
+              "instead": "Exporting the pipeline to a spreadsheet before the forecast call.",
+              "ask": "Using Backstory, which deals in my team’s commit changed stage or close date this week?",
+              "why": "You walk in knowing what moved, without rebuilding the view."
+            }
+          ]
+        },
+        {
+          "title": "Inspect with structure",
+          "heading": "Give the answer a framework you can coach against",
+          "swaps": [
+            {
+              "title": "Deal inspection",
+              "pattern": "specific",
+              "instead": "“Is Halden Freight going to close?”",
+              "ask": "Evaluate the Halden Freight opportunity using MEDDPICC and flag the gaps.",
+              "why": "A framework turns “I think so” into specific gaps to close.",
+              "note": "Swap in the methodology your team uses, such as MEDDIC, BANT, SPICED or Challenger.",
+              "mock": {
+                "type": "rows",
+                "title": "Halden Freight · MEDDPICC",
+                "rows": [
+                  { "label": "Metrics", "sub": "M", "tag": "Strong", "tone": "good", "value": "Cost-per-mile target agreed" },
+                  { "label": "Economic buyer", "sub": "E", "tag": "Gap", "tone": "gap", "value": "CFO not engaged in 26 days" },
+                  { "label": "Decision criteria", "sub": "D", "tag": "Strong", "tone": "good", "value": "Criteria shared in writing" },
+                  { "label": "Decision process", "sub": "D", "tag": "Partial", "tone": "partial", "value": "Procurement steps unclear" },
+                  { "label": "Paper process", "sub": "P", "tag": "Unknown", "tone": "unknown", "value": "No legal contact yet" },
+                  { "label": "Identify pain", "sub": "I", "tag": "Strong", "tone": "good", "value": "Fleet downtime costs confirmed" },
+                  { "label": "Champion", "sub": "C", "tag": "Strong", "tone": "good", "value": "Dana Ruiz, VP Operations" },
+                  { "label": "Competition", "sub": "C", "tag": "Partial", "tone": "partial", "value": "Incumbent mentioned once" }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "title": "See across the team",
+          "heading": "Let patterns surface, instead of hunting for them",
+          "swaps": [
+            {
+              "title": "At-risk accounts",
+              "pattern": "specific",
+              "instead": "Reading every call summary to find the accounts going cold.",
+              "ask": "Which accounts on my team have gone quiet in the last 30 days, ranked by deal size?",
+              "why": "Ranking by size tells you where to look first.",
+              "mock": {
+                "type": "bars",
+                "title": "Gone quiet · ranked by size",
+                "rows": [
+                  { "label": "Halden Freight", "value": "$240K · 26d", "pct": 100 },
+                  { "label": "Corvia Health", "value": "$180K · 34d", "pct": 75 },
+                  { "label": "Beacon Labs", "value": "$120K · 31d", "pct": 50 },
+                  { "label": "Kestrel Air", "value": "$85K · 40d", "pct": 35 }
+                ]
+              }
+            },
+            {
+              "title": "Win patterns",
+              "pattern": "ask",
+              "instead": "Relying on anecdotes for what’s working.",
+              "ask": "Across deals my team won last quarter, what did the buying groups have in common?",
+              "why": "Scoped to one quarter and one team, the pattern is specific enough to act on.",
+              "mock": {
+                "type": "rows",
+                "title": "Common to won deals",
+                "rows": [
+                  { "label": "Exec sponsor met before proposal", "stat": "8 of 10" },
+                  { "label": "Three or more stakeholders engaged", "stat": "7 of 10" },
+                  { "label": "Security involved during scoping", "stat": "6 of 10" }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cs",
+      "name": "Customer success",
+      "tagline": "Handoffs, renewals and expansion, with the full account story on hand.",
+      "groups": [
+        {
+          "title": "One account, four moments",
+          "heading": "Corvia Health, from handoff to expansion",
+          "swaps": [
+            {
+              "moment": "Handoff",
+              "title": "Sales handoff",
+              "pattern": "pull",
+              "instead": "A 30-minute handoff call to learn what was promised.",
+              "ask": "Summarize what was promised to Corvia Health during the sales cycle: goals, commitments and open questions.",
+              "why": "Commitments made in meetings don’t get lost between teams."
+            },
+            {
+              "moment": "QBR",
+              "title": "QBR prep",
+              "pattern": "ask",
+              "instead": "Building the QBR deck from a blank page.",
+              "ask": "Draft a QBR outline for Corvia Health from this quarter’s meetings and emails.",
+              "why": "Start from what the customer actually said this quarter."
+            },
+            {
+              "moment": "Renewal",
+              "title": "Renewal prep",
+              "pattern": "ask",
+              "instead": "Piecing the renewal story together the week before.",
+              "ask": "Using Backstory, summarize Corvia Health’s last 90 days: meetings, open issues and renewal risks.",
+              "why": "The story is already in the activity. Ask for it early."
+            },
+            {
+              "moment": "Expansion",
+              "title": "Expansion",
+              "pattern": "specific",
+              "instead": "“Any expansion opportunities?”",
+              "ask": "Which teams at Corvia Health have we met with outside the original buying group this quarter?",
+              "why": "New conversations outside the core team are the earliest expansion signal."
+            }
+          ]
+        },
+        {
+          "title": "Catch signals early",
+          "heading": "See the drop-off while there’s time to act",
+          "swaps": [
+            {
+              "title": "Quiet contacts",
+              "pattern": "specific",
+              "instead": "Finding out your champion left when an email bounces.",
+              "ask": "Which contacts at Corvia Health used to be active and have gone quiet?",
+              "why": "You see the drop-off while there’s still time to act.",
+              "mock": {
+                "type": "rows",
+                "title": "Meetings · last 12 weeks",
+                "rows": [
+                  { "label": "Dana Ruiz", "sub": "Champion", "tag": "Active", "tone": "good" },
+                  { "label": "Sam Okafor", "sub": "IT lead", "tag": "Active", "tone": "good" },
+                  { "label": "Lee Park", "sub": "Exec sponsor", "tag": "Gone quiet", "tone": "gap" },
+                  { "label": "Rita Gomez", "sub": "Finance", "tag": "Gone quiet", "tone": "gap" }
+                ]
+              }
+            },
+            {
+              "title": "Book health",
+              "pattern": "specific",
+              "instead": "Scanning your book account by account.",
+              "ask": "Which of my accounts renewing in the next 90 days have had no meeting in 45 days?",
+              "why": "Two filters turn a whole book into a short list.",
+              "mock": {
+                "type": "bars",
+                "title": "Two filters, one short list",
+                "rows": [
+                  { "label": "Your book", "value": "48 accounts", "pct": 100 },
+                  { "label": "Renewing in 90 days", "value": "12 accounts", "pct": 25 },
+                  { "label": "No meeting in 45 days", "value": "3 accounts", "pct": 6 }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

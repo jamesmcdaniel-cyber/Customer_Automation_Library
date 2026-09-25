@@ -8,5 +8,20 @@
     "security": "",
     "permissions": "",
     "troubleshooting": ""
-  }
+  },
+  "apiDocsUrl": "https://backstory-workflows.vercel.app/#/api-docs",
+  "policies": {
+    "anthropicCommercial": "https://www.anthropic.com/legal/commercial-terms",
+    "anthropicPrivacy": "https://privacy.anthropic.com/",
+    "anthropicTrust": "https://trust.anthropic.com/",
+    "openaiEnterprise": "https://openai.com/enterprise-privacy/",
+    "backstoryPrivacy": "https://backstory.ai/privacy",
+    "backstorySecurity": "https://backstory.ai/security"
+  },
+  "connectScreenshots": [
+    "",
+    "",
+    "",
+    ""
+  ]
 }
