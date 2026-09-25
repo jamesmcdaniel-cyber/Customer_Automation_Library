@@ -89,7 +89,7 @@ export function TrustIt() {
       content: (
         <Checklist
           items={[
-            'Accounts and opportunities the user has access to in Backstory',
+            'Accounts and opportunities the user has access to in Backstory, including lists of up to 1,000 at a time',
             'Summaries of emails, calls, and meetings from the last 30 days, matched to those records',
             'Deal risks, next steps, engaged contacts, and scorecard coverage',
             'Public news about publicly traded companies',

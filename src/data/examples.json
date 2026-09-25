@@ -5,7 +5,10 @@
     "startHere": true,
     "title": "Meeting prep brief",
     "helpsYou": "Walk into any customer meeting knowing where things stand, who's involved, and what to push for — in about a minute.",
-    "whoFor": ["Reps", "CSMs"],
+    "whoFor": [
+      "Reps",
+      "CSMs"
+    ],
     "timeToTry": "2 minutes",
     "prompt": "I'm meeting with Acme Corp tomorrow. Brief me: where things stand, who's engaged on their side, any open risks, and what I should push for in the meeting.",
     "variations": [
@@ -30,7 +33,10 @@
     "startHere": false,
     "title": "Deal risk + next actions",
     "helpsYou": "Find out what could stall a deal and get three concrete things to do about it this week.",
-    "whoFor": ["Reps", "Managers"],
+    "whoFor": [
+      "Reps",
+      "Managers"
+    ],
     "timeToTry": "3 minutes",
     "prompt": "What's putting the Acme Corp renewal at risk, and what are the three most important things I should do this week to keep it on track?",
     "variations": [
@@ -55,7 +61,9 @@
     "startHere": false,
     "title": "Grounded follow-up email",
     "helpsYou": "Draft a follow-up email that reflects what's actually happening on the deal, not a generic template.",
-    "whoFor": ["Reps"],
+    "whoFor": [
+      "Reps"
+    ],
     "timeToTry": "2 minutes",
     "prompt": "Draft a follow-up email to Dana Whitfield at Acme Corp based on our recent activity and agreed next steps. Keep it under 150 words, friendly but direct.",
     "variations": [
@@ -80,11 +88,13 @@
     "startHere": false,
     "title": "Pipeline coaching review",
     "helpsYou": "See which deals need attention and which conversations to have with your team before your next one-on-ones.",
-    "whoFor": ["Managers"],
+    "whoFor": [
+      "Managers"
+    ],
     "timeToTry": "5 minutes",
     "prompt": "Review my top deals. Flag any with open risks, missing next steps, or scorecard gaps, and tell me which reps need a coaching conversation and what to cover.",
     "variations": [
-      "Which of my top deals have no agreed next step?",
+      "List my team's open deals closing this quarter. Which have no agreed next step?",
       "Show my top deals as a table: owner, stage, biggest risk, scorecard gaps.",
       "For the Acme Corp opportunity, which MEDDPICC elements are still missing?"
     ],
@@ -94,7 +104,7 @@
       "Your team's deals are visible to you in Backstory",
       "Your team uses a scorecard (MEDDIC, MEDDPICC, or SPICED) for scorecard gaps"
     ],
-    "caveat": "\"Top deals\" means about 20 of the most relevant records you can see. It isn't a full pipeline export, and it can't show week-over-week changes.",
+    "caveat": "For a full team view, add a filter such as owner or close date. The assistant may show you how many deals it found and ask you to confirm before it fetches them. Activity checks cover the last 30 days, and it can't show week-over-week changes.",
     "videoUrl": "https://share.zight.com/01a0d585-e237-7a45-9758-9512e13b306c",
     "stretchLink": "https://backstory-workflows.vercel.app/#/workflow/36-pipeline-forecast-digest",
     "stretchLabel": "Pipeline & Forecast Digest — a weekly team review delivered to Slack or email"

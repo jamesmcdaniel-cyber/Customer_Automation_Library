@@ -6,6 +6,7 @@ import { NextStep } from '../components/NextStep';
 // Each drawer is one group of Backstory tools.
 const DRAWERS = [
   ['Find', 'Look up an account or deal by name or CRM ID.'],
+  ['Lists', 'Pull up to 1,000 accounts or deals from a plain-language filter, like “deals closing this quarter”.'],
   ['Activity', 'Emails, calls, and meetings from the last 30 days, matched to your CRM.'],
   ['Deal context', 'Risks, agreed next steps, topics, and scorecard coverage.'],
   ['People', 'Who is engaged on the customer’s side, and how active they are.'],

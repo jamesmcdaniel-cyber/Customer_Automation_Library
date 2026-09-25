@@ -105,7 +105,7 @@ export function UseIt() {
             </Step>
             <Step n={4} title="See what it can pull" last>
               Ask: <em>&ldquo;What Backstory tools do you have access to?&rdquo;</em> You&rsquo;ll see the list of drawers it can
-              open: accounts, activity, deal context, people, and precedents. Stuck? <HelpLink k="connect" label="Connecting the Backstory MCP" />.
+              open: accounts and lists, activity, deal context, people, scorecards, and precedents. Stuck? <HelpLink k="connect" label="Connecting the Backstory MCP" />.
               <Screenshot src={shots[3]} alt="the list of Backstory tools in the chat" />
             </Step>
           </ol>
