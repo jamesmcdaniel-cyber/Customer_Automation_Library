@@ -9,3 +9,4 @@ export { default as stories } from '../data/stories.json';
 export { default as swaps } from '../data/swaps.json';
 export { default as downloads } from '../data/downloads.json';
 export { default as resources } from '../data/resources.json';
+export { default as pages } from '../data/pages.json';

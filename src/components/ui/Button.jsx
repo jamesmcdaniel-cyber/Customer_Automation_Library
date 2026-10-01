@@ -1,3 +1,4 @@
+import { forwardRef } from 'react';
 import { cn } from '../../lib/cn';
 
 const variants = {
@@ -12,9 +13,11 @@ const sizes = {
   md: 'px-5 py-2.5 text-sm rounded-xl',
 };
 
-export function Button({ as: As = 'button', variant = 'primary', size = 'md', className, ...props }) {
+// Forwards its ref so it can be a Radix trigger (asChild), e.g. to open a resource dialog.
+export const Button = forwardRef(function Button({ as: As = 'button', variant = 'primary', size = 'md', className, ...props }, ref) {
   return (
     <As
+      ref={ref}
       className={cn(
         'inline-flex items-center justify-center gap-2 font-semibold transition-all duration-200 cursor-pointer disabled:opacity-50 disabled:pointer-events-none no-underline',
         variants[variant],
@@ -24,4 +27,4 @@ export function Button({ as: As = 'button', variant = 'primary', size = 'md', cl
       {...props}
     />
   );
-}
+});

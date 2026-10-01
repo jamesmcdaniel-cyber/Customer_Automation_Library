@@ -1,0 +1,72 @@
+{
+  "plainEnglish": {
+    "count": 3,
+    "w": 1100,
+    "h": 1424
+  },
+  "businessCase": {
+    "count": 2,
+    "w": 1100,
+    "h": 1424
+  },
+  "first15": {
+    "count": 2,
+    "w": 1100,
+    "h": 1424
+  },
+  "mcpVsApi": {
+    "count": 2,
+    "w": 1100,
+    "h": 1424
+  },
+  "securityData": {
+    "count": 2,
+    "w": 1100,
+    "h": 1424
+  },
+  "aiEthics": {
+    "count": 1,
+    "w": 1100,
+    "h": 1424
+  },
+  "swapCards": {
+    "count": 15,
+    "w": 1100,
+    "h": 619
+  },
+  "workflowPlaybook": {
+    "count": 19,
+    "w": 1100,
+    "h": 619
+  },
+  "ebook": {
+    "count": 34,
+    "w": 1100,
+    "h": 619
+  },
+  "connectClaude": {
+    "count": 6,
+    "w": 1100,
+    "h": 1424
+  },
+  "connectChatgpt": {
+    "count": 6,
+    "w": 1100,
+    "h": 1424
+  },
+  "connectCopilot": {
+    "count": 10,
+    "w": 1100,
+    "h": 1424
+  },
+  "connectN8n": {
+    "count": 5,
+    "w": 1100,
+    "h": 1424
+  },
+  "connectGeminiCli": {
+    "count": 3,
+    "w": 1100,
+    "h": 1424
+  }
+}

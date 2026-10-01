@@ -5,7 +5,7 @@ import { CopyButton } from '../components/ui/CopyButton';
 import { Button } from '../components/ui/Button';
 import { NextStep } from '../components/NextStep';
 import { HelpLink } from '../components/HelpLink';
-import { Download } from '../components/Download';
+import { ResourceButton } from '../components/Resource';
 import { Video } from '../components/Video';
 import { ResourceKit, ResourceKitLink } from '../components/ResourceKit';
 import { examples, site, swaps } from '../lib/content';
@@ -129,7 +129,7 @@ export function UseIt() {
           </div>
           <p className="mt-4 text-[13px] leading-6 text-ac-dark-secondary">
             <strong className="text-ac-dark">Something else?</strong> Cursor and Gemini CLI work too, for developers:{' '}
-            <Download id="connectGeminiCli" inline label="Gemini CLI setup guide" />. Perplexity and Grok aren&rsquo;t supported
+            <ResourceButton id="connectGeminiCli" inline label="Gemini CLI setup guide" />. Perplexity and Grok aren&rsquo;t supported
             yet. For anything else, ask your Backstory CSM.
           </p>
           <p className="mt-2 text-[13px] leading-6 text-ac-dark-secondary">
@@ -215,7 +215,7 @@ export function UseIt() {
             <div>
               <h2 className="font-display text-[22px] font-bold tracking-[-0.01em]">Instead of this, do this</h2>
               <p className="mt-1.5 max-w-3xl text-[14px] leading-6 text-ac-dark-secondary">
-                People keep their old habits and bolt Claude onto the end of them. Every swap applies one of three patterns.
+                People keep their old habits and bolt Claude onto the end of them. Every swap applies one of three shifts.
               </p>
             </div>
             <Button as={Link} to="/use-it/swaps" variant="secondary" size="sm">

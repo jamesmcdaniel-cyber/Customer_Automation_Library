@@ -4,7 +4,7 @@ import { SectionHero } from '../components/SectionHero';
 import { Tabs } from '../components/ui/Tabs';
 import { CopyButton } from '../components/ui/CopyButton';
 import { NextStep } from '../components/NextStep';
-import { Download } from '../components/Download';
+import { ResourceButton } from '../components/Resource';
 import { swaps } from '../lib/content';
 import { cn } from '../lib/cn';
 
@@ -142,7 +142,7 @@ export function SwapCard({ s, n }) {
       </div>
       <div className="px-5 pb-5">
         <p className="mt-3 text-[13.5px] leading-6 text-ac-dark">
-          <span className="mr-2 font-mono text-[10.5px] font-semibold uppercase tracking-[0.14em] text-ac-coral-dark">Why</span>
+          <span className="mr-2 font-mono text-[10.5px] font-semibold uppercase tracking-[0.14em] text-ac-coral-dark">{s.whyLabel || 'Why'}</span>
           {s.why}
         </p>
         {s.note && <p className="mt-1.5 text-[12.5px] leading-5 text-ac-med-gray">{s.note}</p>}
@@ -212,7 +212,7 @@ export function Swaps() {
         image="bg-04.jpg"
       >
         <div className="mt-6">
-          <Download id="swapCards" tone="dark" label="Download the swap cards" />
+          <ResourceButton id="swapCards" tone="dark" label="Open the swap-card deck" />
         </div>
       </SectionHero>
       <div className="mx-auto max-w-6xl space-y-10">
@@ -221,7 +221,7 @@ export function Swaps() {
           <h2 className="max-w-3xl font-display text-[22px] font-bold leading-tight tracking-[-0.01em]">
             People keep their old habits and <em className="font-normal">bolt Claude onto the end of them.</em>
           </h2>
-          <p className="mb-6 mt-2 text-[14px] text-ac-dark-secondary">Every card in this set applies one of three swaps.</p>
+          <p className="mb-6 mt-2 max-w-3xl text-[14px] leading-6 text-ac-dark-secondary">{swaps.intro}</p>
           <PatternBars />
         </section>
 
@@ -235,11 +235,40 @@ export function Swaps() {
           />
         </section>
 
+        <section className="surface-card p-6">
+          <div className="eyebrow mb-2">Wrap-up · all three roles</div>
+          <h2 className="font-display text-[22px] font-bold leading-tight tracking-[-0.01em]">{swaps.progression.heading}</h2>
+          <p className="mt-2 max-w-3xl text-[14px] leading-6 text-ac-dark-secondary">{swaps.progression.intro}</p>
+          <div className="mt-5 grid gap-4 md:grid-cols-3">
+            {swaps.progression.roles.map((r) => (
+              <div key={r.name} className="rounded-lg border border-ac-light-gray p-4">
+                <h3 className="font-display text-[15px] font-bold">{r.name}</h3>
+                <ol className="mt-3 space-y-3">
+                  {r.steps.map(([when, what]) => (
+                    <li key={when}>
+                      <div className="font-mono text-[10.5px] font-semibold uppercase tracking-[0.14em] text-ac-coral-dark">{when}</div>
+                      <p className="mt-0.5 text-[13.5px] leading-6 text-ac-dark-secondary">{what}</p>
+                    </li>
+                  ))}
+                </ol>
+              </div>
+            ))}
+          </div>
+        </section>
+
         <section className="rounded-xl border border-ac-horizon-100 bg-ac-horizon-50 px-6 py-8">
           <div className="eyebrow mb-2 !text-ac-coral-dark">Every swap, one habit</div>
           <p className="font-display text-[26px] font-bold leading-tight tracking-[-0.01em] sm:text-[30px]">
             Name the tool. Scope the ask. <em className="font-normal text-ac-coral-dark">Ask for receipts.</em>
           </p>
+          <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {swaps.practices.map(([name, how]) => (
+              <div key={name} className="rounded-lg border border-ac-horizon-100 bg-white p-4">
+                <h3 className="font-display text-[15px] font-bold">{name}</h3>
+                <p className="mt-1 text-[13.5px] leading-6 text-ac-dark-secondary">{how}</p>
+              </div>
+            ))}
+          </div>
           <p className="mt-3 text-[13px] text-ac-dark-secondary">
             Accounts, reps and deals shown are mock examples: Vantage Retail, Halden Freight, Corvia Health.
           </p>

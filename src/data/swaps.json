@@ -4,6 +4,22 @@
     { "id": "pull", "name": "Pull live, don’t paste", "desc": "Instead of pasting CRM notes into Claude, let it pull them live, so nothing goes stale." },
     { "id": "specific", "name": "Be specific, not general", "desc": "Instead of “How’s my pipeline?”, ask a question with a filter, a time window and a signal." }
   ],
+  "intro": "Change the habit, and Claude stops being an extra step. It does the gathering, and you start from the answer. Every card applies one of three shifts. Small changes, big impact.",
+  "progression": {
+    "heading": "What changes as the habit sticks",
+    "intro": "Start with one prompt. Within a few weeks it’s routine, and the time you used to spend gathering goes back to customers.",
+    "roles": [
+      { "name": "Account executive", "steps": [["Day 1", "Prep one call by asking for a brief instead of opening tabs."], ["Week 2", "Morning prep takes minutes. Follow-ups start from captured notes."], ["Month 1", "You ask sharper questions and spot quiet deals before they go cold."]] },
+      { "name": "Sales manager", "steps": [["Day 1", "Prep one 1:1 from Backstory instead of a status readout."], ["Week 2", "Every standing meeting has a prompt. Forecast prep runs on evidence."], ["Month 1", "Coaching time goes to the deals that need a decision."]] },
+      { "name": "Customer success", "steps": [["Day 1", "Ask for a 90-day summary on one renewing account."], ["Week 2", "Handoffs and QBR outlines start from what was captured."], ["Month 1", "Quiet contacts and book risk surface while there’s time to act."]] }
+    ]
+  },
+  "practices": [
+    ["Name the tool", "Start with “Using Backstory” so Claude pulls live data."],
+    ["Scope the ask", "Add an account, a time window and a signal."],
+    ["Ask for receipts", "“Which meetings and emails did you use?”"],
+    ["Anchor it", "Tie one prompt to a meeting you already run."]
+  ],
   "roles": [
     {
       "id": "ae",
@@ -17,8 +33,8 @@
             {
               "title": "Pre-call prep",
               "pattern": "ask",
-              "instead": "Opening six tabs before a call: CRM, inbox, calendar and last week’s recording.",
-              "ask": "Brief me on Vantage Retail: last three meetings, open risks, anyone who’s gone quiet.",
+              "instead": "Opening six tabs before a call.",
+              "ask": "Brief me on Vantage Retail: meetings in the last 30 days, open risks, and which contacts have been least active.",
               "why": "One ask replaces the hunt, and every line comes from captured activity."
             },
             {
@@ -39,7 +55,7 @@
               "pattern": "specific",
               "instead": "“How’s my pipeline?”",
               "ask": "Which of my deals closing this quarter have no exec contact in 30 days?",
-              "why": "A filter, a time window and a signal turn a vague answer into a to-do list.",
+              "why": "Result: a to-do list, not a vague summary.",
               "highlights": [
                 { "text": "closing this quarter", "kind": "filter" },
                 { "text": "no exec contact", "kind": "signal" },
@@ -71,7 +87,7 @@
               "pattern": "ask",
               "instead": "Copying meeting notes into an email and rewriting them as a recap.",
               "ask": "Using Backstory, draft a follow-up to my last Vantage Retail meeting with the next steps we agreed.",
-              "why": "The meeting is already captured. Start from it, not from memory.",
+              "why": "The meeting is already captured.",
               "mock": {
                 "type": "text",
                 "title": "Draft",
@@ -84,7 +100,7 @@
               "pattern": "ask",
               "instead": "Asking around Slack for someone who’s closed a deal like this.",
               "ask": "Find a similar deal to Vantage Retail and tell me how it was won.",
-              "why": "Situation search finds comparable past deals. Available where your workspace has it enabled.",
+              "why": "Finds comparable past deals, where enabled.",
               "mock": {
                 "type": "rows",
                 "title": "Situation search",
@@ -114,8 +130,8 @@
               "title": "Coaching focus",
               "pattern": "specific",
               "instead": "Coaching from gut feel on who’s struggling.",
-              "ask": "Which reps have deals with no customer meeting in the last 21 days?",
-              "why": "Meeting gaps captured in Backstory show where coaching matters most."
+              "ask": "Which of my team’s accounts have had no meetings in the last 30 days, by owner?",
+              "why": "Coach from facts, not hunches. Backstory shows which accounts have gone quiet, so you know where to spend time."
             },
             {
               "moment": "Tuesday · 1:1s",
@@ -123,15 +139,15 @@
               "pattern": "ask",
               "instead": "Asking the rep to walk through every deal.",
               "ask": "Before my 1:1 with Priya, summarize her top five deals: recent activity, risks and next steps.",
-              "why": "The 1:1 starts at the conversation, not the status update."
+              "why": "Backstory has the status. The 1:1 can start at coaching instead of a deal-by-deal readout."
             },
             {
               "moment": "Wednesday · Forecast call",
               "title": "Forecast prep",
               "pattern": "pull",
-              "instead": "Exporting the pipeline to a spreadsheet before the forecast call.",
-              "ask": "Using Backstory, which deals in my team’s commit changed stage or close date this week?",
-              "why": "You walk in knowing what moved, without rebuilding the view."
+              "instead": "Exporting the pipeline to a spreadsheet.",
+              "ask": "Using Backstory, list Priya’s open deals closing this quarter and flag any with new risks.",
+              "why": "Backstory flags what moved and what’s at risk, so the forecast call runs on evidence, not a rep’s recall."
             }
           ]
         },
@@ -170,9 +186,9 @@
             {
               "title": "At-risk accounts",
               "pattern": "specific",
-              "instead": "Reading every call summary to find the accounts going cold.",
+              "instead": "Reading every call summary to find accounts going cold.",
               "ask": "Which accounts on my team have gone quiet in the last 30 days, ranked by deal size?",
-              "why": "Ranking by size tells you where to look first.",
+              "why": "Ranking by size shows where to look first.",
               "mock": {
                 "type": "bars",
                 "title": "Gone quiet · ranked by size",
@@ -188,8 +204,8 @@
               "title": "Win patterns",
               "pattern": "ask",
               "instead": "Relying on anecdotes for what’s working.",
-              "ask": "Across deals my team won last quarter, what did the buying groups have in common?",
-              "why": "Scoped to one quarter and one team, the pattern is specific enough to act on.",
+              "ask": "Find past won deals similar to Halden Freight and tell me what worked.",
+              "why": "One quarter, one team: specific enough to act on.",
               "mock": {
                 "type": "rows",
                 "title": "Common to won deals",
@@ -219,7 +235,8 @@
               "pattern": "pull",
               "instead": "A 30-minute handoff call to learn what was promised.",
               "ask": "Summarize what was promised to Corvia Health during the sales cycle: goals, commitments and open questions.",
-              "why": "Commitments made in meetings don’t get lost between teams."
+              "why": "Start day one knowing every commitment.",
+              "whyLabel": "What changes"
             },
             {
               "moment": "QBR",
@@ -227,7 +244,8 @@
               "pattern": "ask",
               "instead": "Building the QBR deck from a blank page.",
               "ask": "Draft a QBR outline for Corvia Health from this quarter’s meetings and emails.",
-              "why": "Start from what the customer actually said this quarter."
+              "why": "Walk in with the quarter already summarized.",
+              "whyLabel": "What changes"
             },
             {
               "moment": "Renewal",
@@ -235,7 +253,8 @@
               "pattern": "ask",
               "instead": "Piecing the renewal story together the week before.",
               "ask": "Using Backstory, summarize Corvia Health’s last 90 days: meetings, open issues and renewal risks.",
-              "why": "The story is already in the activity. Ask for it early."
+              "why": "Spot renewal risk while there’s time to act.",
+              "whyLabel": "What changes"
             },
             {
               "moment": "Expansion",
@@ -243,7 +262,8 @@
               "pattern": "specific",
               "instead": "“Any expansion opportunities?”",
               "ask": "Which teams at Corvia Health have we met with outside the original buying group this quarter?",
-              "why": "New conversations outside the core team are the earliest expansion signal."
+              "why": "Find new teams before a competitor does.",
+              "whyLabel": "What changes"
             }
           ]
         },
@@ -255,8 +275,8 @@
               "title": "Quiet contacts",
               "pattern": "specific",
               "instead": "Finding out your champion left when an email bounces.",
-              "ask": "Which contacts at Corvia Health used to be active and have gone quiet?",
-              "why": "You see the drop-off while there’s still time to act.",
+              "ask": "Which Corvia Health contacts haven’t been contacted in the last two weeks?",
+              "why": "Spot the drop-off before the renewal.",
               "mock": {
                 "type": "rows",
                 "title": "Meetings · last 12 weeks",
@@ -272,7 +292,7 @@
               "title": "Book health",
               "pattern": "specific",
               "instead": "Scanning your book account by account.",
-              "ask": "Which of my accounts renewing in the next 90 days have had no meeting in 45 days?",
+              "ask": "Which of my accounts have had no meeting in the last 45 days?",
               "why": "Two filters turn a whole book into a short list.",
               "mock": {
                 "type": "bars",
