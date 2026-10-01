@@ -12,5 +12,5 @@
   "connectChatgpt": { "title": "Connecting ChatGPT to Backstory MCP", "file": "connect-chatgpt.pdf", "pages": 6 },
   "connectCopilot": { "title": "Connecting Copilot Studio to Backstory MCP", "file": "connect-copilot-studio.pdf", "pages": 10 },
   "connectN8n": { "title": "Connecting n8n to Backstory MCP", "file": "connect-n8n.pdf", "pages": 5 },
-  "connectGeminiCli": { "title": "Connecting Gemini CLI to Backstory MCP", "file": "connect-gemini-cli.pdf", "pages": 3 }
+  "connectGeminiCli": { "title": "Connecting Gemini CLI to Backstory MCP", "file": "connect-gemini-cli.pdf", "pages": 4 }
 }
