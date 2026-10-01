@@ -28,7 +28,7 @@ export function ResourceKit({ stage }) {
                   {item.pdf ? (
                     <Download id={item.pdf} inline label={item.label} />
                   ) : (
-                    <a href={site.intercom[item.help]} target="_blank" rel="noopener" className="inline-flex items-center gap-1.5 font-medium text-ac-coral-dark hover:underline">
+                    <a href={item.url === 'tour' ? site.tourUrl : site.intercom[item.help]} target="_blank" rel="noopener" className="inline-flex items-center gap-1.5 font-medium text-ac-coral-dark hover:underline">
                       {item.label} <ExternalLink size={13} />
                     </a>
                   )}

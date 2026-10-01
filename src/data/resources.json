@@ -1,6 +1,12 @@
 {
   "get-it": [
     {
+      "title": "A day in the life",
+      "audience": "Everyone",
+      "body": "An interactive tour of Backstory MCP at work. Share it with anyone who wants to see it before they connect.",
+      "items": [{ "url": "tour", "label": "Take the interactive tour" }]
+    },
+    {
       "title": "MCP in plain English",
       "audience": "Everyone",
       "body": "What MCP is, how it works, and what it changes for GTM teams. A good first read for anyone new to it.",

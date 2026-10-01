@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, ExternalLink } from 'lucide-react';
 import { SectionHero } from '../components/SectionHero';
 import { Video } from '../components/Video';
 import { Button } from '../components/ui/Button';
@@ -42,17 +42,29 @@ export function Home() {
         </div>
       </SectionHero>
 
-      <div className="mb-6 grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] lg:items-center">
-        <div className="px-1">
-          <div className="eyebrow mb-2">Watch first</div>
-          <h2 className="font-display text-[22px] font-bold leading-tight tracking-[-0.01em]">Connect Backstory to Claude and ChatGPT</h2>
-          <p className="mt-3 text-[15px] leading-7 text-ac-dark-secondary">
-            A walkthrough of adding the Backstory MCP to Claude and ChatGPT, signing in, and asking your first question. Using
-            Copilot, Gemini, or n8n? There&rsquo;s a <Link to="/use-it#connect" className="font-medium text-ac-coral-dark hover:underline">step-by-step guide for each</Link>.
-          </p>
+      <section className="mb-8">
+        <div className="mb-4 flex flex-wrap items-end justify-between gap-3 px-1">
+          <div>
+            <div className="eyebrow mb-2">Ready to take a tour?</div>
+            <h2 className="font-display text-[22px] font-bold leading-tight tracking-[-0.01em]">This is what a day in the life looks like</h2>
+            <p className="mt-2 max-w-3xl text-[15px] leading-7 text-ac-dark-secondary">
+              Click through an interactive tour at your own pace. When you&rsquo;re ready, there&rsquo;s a{' '}
+              <Link to="/use-it#connect" className="font-medium text-ac-coral-dark hover:underline">step-by-step guide</Link> to connect
+              your own assistant.
+            </p>
+          </div>
+          <a href={site.tourUrl} target="_blank" rel="noopener" className="hidden items-center gap-1.5 text-[13.5px] font-medium text-ac-coral-dark hover:underline sm:inline-flex">
+            Open the tour in a new tab <ExternalLink size={13} />
+          </a>
         </div>
-        <Video url={site.overviewVideoUrl} title="Connect Backstory to Claude and ChatGPT" />
-      </div>
+        {/* The tour needs room to click through, so phones get a button instead of a tiny embed. */}
+        <div className="hidden sm:block">
+          <Video url={site.tourUrl} title="A day in the life with Backstory MCP" />
+        </div>
+        <Button as="a" href={site.tourUrl} target="_blank" rel="noopener" className="sm:hidden">
+          Take the tour <ExternalLink size={14} />
+        </Button>
+      </section>
 
       <section className="mb-8">
         <div className="eyebrow mb-3">Four steps, at your own pace</div>

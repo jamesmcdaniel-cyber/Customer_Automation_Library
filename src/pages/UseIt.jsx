@@ -6,6 +6,7 @@ import { Button } from '../components/ui/Button';
 import { NextStep } from '../components/NextStep';
 import { HelpLink } from '../components/HelpLink';
 import { Download } from '../components/Download';
+import { Video } from '../components/Video';
 import { ResourceKit, ResourceKitLink } from '../components/ResourceKit';
 import { examples, site, swaps } from '../lib/content';
 import { PatternBars, SwapCard } from './Swaps';
@@ -118,6 +119,13 @@ export function UseIt() {
                 </span>
               </Link>
             ))}
+          </div>
+          <div className="mt-5 max-w-2xl">
+            <p className="mb-2.5 text-[13px] leading-6 text-ac-dark-secondary">
+              <strong className="text-ac-dark">Prefer to watch?</strong> Here&rsquo;s a walkthrough of connecting Claude and ChatGPT,
+              signing in, and asking a first question.
+            </p>
+            <Video url={site.overviewVideoUrl} title="Connect Backstory to Claude and ChatGPT" />
           </div>
           <p className="mt-4 text-[13px] leading-6 text-ac-dark-secondary">
             <strong className="text-ac-dark">Something else?</strong> Cursor and Gemini CLI work too, for developers:{' '}
