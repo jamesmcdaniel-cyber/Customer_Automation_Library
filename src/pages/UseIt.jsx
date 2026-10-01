@@ -5,6 +5,7 @@ import { CopyButton } from '../components/ui/CopyButton';
 import { Button } from '../components/ui/Button';
 import { NextStep } from '../components/NextStep';
 import { HelpLink } from '../components/HelpLink';
+import { Download } from '../components/Download';
 import { examples, site, swaps } from '../lib/content';
 import { PatternBars, SwapCard } from './Swaps';
 import { PlatformLogo } from './ConnectGuide';
@@ -82,6 +83,9 @@ export function UseIt() {
             </a>
           ))}
         </div>
+        <div className="mt-5">
+          <Download id="first15" tone="dark" />
+        </div>
       </SectionHero>
 
       <div className="mx-auto max-w-4xl space-y-6">
@@ -115,8 +119,9 @@ export function UseIt() {
             ))}
           </div>
           <p className="mt-4 text-[13px] leading-6 text-ac-dark-secondary">
-            <strong className="text-ac-dark">Something else?</strong> Cursor works too, for developers.
-            Perplexity and Grok aren&rsquo;t supported yet. For anything else, ask your Backstory CSM.
+            <strong className="text-ac-dark">Something else?</strong> Cursor and Gemini CLI work too, for developers:{' '}
+            <Download id="connectGeminiCli" inline label="Gemini CLI setup guide" />. Perplexity and Grok aren&rsquo;t supported
+            yet. For anything else, ask your Backstory CSM.
           </p>
           <p className="mt-2 text-[13px] leading-6 text-ac-dark-secondary">
             <strong className="text-ac-dark">Connected?</strong> Ask <em>&ldquo;What Backstory tools do you have access to?&rdquo;</em> to

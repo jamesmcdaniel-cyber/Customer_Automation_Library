@@ -1,0 +1,13 @@
+{
+  "plainEnglish": { "title": "MCP in plain English", "file": "mcp-101-plain-english.pdf", "pages": 3 },
+  "businessCase": { "title": "The business case for MCP", "file": "mcp-101-business-case.pdf", "pages": 2 },
+  "first15": { "title": "The first 15 minutes", "file": "mcp-101-first-15-minutes.pdf", "pages": 2 },
+  "mcpVsApi": { "title": "MCP vs API", "file": "mcp-101-mcp-vs-api.pdf", "pages": 2 },
+  "securityData": { "title": "Security and data FAQ", "file": "mcp-101-security-and-data.pdf", "pages": 2 },
+  "aiEthics": { "title": "AI ethics and best practices", "file": "mcp-101-ai-ethics.pdf", "pages": 1 },
+  "workflowPlaybook": { "title": "From prompt to playbook", "file": "mcp-101-workflow-playbook.pdf", "pages": 19 },
+  "connectClaude": { "title": "Connecting Claude to Backstory MCP", "file": "connect-claude.pdf", "pages": 6 },
+  "connectChatgpt": { "title": "Connecting ChatGPT to Backstory MCP", "file": "connect-chatgpt.pdf", "pages": 6 },
+  "connectN8n": { "title": "Connecting n8n to Backstory MCP", "file": "connect-n8n.pdf", "pages": 5 },
+  "connectGeminiCli": { "title": "Connecting Gemini CLI to Backstory MCP", "file": "connect-gemini-cli.pdf", "pages": 3 }
+}

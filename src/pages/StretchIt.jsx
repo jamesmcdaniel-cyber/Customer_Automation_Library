@@ -1,12 +1,61 @@
+import { Link } from 'react-router-dom';
 import { ArrowRight, ExternalLink, FileText, Hash, Layers, Newspaper, Repeat, Sparkles } from 'lucide-react';
 import { SectionHero } from '../components/SectionHero';
 import { Button } from '../components/ui/Button';
 import { Tabs } from '../components/ui/Tabs';
 import { CopyButton } from '../components/ui/CopyButton';
+import { Download } from '../components/Download';
+import { Code, PlatformLogo } from './ConnectGuide';
+import { findGuide } from '../data/connectGuides';
 import { examples, site, stories } from '../lib/content';
 import { cn } from '../lib/cn';
 
 const LIB = 'https://backstory-workflows.vercel.app/#/workflow/';
+const AGENT_LIBRARY = 'https://backstory-workflows.vercel.app/#/signals';
+
+// Where to build an agent. Each card reuses that platform's connect guide and logo.
+const AGENTS = [
+  {
+    guide: 'copilot',
+    name: 'Copilot Studio',
+    who: 'An agent builder sets it up',
+    body: 'Add Backstory as a tool on a Copilot Studio agent, paste in its instructions, and publish. Each person signs in the first time they use it.',
+  },
+  {
+    guide: 'gemini',
+    name: 'Gemini Enterprise',
+    who: 'A Google Cloud admin sets it up',
+    body: 'Add Backstory as a custom MCP data store, then give the agent instructions that tell Gemini when and how to use it.',
+  },
+  {
+    guide: 'n8n',
+    name: 'n8n',
+    who: 'A workflow builder sets it up',
+    body: 'Attach Backstory to an AI Agent node, so the agent works inside a workflow and hands its answer to the next step.',
+  },
+  {
+    guide: 'claude',
+    name: 'Claude Project',
+    who: 'Each person sets it up',
+    body: 'Put standing instructions in a Claude Project, so every chat inside it checks Backstory first and answers in your format.',
+  },
+];
+
+const API_TOKEN = `curl -X POST https://api.people.ai/auth/v1/tokens \\
+  -d grant_type=client_credentials \\
+  -d client_id=YOUR_API_KEY \\
+  -d client_secret=YOUR_API_SECRET`;
+
+const API_CALL = `curl -H "Authorization: Bearer YOUR_ACCESS_TOKEN" \\
+  https://api.people.ai/v0/public/accounts/crm-id/YOUR_CRM_ID`;
+
+const API_GROUPS = [
+  ['Records', 'Accounts, contacts, leads, opportunities, teams, and team members, by ID, CRM ID, or email.'],
+  ['Activity', 'Emails, meetings, and calls, with the people who took part.'],
+  ['Engagement', 'Engagement Levels for accounts, contacts, leads, and opportunities.'],
+  ['Bulk export', 'Background jobs that export raw activity or enriched contacts.'],
+  ['Email ingest', 'Add an email activity to Backstory from another system.'],
+];
 
 const PLAYBOOKS = [
   {
@@ -138,12 +187,15 @@ export function StretchIt() {
       <SectionHero
         eyebrow="04 · Stretch it"
         title="From prompt to playbook"
-        subtitle="A single prompt impresses people once. Workflows are what keep them coming back. Chain prompts into routines, try what nobody thinks to try, and know when to hand the job to an automation."
+        subtitle="A single prompt impresses people once. Workflows are what keep them coming back. Chain prompts into routines, try what nobody thinks to try, and know when to hand the job to an agent, an automation, or the API."
         image="bg-05.jpg"
       />
       <div className="mx-auto max-w-5xl space-y-10">
         <section>
-          <h2 className="eyebrow mb-3">Playbooks by role</h2>
+          <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
+            <h2 className="eyebrow">Playbooks by role</h2>
+            <Download id="workflowPlaybook" />
+          </div>
           <div className="surface-card p-6">
             <Tabs tabs={PLAYBOOKS.map((p) => ({ value: p.value, label: p.label, content: <Playbook p={p} /> }))} />
           </div>
@@ -191,9 +243,52 @@ export function StretchIt() {
           </div>
         </section>
 
+        <section id="agents" className="scroll-mt-24">
+          <div className="mb-4 flex flex-wrap items-end justify-between gap-3">
+            <div>
+              <h2 className="eyebrow mb-1">Build an agent</h2>
+              <p className="max-w-2xl text-[14px] leading-6 text-ac-dark-secondary">
+                Turn a prompt you run every week into an agent: standing instructions plus the Backstory tools, so anyone on the
+                team can run it by naming an account.
+              </p>
+            </div>
+            <Button as="a" href={AGENT_LIBRARY} target="_blank" rel="noopener" variant="secondary" size="sm">
+              Browse 30 ready-made agents <ExternalLink size={13} />
+            </Button>
+          </div>
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {AGENTS.map((a) => (
+              <div key={a.name} className="surface-card flex flex-col p-5">
+                <div className="mb-3 flex items-center gap-2.5">
+                  <span className="grid h-9 w-9 shrink-0 place-items-center rounded-lg border border-ac-light-gray bg-ac-warm-white">
+                    <PlatformLogo guide={findGuide(a.guide)} className="h-5 w-5" />
+                  </span>
+                  <div className="min-w-0">
+                    <h3 className="font-display text-[15px] font-bold leading-snug">{a.name}</h3>
+                    <p className="text-[12.5px] leading-5 text-ac-med-gray">{a.who}</p>
+                  </div>
+                </div>
+                <p className="flex-1 text-[13.5px] leading-6 text-ac-dark-secondary">{a.body}</p>
+                <Link to={`/use-it/connect/${a.guide}`} className="mt-4 inline-flex items-center gap-1.5 text-[13.5px] font-medium text-ac-coral-dark no-underline hover:underline">
+                  Connect guide <ArrowRight size={13} />
+                </Link>
+              </div>
+            ))}
+          </div>
+          <p className="mt-3 text-[13px] leading-6 text-ac-dark-secondary">
+            Each ready-made agent comes with instructions to paste into Copilot, Gemini, a Claude Project, or a custom GPT in
+            ChatGPT.
+          </p>
+        </section>
+
         <section>
-          <h2 className="eyebrow mb-1">MCP or API?</h2>
-          <p className="mb-4 text-[14px] text-ac-dark-secondary">Admins ask this and usually get vague answers. Here&rsquo;s the rule.</p>
+          <div className="mb-4 flex flex-wrap items-end justify-between gap-3">
+            <div>
+              <h2 className="eyebrow mb-1">MCP or API?</h2>
+              <p className="text-[14px] text-ac-dark-secondary">Admins ask this and usually get vague answers. Here&rsquo;s the rule.</p>
+            </div>
+            <Download id="mcpVsApi" />
+          </div>
           <div className="grid gap-4 md:grid-cols-3">
             <div className="surface-card border-ac-coral/40 p-5">
               <div className="mb-2 font-mono text-[11px] font-semibold uppercase tracking-[0.12em] text-ac-coral-dark">Use MCP</div>
@@ -206,6 +301,55 @@ export function StretchIt() {
             <div className="surface-card p-5">
               <div className="mb-2 font-mono text-[11px] font-semibold uppercase tracking-[0.12em] text-ac-med-gray">The gray zone</div>
               <p className="text-[14px] leading-6 text-ac-dark">Recurring reports a person still reviews. Start with MCP, and move to the API once the format stops changing.</p>
+            </div>
+          </div>
+        </section>
+
+        <section id="api" className="scroll-mt-24">
+          <div className="mb-4 flex flex-wrap items-end justify-between gap-3">
+            <div>
+              <h2 className="eyebrow mb-1">Start with the API</h2>
+              <p className="max-w-3xl text-[14px] leading-6 text-ac-dark-secondary">
+                For jobs a system runs, not a person. The Backstory Public API gives your developers read access to the data
+                Backstory captures.
+              </p>
+            </div>
+            <Button as="a" href={site.apiDocsUrl} target="_blank" rel="noopener" variant="secondary" size="sm">
+              Full API reference <ExternalLink size={13} />
+            </Button>
+          </div>
+          <div className="grid gap-4 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)]">
+            <div className="surface-card min-w-0 p-6">
+              <ol className="space-y-5">
+                <li>
+                  <h3 className="font-display text-[15px] font-bold">1. Get an API key and secret</h3>
+                  <p className="mt-1 text-[13.5px] leading-6 text-ac-dark-secondary">
+                    They&rsquo;re created in Backstory&rsquo;s API Key Management, usually by an admin. Confirm with your Backstory
+                    team how API access works for your workspace.
+                  </p>
+                </li>
+                <li>
+                  <h3 className="font-display text-[15px] font-bold">2. Trade them for an access token</h3>
+                  <Code label="Get a token" text={API_TOKEN} />
+                  <p className="mt-2 text-[13px] leading-5 text-ac-dark-secondary">The token lasts two hours. Get a new one when it expires.</p>
+                </li>
+                <li>
+                  <h3 className="font-display text-[15px] font-bold">3. Call an endpoint</h3>
+                  <Code label="Look up an account by its CRM ID" text={API_CALL} />
+                </li>
+              </ol>
+            </div>
+            <div className="surface-card min-w-0 p-6">
+              <h3 className="mb-3 font-display text-[15px] font-bold">What you can reach</h3>
+              <div className="space-y-1.5">
+                {API_GROUPS.map(([name, desc]) => (
+                  <div key={name} className="flex gap-3 rounded-lg border border-ac-light-gray bg-ac-warm-white px-3 py-2">
+                    <span className="w-24 shrink-0 font-mono text-[11px] font-semibold uppercase tracking-[0.06em] text-ac-coral-dark">{name}</span>
+                    <span className="text-[13px] leading-5">{desc}</span>
+                  </div>
+                ))}
+              </div>
+              <p className="mt-3 text-[12.5px] leading-5 text-ac-med-gray">Everything except bulk export and email ingest is read-only.</p>
             </div>
           </div>
         </section>

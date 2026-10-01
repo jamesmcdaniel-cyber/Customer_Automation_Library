@@ -1,7 +1,9 @@
-import { Code2, MessageSquare, Plug, Archive } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { ArrowRight, Bot, Braces, Code2, MessageCircle, MessageSquare, Plug, Archive } from 'lucide-react';
 import { SectionHero } from '../components/SectionHero';
 import { Accordion } from '../components/ui/Accordion';
 import { NextStep } from '../components/NextStep';
+import { Download } from '../components/Download';
 import { AfterDiagram, BeforeDiagram } from '../components/IntegrationDiagram';
 
 // Each drawer is one group of Backstory tools.
@@ -22,7 +24,34 @@ const GLOSSARY = [
   ['Tool', 'One specific thing the assistant can do through the connector, such as “find an account” or “get recent activity”. In the filing-cabinet picture, each tool is one drawer.'],
   ['Tool call', 'The moment the assistant actually opens a drawer. You can see it happen in the conversation, which is how you know the answer came from Backstory and not from general knowledge.'],
   ['Prompt', 'What you type to the assistant. Plain English works; naming the account helps.'],
+  ['Agent', 'An AI assistant set up for one job, with standing instructions and the Backstory tools attached. You build it once, in a tool like Copilot Studio, Gemini Enterprise, n8n, or a Claude Project, and it follows the same steps every time.'],
   ['API', 'A way for software to talk to Backstory directly, with exact requests and exact outputs. Built for code, not for conversation.'],
+  ['API key', 'The credential software uses to call the Backstory API. It’s usually created and scoped by an admin, and code trades it for a short-lived access token.'],
+];
+
+// Three ways to put Backstory data to work with AI, from simplest to most technical.
+const WAYS = [
+  {
+    icon: MessageCircle,
+    tag: 'Chat · you ask',
+    title: 'Ask in your assistant.',
+    body: 'Connect Backstory to Claude, ChatGPT, or Copilot and ask in plain English. Answers come from what you can see in Backstory. This is where everyone starts.',
+    more: { to: '/use-it', label: 'Your first 15 minutes' },
+  },
+  {
+    icon: Bot,
+    tag: 'Agents · it runs a job',
+    title: 'An assistant set up for one job.',
+    body: 'Give an assistant standing instructions and the Backstory tools, once. After that, anyone can name an account and get the same analysis, in the same format, every time.',
+    more: { to: '/stretch-it#agents', label: 'Build an agent' },
+  },
+  {
+    icon: Braces,
+    tag: 'API · code calls it',
+    title: 'Software asks, not a person.',
+    body: 'Developers call Backstory directly for exact, repeatable jobs, like a nightly sync, CRM fields, or a dashboard. No assistant in the loop.',
+    more: { to: '/stretch-it#api', label: 'Start with the API' },
+  },
 ];
 
 function Analogy({ icon: Icon, tag, title, children }) {
@@ -69,7 +98,11 @@ export function GetIt() {
         title="MCP in plain English"
         subtitle="MCP is one of the most common words in GTM right now, and it's rarely explained simply. It's a standard that lets AI assistants like Claude or ChatGPT connect to tools and use them, without every integration being built from scratch."
         image="bg-01.jpg"
-      />
+      >
+        <div className="mt-6">
+          <Download id="plainEnglish" tone="dark" />
+        </div>
+      </SectionHero>
       <div className="mx-auto max-w-5xl space-y-8">
         <section>
           <h2 className="eyebrow mb-3">Two ways to picture it</h2>
@@ -103,7 +136,27 @@ export function GetIt() {
         </section>
 
         <section>
-          <h2 className="eyebrow mb-3">MCP vs API</h2>
+          <h2 className="eyebrow mb-1">Three ways to use Backstory with AI</h2>
+          <p className="mb-4 max-w-3xl text-[14px] leading-6 text-ac-dark-secondary">
+            Most people start with chat. Agents and the API use the same Backstory data, for jobs that repeat.
+          </p>
+          <div className="grid gap-4 md:grid-cols-3">
+            {WAYS.map((w) => (
+              <Analogy key={w.tag} icon={w.icon} tag={w.tag} title={w.title}>
+                <p>{w.body}</p>
+                <Link to={w.more.to} className="mt-3 inline-flex items-center gap-1.5 font-medium text-ac-coral-dark no-underline hover:underline">
+                  {w.more.label} <ArrowRight size={13} />
+                </Link>
+              </Analogy>
+            ))}
+          </div>
+        </section>
+
+        <section>
+          <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
+            <h2 className="eyebrow">MCP vs API</h2>
+            <Download id="mcpVsApi" />
+          </div>
           <p className="mb-4 max-w-3xl text-[15px] leading-7 text-ac-dark-secondary">
             APIs and MCP both expose what a tool can do, but they&rsquo;re designed for different users. MCP doesn&rsquo;t replace
             the API. It sits on top of it and gives AI a standard way to use it.
@@ -127,6 +180,9 @@ export function GetIt() {
             can understand your GTM system and pull from each part of it, and the chat you type into starts to work like an
             operating system for your GTM team.
           </p>
+          <div className="mt-4">
+            <Download id="businessCase" label="The business case, for managers and execs" />
+          </div>
         </section>
 
         <section>

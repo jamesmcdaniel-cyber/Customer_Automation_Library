@@ -5,6 +5,7 @@ import { Accordion } from '../components/ui/Accordion';
 import { CopyButton } from '../components/ui/CopyButton';
 import { Checklist } from '../components/Checklist';
 import { NextStep } from '../components/NextStep';
+import { Download } from '../components/Download';
 import { GUIDES, findGuide } from '../data/connectGuides';
 import { assetUrl, cn } from '../lib/cn';
 
@@ -43,7 +44,7 @@ function Fields({ rows }) {
   );
 }
 
-function Code({ label, text }) {
+export function Code({ label, text }) {
   return (
     <div className="mt-3 overflow-hidden rounded-lg border border-ac-light-gray">
       <div className="flex items-center justify-between gap-2 border-b border-ac-light-gray bg-ac-warm-white px-3.5 py-1.5">
@@ -122,7 +123,10 @@ export function ConnectGuide() {
         </section>
 
         <section className="surface-card p-6">
-          <h2 className="mb-6 font-display text-[19px] font-bold">Steps</h2>
+          <div className="mb-6 flex flex-wrap items-center justify-between gap-2">
+            <h2 className="font-display text-[19px] font-bold">Steps</h2>
+            {g.pdf && <Download id={g.pdf} />}
+          </div>
           <ol>
             {g.steps.map((s, i) => <StepItem key={s.title} n={i + 1} step={s} last={i === g.steps.length - 1} />)}
           </ol>

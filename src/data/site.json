@@ -4,8 +4,8 @@
   "fullLibraryUrl": "https://backstory-workflows.vercel.app/#/flows",
   "mcpReferenceUrl": "https://backstory-workflows.vercel.app/#/mcp",
   "intercom": {
-    "connect": "",
-    "security": "",
+    "connect": "https://help.backstory.ai/en/articles/16822003-backstory-mcp",
+    "security": "https://help.backstory.ai/en/articles/16822003-backstory-mcp",
     "permissions": "",
     "troubleshooting": ""
   },

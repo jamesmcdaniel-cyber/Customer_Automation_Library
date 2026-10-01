@@ -78,6 +78,7 @@ opportunity data for a Sales and Customer Success team.
 export const GUIDES = [
   {
     id: 'claude',
+    pdf: 'connectClaude',
     name: 'Claude',
     logo: 'claude.svg',
     setup: 'Each person connects',
@@ -123,6 +124,7 @@ export const GUIDES = [
   },
   {
     id: 'chatgpt',
+    pdf: 'connectChatgpt',
     name: 'ChatGPT',
     logo: 'openai.svg',
     setup: 'Each person connects',
@@ -265,6 +267,7 @@ export const GUIDES = [
   },
   {
     id: 'n8n',
+    pdf: 'connectN8n',
     name: 'n8n',
     logo: 'n8n.svg',
     setup: 'A workflow builder sets it up',

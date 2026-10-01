@@ -4,6 +4,7 @@ import { Accordion } from '../components/ui/Accordion';
 import { Checklist } from '../components/Checklist';
 import { NextStep } from '../components/NextStep';
 import { HelpLink } from '../components/HelpLink';
+import { Download } from '../components/Download';
 import { site } from '../lib/content';
 
 const PILLARS = [
@@ -135,6 +136,48 @@ export function TrustIt() {
       ),
     },
     {
+      value: 'agents',
+      title: 'Do agents get more access than people?',
+      content: (
+        <>
+          <p>
+            No. An agent reaches Backstory through the same sign-in as chat, so it can only return what the signed-in Backstory
+            user can see.
+          </p>
+          <ul className="mt-2 list-disc space-y-1.5 pl-5">
+            <li>
+              <strong className="text-ac-dark">Copilot Studio:</strong> each person signs in with their own Backstory login the first
+              time they use the agent, so answers follow their permissions.
+            </li>
+            <li>
+              <strong className="text-ac-dark">n8n:</strong> a workflow runs on the credential of whoever connected it. It sees what
+              that person can see, and its output goes wherever the workflow sends it, such as a shared Slack channel. Connect it
+              with a login whose access suits everyone who will see that output.
+            </li>
+          </ul>
+          <p className="mt-2">For any other tool, check how it handles sign-in before you share an agent with your team.</p>
+        </>
+      ),
+    },
+    {
+      value: 'api',
+      title: 'How does API access work?',
+      content: (
+        <>
+          <p>
+            The API uses an API key and secret instead of a person&rsquo;s sign-in. Code trades them for an access token that
+            lasts two hours, then sends that token with each request. MCP runs as each signed-in person; API integrations are
+            usually set up and scoped by an admin instead. Confirm with your Backstory team how API access works for your
+            workspace.
+          </p>
+          <p className="mt-2">
+            Most of the API only reads data. The exceptions start a bulk export or add an email activity to Backstory. Keep the
+            key and secret in a secrets manager, never in code or a shared document.
+          </p>
+        </>
+      ),
+    },
+    {
       value: 'retention',
       title: 'Retention and training: is our data used to train models?',
       content: (
@@ -208,9 +251,12 @@ export function TrustIt() {
         </div>
 
         <section>
-          <div className="mb-3 flex flex-wrap items-baseline justify-between gap-2">
+          <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
             <h2 className="eyebrow">Security &amp; data FAQ</h2>
-            <span className="font-mono text-[11px] text-ac-med-gray">For admins · share with your champion</span>
+            <div className="flex flex-wrap items-center gap-3">
+              <span className="font-mono text-[11px] text-ac-med-gray">For admins · share with your champion</span>
+              <Download id="securityData" />
+            </div>
           </div>
           <Accordion items={faq} defaultValue={['moves']} />
         </section>
@@ -242,6 +288,7 @@ export function TrustIt() {
         <section className="surface-card p-6">
           <h2 className="eyebrow mb-4">More detail and help</h2>
           <ul className="space-y-2.5 text-[14px]">
+            <li><Download id="aiEthics" inline label="AI ethics and best practices" /></li>
             <li><HelpLink k="security" label="Backstory MCP security overview" /></li>
             <li><HelpLink k="permissions" label="How Backstory permissions work" /></li>
             <li><HelpLink k="troubleshooting" label="Troubleshooting the connector" /></li>
