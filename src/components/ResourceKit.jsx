@@ -11,8 +11,8 @@ export function ResourceKit({ stage }) {
       <div className="eyebrow mb-2 !text-ac-coral-dark">Take it to your team</div>
       <h2 className="font-display text-[19px] font-bold">Leave-behind resources</h2>
       <p className="mt-1.5 max-w-3xl text-[14px] leading-6 text-ac-dark-secondary">
-        We built these for you to share. Use them for team training, quick refreshers, and rollout: download, print, or
-        forward them.
+        We built these for you to share with your team. Use them for training, refreshers, and adoption: download, print,
+        or forward them.
       </p>
       <div className="mt-5 grid gap-4 md:grid-cols-2">
         {resources[stage].map((r) => (
