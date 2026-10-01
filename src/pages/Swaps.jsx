@@ -212,7 +212,7 @@ export function Swaps() {
         image="bg-04.jpg"
       >
         <div className="mt-6">
-          <Download id="swapCards" tone="dark" />
+          <Download id="swapCards" tone="dark" label="Download the swap cards" />
         </div>
       </SectionHero>
       <div className="mx-auto max-w-6xl space-y-10">

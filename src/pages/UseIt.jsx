@@ -6,6 +6,7 @@ import { Button } from '../components/ui/Button';
 import { NextStep } from '../components/NextStep';
 import { HelpLink } from '../components/HelpLink';
 import { Download } from '../components/Download';
+import { ResourceKit, ResourceKitLink } from '../components/ResourceKit';
 import { examples, site, swaps } from '../lib/content';
 import { PatternBars, SwapCard } from './Swaps';
 import { PlatformLogo } from './ConnectGuide';
@@ -84,7 +85,7 @@ export function UseIt() {
           ))}
         </div>
         <div className="mt-5">
-          <Download id="first15" tone="dark" />
+          <ResourceKitLink stage="use-it" />
         </div>
       </SectionHero>
 
@@ -209,12 +210,9 @@ export function UseIt() {
                 People keep their old habits and bolt Claude onto the end of them. Every swap applies one of three patterns.
               </p>
             </div>
-            <div className="flex flex-wrap gap-2">
-              <Download id="swapCards" />
-              <Button as={Link} to="/use-it/swaps" variant="secondary" size="sm">
-                See all {swapCount} swaps <ArrowRight size={14} />
-              </Button>
-            </div>
+            <Button as={Link} to="/use-it/swaps" variant="secondary" size="sm">
+              See all {swapCount} swaps <ArrowRight size={14} />
+            </Button>
           </div>
           <div className="surface-card mt-4 p-6">
             <PatternBars />
@@ -225,6 +223,8 @@ export function UseIt() {
             ))}
           </div>
         </section>
+
+        <ResourceKit stage="use-it" />
 
         <NextStep text="Got your first answer? See what else is possible." to="/stretch-it" label="Stretch it" variant="secondary" />
       </div>

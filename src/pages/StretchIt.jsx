@@ -4,7 +4,7 @@ import { SectionHero } from '../components/SectionHero';
 import { Button } from '../components/ui/Button';
 import { Tabs } from '../components/ui/Tabs';
 import { CopyButton } from '../components/ui/CopyButton';
-import { Download } from '../components/Download';
+import { ResourceKit, ResourceKitLink } from '../components/ResourceKit';
 import { Code, PlatformLogo } from './ConnectGuide';
 import { findGuide } from '../data/connectGuides';
 import { examples, site, stories } from '../lib/content';
@@ -189,13 +189,14 @@ export function StretchIt() {
         title="From prompt to playbook"
         subtitle="A single prompt impresses people once. Workflows are what keep them coming back. Chain prompts into routines, try what nobody thinks to try, and know when to hand the job to an agent, an automation, or the API."
         image="bg-05.jpg"
-      />
+      >
+        <div className="mt-6">
+          <ResourceKitLink stage="stretch-it" />
+        </div>
+      </SectionHero>
       <div className="mx-auto max-w-5xl space-y-10">
         <section>
-          <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
-            <h2 className="eyebrow">Playbooks by role</h2>
-            <Download id="workflowPlaybook" />
-          </div>
+          <h2 className="eyebrow mb-3">Playbooks by role</h2>
           <div className="surface-card p-6">
             <Tabs tabs={PLAYBOOKS.map((p) => ({ value: p.value, label: p.label, content: <Playbook p={p} /> }))} />
           </div>
@@ -282,13 +283,8 @@ export function StretchIt() {
         </section>
 
         <section>
-          <div className="mb-4 flex flex-wrap items-end justify-between gap-3">
-            <div>
-              <h2 className="eyebrow mb-1">MCP or API?</h2>
-              <p className="text-[14px] text-ac-dark-secondary">Admins ask this and usually get vague answers. Here&rsquo;s the rule.</p>
-            </div>
-            <Download id="mcpVsApi" />
-          </div>
+          <h2 className="eyebrow mb-1">MCP or API?</h2>
+          <p className="mb-4 text-[14px] text-ac-dark-secondary">Admins ask this and usually get vague answers. Here&rsquo;s the rule.</p>
           <div className="grid gap-4 md:grid-cols-3">
             <div className="surface-card border-ac-coral/40 p-5">
               <div className="mb-2 font-mono text-[11px] font-semibold uppercase tracking-[0.12em] text-ac-coral-dark">Use MCP</div>
@@ -400,6 +396,8 @@ export function StretchIt() {
             </Button>
           </div>
         </section>
+
+        <ResourceKit stage="stretch-it" />
       </div>
     </div>
   );

@@ -3,7 +3,7 @@ import { ArrowRight, Bot, Braces, Code2, MessageCircle, MessageSquare, Plug, Arc
 import { SectionHero } from '../components/SectionHero';
 import { Accordion } from '../components/ui/Accordion';
 import { NextStep } from '../components/NextStep';
-import { Download } from '../components/Download';
+import { ResourceKit, ResourceKitLink } from '../components/ResourceKit';
 import { AfterDiagram, BeforeDiagram } from '../components/IntegrationDiagram';
 
 // Each drawer is one group of Backstory tools.
@@ -100,7 +100,7 @@ export function GetIt() {
         image="bg-01.jpg"
       >
         <div className="mt-6">
-          <Download id="plainEnglish" tone="dark" />
+          <ResourceKitLink stage="get-it" />
         </div>
       </SectionHero>
       <div className="mx-auto max-w-5xl space-y-8">
@@ -153,10 +153,7 @@ export function GetIt() {
         </section>
 
         <section>
-          <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
-            <h2 className="eyebrow">MCP vs API</h2>
-            <Download id="mcpVsApi" />
-          </div>
+          <h2 className="eyebrow mb-3">MCP vs API</h2>
           <p className="mb-4 max-w-3xl text-[15px] leading-7 text-ac-dark-secondary">
             APIs and MCP both expose what a tool can do, but they&rsquo;re designed for different users. MCP doesn&rsquo;t replace
             the API. It sits on top of it and gives AI a standard way to use it.
@@ -180,15 +177,14 @@ export function GetIt() {
             can understand your GTM system and pull from each part of it, and the chat you type into starts to work like an
             operating system for your GTM team.
           </p>
-          <div className="mt-4">
-            <Download id="businessCase" label="The business case, for managers and execs" />
-          </div>
         </section>
 
         <section>
           <h2 className="eyebrow mb-3">Words to know</h2>
           <Accordion items={GLOSSARY.map(([t, d]) => ({ value: t, title: t, content: d }))} defaultValue={['MCP']} />
         </section>
+
+        <ResourceKit stage="get-it" />
 
         <NextStep text="Next: what moves, who can see it, and where it's still rough." to="/trust-it" label="Trust it" />
       </div>

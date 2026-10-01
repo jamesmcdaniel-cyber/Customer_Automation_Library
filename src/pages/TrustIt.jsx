@@ -4,7 +4,7 @@ import { Accordion } from '../components/ui/Accordion';
 import { Checklist } from '../components/Checklist';
 import { NextStep } from '../components/NextStep';
 import { HelpLink } from '../components/HelpLink';
-import { Download } from '../components/Download';
+import { ResourceKit, ResourceKitLink } from '../components/ResourceKit';
 import { site } from '../lib/content';
 
 const PILLARS = [
@@ -233,7 +233,11 @@ export function TrustIt() {
         title="Security, data, and the honest limits"
         subtitle="Read-only, permission-scoped, and you sign in yourself. Written for admins, and meant to be shared with your champion before the IT meeting gets booked."
         image="bg-02.jpg"
-      />
+      >
+        <div className="mt-6">
+          <ResourceKitLink stage="trust-it" />
+        </div>
+      </SectionHero>
       <div className="mx-auto max-w-5xl space-y-8">
         <div className="grid gap-4 md:grid-cols-3">
           {PILLARS.map(([Icon, tag, title, body]) => (
@@ -251,12 +255,9 @@ export function TrustIt() {
         </div>
 
         <section>
-          <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
+          <div className="mb-3 flex flex-wrap items-baseline justify-between gap-2">
             <h2 className="eyebrow">Security &amp; data FAQ</h2>
-            <div className="flex flex-wrap items-center gap-3">
-              <span className="font-mono text-[11px] text-ac-med-gray">For admins · share with your champion</span>
-              <Download id="securityData" />
-            </div>
+            <span className="font-mono text-[11px] text-ac-med-gray">For admins · share with your champion</span>
           </div>
           <Accordion items={faq} defaultValue={['moves']} />
         </section>
@@ -288,7 +289,6 @@ export function TrustIt() {
         <section className="surface-card p-6">
           <h2 className="eyebrow mb-4">More detail and help</h2>
           <ul className="space-y-2.5 text-[14px]">
-            <li><Download id="aiEthics" inline label="AI ethics and best practices" /></li>
             <li><HelpLink k="security" label="Backstory MCP security overview" /></li>
             <li><HelpLink k="permissions" label="How Backstory permissions work" /></li>
             <li><HelpLink k="troubleshooting" label="Troubleshooting the connector" /></li>
@@ -301,6 +301,8 @@ export function TrustIt() {
             </li>
           </ul>
         </section>
+
+        <ResourceKit stage="trust-it" />
 
         <NextStep text="Next: your first 15 minutes." to="/use-it" label="Use it" />
       </div>

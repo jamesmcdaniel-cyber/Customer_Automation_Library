@@ -1,0 +1,80 @@
+{
+  "get-it": [
+    {
+      "title": "MCP in plain English",
+      "audience": "Everyone",
+      "body": "What MCP is, how it works, and what it changes for GTM teams. A good first read for anyone new to it.",
+      "items": [{ "pdf": "plainEnglish", "label": "One-pager" }]
+    },
+    {
+      "title": "The first 15 minutes",
+      "audience": "New and advanced users",
+      "body": "Sign in, run four prompts, and learn to tell a real Backstory answer from a guess.",
+      "items": [
+        { "pdf": "first15", "label": "Two-pager" },
+        { "help": "connect", "label": "Backstory MCP help article" }
+      ]
+    },
+    {
+      "title": "How to connect",
+      "audience": "Admins",
+      "body": "An overview ebook on auth, troubleshooting, and best practices, plus a step-by-step setup guide for each AI client.",
+      "items": [
+        { "pdf": "ebook", "label": "MCP Server & Tools ebook" },
+        { "pdf": "connectClaude", "label": "Claude" },
+        { "pdf": "connectChatgpt", "label": "ChatGPT" },
+        { "pdf": "connectCopilot", "label": "Microsoft Copilot Studio" },
+        { "pdf": "connectN8n", "label": "n8n" },
+        { "pdf": "connectGeminiCli", "label": "Gemini CLI" }
+      ]
+    },
+    {
+      "title": "The business case",
+      "audience": "Managers and execs",
+      "body": "Why GTM teams connect AI to Backstory, what changes by role, and eight questions to ask before you invest.",
+      "items": [{ "pdf": "businessCase", "label": "Two-pager" }]
+    }
+  ],
+  "trust-it": [
+    {
+      "title": "Security and data FAQ",
+      "audience": "IT and admins",
+      "body": "What moves, who can see it, and how to roll it out. Share it with your champion before the IT meeting.",
+      "items": [{ "pdf": "securityData", "label": "Two-pager" }]
+    },
+    {
+      "title": "AI ethics and best practices",
+      "audience": "Everyone",
+      "body": "Five principles for using AI with customer data, where data can go, and what to do if something goes wrong.",
+      "items": [{ "pdf": "aiEthics", "label": "One-pager" }]
+    },
+    {
+      "title": "Where it’s still rough",
+      "audience": "Active users",
+      "body": "The known limitations and the fix for each. Page 2 of the security and data FAQ covers them too.",
+      "items": [{ "help": "connect", "label": "Backstory MCP help article" }]
+    }
+  ],
+  "use-it": [
+    {
+      "title": "Instead of this, do this",
+      "audience": "Reps, managers, and VPs",
+      "body": "Swap cards for account executives, sales managers, and customer success: the old habit, and the prompt to use instead.",
+      "items": [{ "pdf": "swapCards", "label": "Swap cards" }]
+    },
+    {
+      "title": "From prompt to playbook",
+      "audience": "Reps, managers, and VPs",
+      "body": "Plays that chain prompts into a daily, weekly, or quarterly routine, with before-and-after examples.",
+      "items": [{ "pdf": "workflowPlaybook", "label": "Playbook" }]
+    }
+  ],
+  "stretch-it": [
+    {
+      "title": "MCP or API?",
+      "audience": "RevOps and admins",
+      "body": "When to use each, eight common jobs sorted, and how to move a recurring report from MCP to the API.",
+      "items": [{ "pdf": "mcpVsApi", "label": "Two-pager" }]
+    }
+  ]
+}

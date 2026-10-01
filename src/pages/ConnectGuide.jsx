@@ -125,7 +125,7 @@ export function ConnectGuide() {
         <section className="surface-card p-6">
           <div className="mb-6 flex flex-wrap items-center justify-between gap-2">
             <h2 className="font-display text-[19px] font-bold">Steps</h2>
-            {g.pdf && <Download id={g.pdf} />}
+            {g.pdf && <Download id={g.pdf} label="Download this guide" />}
           </div>
           <ol>
             {g.steps.map((s, i) => <StepItem key={s.title} n={i + 1} step={s} last={i === g.steps.length - 1} />)}
