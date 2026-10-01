@@ -47,12 +47,6 @@
       "audience": "Everyone",
       "body": "Five principles for using AI with customer data, where data can go, and what to do if something goes wrong.",
       "items": [{ "pdf": "aiEthics", "label": "One-pager" }]
-    },
-    {
-      "title": "Where it’s still rough",
-      "audience": "Active users",
-      "body": "The known limitations and the fix for each. Page 2 of the security and data FAQ covers them too.",
-      "items": [{ "help": "connect", "label": "Backstory MCP help article" }]
     }
   ],
   "use-it": [
