@@ -169,6 +169,7 @@ export const GUIDES = [
   },
   {
     id: 'copilot',
+    pdf: 'connectCopilot',
     name: 'Microsoft Copilot',
     logo: 'copilot.svg',
     setup: 'An agent builder sets it up',
