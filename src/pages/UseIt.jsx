@@ -209,9 +209,12 @@ export function UseIt() {
                 People keep their old habits and bolt Claude onto the end of them. Every swap applies one of three patterns.
               </p>
             </div>
-            <Button as={Link} to="/use-it/swaps" variant="secondary" size="sm">
-              See all {swapCount} swaps <ArrowRight size={14} />
-            </Button>
+            <div className="flex flex-wrap gap-2">
+              <Download id="swapCards" />
+              <Button as={Link} to="/use-it/swaps" variant="secondary" size="sm">
+                See all {swapCount} swaps <ArrowRight size={14} />
+              </Button>
+            </div>
           </div>
           <div className="surface-card mt-4 p-6">
             <PatternBars />

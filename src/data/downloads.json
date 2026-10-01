@@ -5,6 +5,7 @@
   "mcpVsApi": { "title": "MCP vs API", "file": "mcp-101-mcp-vs-api.pdf", "pages": 2 },
   "securityData": { "title": "Security and data FAQ", "file": "mcp-101-security-and-data.pdf", "pages": 2 },
   "aiEthics": { "title": "AI ethics and best practices", "file": "mcp-101-ai-ethics.pdf", "pages": 1 },
+  "swapCards": { "title": "Instead of this, do this", "file": "mcp-101-instead-of-this-do-this.pdf", "pages": 25 },
   "workflowPlaybook": { "title": "From prompt to playbook", "file": "mcp-101-workflow-playbook.pdf", "pages": 19 },
   "connectClaude": { "title": "Connecting Claude to Backstory MCP", "file": "connect-claude.pdf", "pages": 6 },
   "connectChatgpt": { "title": "Connecting ChatGPT to Backstory MCP", "file": "connect-chatgpt.pdf", "pages": 6 },

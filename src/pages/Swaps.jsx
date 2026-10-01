@@ -4,6 +4,7 @@ import { SectionHero } from '../components/SectionHero';
 import { Tabs } from '../components/ui/Tabs';
 import { CopyButton } from '../components/ui/CopyButton';
 import { NextStep } from '../components/NextStep';
+import { Download } from '../components/Download';
 import { swaps } from '../lib/content';
 import { cn } from '../lib/cn';
 
@@ -209,7 +210,11 @@ export function Swaps() {
         title="Instead of this, do this"
         subtitle={`${total} swaps across three roles for the habits that keep Claude and Backstory from doing their best work.`}
         image="bg-04.jpg"
-      />
+      >
+        <div className="mt-6">
+          <Download id="swapCards" tone="dark" />
+        </div>
+      </SectionHero>
       <div className="mx-auto max-w-6xl space-y-10">
         <section className="surface-card p-6">
           <div className="eyebrow mb-2">The pattern</div>
