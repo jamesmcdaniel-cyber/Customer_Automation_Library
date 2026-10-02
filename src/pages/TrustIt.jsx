@@ -216,7 +216,8 @@ export function TrustIt() {
           negative
           items={[
             'Change CRM records or anything else in Backstory',
-            'Read calendars or full call transcripts',
+            'Look up your schedule, such as “my next meeting” (Backstory syncs with your calendar to capture meetings, but the assistant looks things up by account)',
+            'Read full call transcripts',
             'Summarize activity older than 30 days (lists can count meetings up to 90 days back, but not summarize them)',
             'Compare before and now, such as stage changes or engagement trends',
             'See accounts or deals outside the user’s own permissions',
