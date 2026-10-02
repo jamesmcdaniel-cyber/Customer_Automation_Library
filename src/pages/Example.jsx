@@ -1,8 +1,9 @@
 import { Link, Navigate, useParams } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
-import { AlertTriangle, ArrowLeft, Clock, ExternalLink } from 'lucide-react';
+import { AlertTriangle, Clock, ExternalLink } from 'lucide-react';
 import { SectionHero } from '../components/SectionHero';
+import { BackLink } from '../components/BackLink';
 import { Video } from '../components/Video';
 import { Tabs } from '../components/ui/Tabs';
 import { CopyButton } from '../components/ui/CopyButton';
@@ -77,9 +78,7 @@ export function Example() {
 
   return (
     <div className="container-page">
-      <Link to="/use-it" className="mb-4 inline-flex items-center gap-1.5 font-mono text-[12px] font-medium uppercase tracking-[0.08em] text-ac-coral-dark no-underline hover:text-ac-coral">
-        <ArrowLeft size={14} /> All examples
-      </Link>
+      <BackLink to="/use-it#decide" label="All examples" className="mb-4 font-mono text-[12px] font-medium uppercase tracking-[0.08em] text-ac-coral-dark hover:text-ac-coral" />
       <SectionHero
         eyebrow={`03 · Use it · Example ${e.order} of ${examples.length}`}
         title={e.title}
@@ -87,9 +86,6 @@ export function Example() {
         image="meeting-bg-05.jpg"
       >
         <div className="mt-5 flex flex-wrap items-center gap-2">
-          {e.startHere && (
-            <span className="rounded-md bg-white px-2 py-0.5 font-mono text-[10.5px] font-medium uppercase tracking-[0.12em] text-ac-horizon-900">Start here</span>
-          )}
           {e.whoFor.map((w) => (
             <span key={w} className="rounded-md border border-white/25 px-2 py-0.5 font-mono text-[10.5px] font-medium uppercase tracking-[0.12em] text-white/90">{w}</span>
           ))}

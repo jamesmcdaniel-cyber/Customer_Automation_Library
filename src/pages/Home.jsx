@@ -4,7 +4,8 @@ import { SectionHero } from '../components/SectionHero';
 import { Video } from '../components/Video';
 import { Button } from '../components/ui/Button';
 import { ExampleCard } from '../components/ExampleCard';
-import { examples, site, startHere } from '../lib/content';
+import { examples, site } from '../lib/content';
+import { cn } from '../lib/cn';
 import { STAGES } from '../lib/stages';
 
 function Plug() {
@@ -33,16 +34,16 @@ export function Home() {
       >
         <Plug />
         <div className="mt-7 flex flex-wrap gap-3">
-          <Button as={Link} to={`/example/${startHere.id}`}>
-            Start here: {startHere.title} <ArrowRight size={15} />
+          <Button as={Link} to="/get-it">
+            Start here: Get it <ArrowRight size={15} />
           </Button>
-          <Button as={Link} to="/get-it" variant="secondary" className="border-white/30 bg-transparent text-white hover:border-white">
-            What is MCP?
+          <Button as="a" href="#tour" variant="secondary" className="border-white/30 bg-transparent text-white hover:border-white">
+            Take the tour
           </Button>
         </div>
       </SectionHero>
 
-      <section className="mb-8">
+      <section id="tour" className="mb-8 scroll-mt-24">
         <div className="mb-4 flex flex-wrap items-end justify-between gap-3 px-1">
           <div>
             <div className="eyebrow mb-2">Ready to take a tour?</div>
@@ -73,10 +74,18 @@ export function Home() {
             <Link
               key={s.id}
               to={`/${s.id}`}
-              className="group flex flex-col rounded-xl border border-ac-light-gray bg-ac-card p-5 shadow-card no-underline transition-all duration-200 hover:-translate-y-0.5 hover:border-ac-coral hover:shadow-cardhover"
+              className={cn(
+                'group flex flex-col rounded-xl border bg-ac-card p-5 shadow-card no-underline transition-all duration-200 hover:-translate-y-0.5 hover:border-ac-coral hover:shadow-cardhover',
+                s.id === 'get-it' ? 'border-ac-coral ring-1 ring-ac-coral' : 'border-ac-light-gray',
+              )}
             >
-              <span className="mb-2.5 self-start rounded-md bg-ac-coral/12 px-2 py-0.5 font-mono text-[10.5px] font-medium uppercase tracking-[0.12em] text-ac-coral-dark">
-                {s.num}
+              <span
+                className={cn(
+                  'mb-2.5 self-start rounded-md px-2 py-0.5 font-mono text-[10.5px] font-medium uppercase tracking-[0.12em]',
+                  s.id === 'get-it' ? 'bg-ac-coral text-white' : 'bg-ac-coral/12 text-ac-coral-dark',
+                )}
+              >
+                {s.id === 'get-it' ? `${s.num} · Start here` : s.num}
               </span>
               <h3 className="font-display text-[15px] font-bold leading-snug tracking-[-0.01em] text-ac-dark">{s.label}</h3>
               <p className="mt-2 flex-1 text-[13.5px] leading-6 text-ac-dark-secondary">{s.blurb}</p>

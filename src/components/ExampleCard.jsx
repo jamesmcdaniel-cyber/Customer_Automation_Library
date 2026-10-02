@@ -1,25 +1,16 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight, Clock } from 'lucide-react';
-import { cn } from '../lib/cn';
 
 // Mirrors the full library's WorkflowCard.
 export function ExampleCard({ example: e }) {
   return (
     <Link
       to={`/example/${e.id}`}
-      className={cn(
-        'group flex flex-col rounded-xl border bg-ac-card p-5 shadow-card no-underline transition-all duration-200 hover:-translate-y-0.5 hover:border-ac-coral hover:shadow-cardhover',
-        e.startHere ? 'border-ac-coral ring-1 ring-ac-coral' : 'border-ac-light-gray',
-      )}
+      className="group flex flex-col rounded-xl border border-ac-light-gray bg-ac-card p-5 shadow-card no-underline transition-all duration-200 hover:-translate-y-0.5 hover:border-ac-coral hover:shadow-cardhover"
     >
       <div className="mb-2.5 flex items-center gap-2">
-        <span
-          className={cn(
-            'rounded-md px-2 py-0.5 font-mono text-[10.5px] font-medium uppercase tracking-[0.12em]',
-            e.startHere ? 'bg-ac-coral text-white' : 'bg-ac-coral/12 text-ac-coral-dark',
-          )}
-        >
-          {e.startHere ? 'Start here' : `Example 0${e.order}`}
+        <span className="rounded-md bg-ac-coral/12 px-2 py-0.5 font-mono text-[10.5px] font-medium uppercase tracking-[0.12em] text-ac-coral-dark">
+          Example 0{e.order}
         </span>
       </div>
       <h3 className="font-display text-[15px] font-bold leading-snug tracking-[-0.01em] text-ac-dark">{e.title}</h3>

@@ -192,9 +192,6 @@ export function UseIt() {
                   <div className="flex flex-wrap items-center gap-2">
                     <span className="font-mono text-[11px] font-bold text-ac-coral-dark">0{e.order}</span>
                     <h3 className="font-display text-[15px] font-bold">{e.title}</h3>
-                    {e.startHere && (
-                      <span className="rounded-md bg-ac-coral px-2 py-0.5 font-mono text-[10px] font-medium uppercase tracking-[0.12em] text-white">Start here</span>
-                    )}
                   </div>
                   <p className="mt-1 text-[13.5px] leading-6 text-ac-dark-secondary">{e.helpsYou}</p>
                   <div className="mt-1 flex flex-wrap gap-3 font-mono text-[11px] text-ac-med-gray">
@@ -202,7 +199,7 @@ export function UseIt() {
                     <span className="inline-flex items-center gap-1"><Clock size={11} /> {e.timeToTry}</span>
                   </div>
                 </div>
-                <Button as={Link} to={`/example/${e.id}`} size="sm" variant={e.startHere ? 'primary' : 'secondary'} className="shrink-0 self-start sm:self-center">
+                <Button as={Link} to={`/example/${e.id}`} size="sm" variant="secondary" className="shrink-0 self-start sm:self-center">
                   Try it <ArrowRight size={14} />
                 </Button>
               </div>

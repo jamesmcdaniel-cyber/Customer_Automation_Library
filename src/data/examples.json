@@ -2,7 +2,6 @@
   {
     "id": "meeting-prep",
     "order": 1,
-    "startHere": true,
     "title": "Meeting prep brief",
     "helpsYou": "Walk into any customer meeting knowing where things stand, who's involved, and what to push for — in about a minute.",
     "whoFor": [
@@ -30,7 +29,6 @@
   {
     "id": "deal-risk",
     "order": 2,
-    "startHere": false,
     "title": "Deal risk + next actions",
     "helpsYou": "Find out what could stall a deal and get three concrete things to do about it this week.",
     "whoFor": [
@@ -58,7 +56,6 @@
   {
     "id": "follow-up",
     "order": 3,
-    "startHere": false,
     "title": "Grounded follow-up email",
     "helpsYou": "Draft a follow-up email that reflects what's actually happening on the deal, not a generic template.",
     "whoFor": [
@@ -85,7 +82,6 @@
   {
     "id": "coaching-review",
     "order": 4,
-    "startHere": false,
     "title": "Pipeline coaching review",
     "helpsYou": "See which deals need attention and which conversations to have with your team before your next one-on-ones.",
     "whoFor": [

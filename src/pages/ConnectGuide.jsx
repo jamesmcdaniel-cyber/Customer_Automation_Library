@@ -1,6 +1,7 @@
 import { Link, Navigate, useParams } from 'react-router-dom';
-import { ArrowLeft, Clock, UserRound } from 'lucide-react';
+import { Clock, UserRound } from 'lucide-react';
 import { SectionHero } from '../components/SectionHero';
+import { BackLink } from '../components/BackLink';
 import { Accordion } from '../components/ui/Accordion';
 import { CopyButton } from '../components/ui/CopyButton';
 import { Checklist } from '../components/Checklist';
@@ -108,9 +109,7 @@ export function ConnectGuide() {
 
       <div className="mx-auto max-w-4xl space-y-6">
         <div className="flex flex-wrap items-center justify-between gap-3">
-          <Link to="/use-it#connect" className="inline-flex items-center gap-1.5 text-[13.5px] font-medium text-ac-coral-dark no-underline hover:underline">
-            <ArrowLeft size={14} /> Back to your first 15 minutes
-          </Link>
+          <BackLink to="/use-it#connect" label="Back to your first 15 minutes" className="text-[13.5px] font-medium text-ac-coral-dark hover:underline" />
           <PlatformSwitcher current={g.id} />
         </div>
 

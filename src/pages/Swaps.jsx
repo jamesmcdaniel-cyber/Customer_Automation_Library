@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
-import { ArrowLeft, ArrowRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { SectionHero } from '../components/SectionHero';
+import { BackLink } from '../components/BackLink';
 import { Tabs } from '../components/ui/Tabs';
 import { CopyButton } from '../components/ui/CopyButton';
 import { NextStep } from '../components/NextStep';
@@ -202,9 +203,7 @@ export function Swaps() {
   const countFor = (r) => r.groups.reduce((b, g) => b + g.swaps.length, 0);
   return (
     <div className="container-page">
-      <Link to="/use-it" className="mb-4 inline-flex items-center gap-1.5 font-mono text-[12px] font-medium uppercase tracking-[0.08em] text-ac-coral-dark no-underline hover:text-ac-coral">
-        <ArrowLeft size={14} /> First 15 minutes
-      </Link>
+      <BackLink to="/use-it" label="First 15 minutes" className="mb-4 font-mono text-[12px] font-medium uppercase tracking-[0.08em] text-ac-coral-dark hover:text-ac-coral" />
       <SectionHero
         eyebrow="03 · Use it · Swap cards"
         title="Instead of this, do this"

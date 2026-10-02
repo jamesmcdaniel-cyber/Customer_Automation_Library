@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import * as RD from '@radix-ui/react-dialog';
-import { Menu, X } from 'lucide-react';
+import { Home, Menu, X } from 'lucide-react';
 import { BrandMark } from './BrandMark';
 import { assetUrl, cn } from '../lib/cn';
 import { STAGES } from '../lib/stages';
@@ -18,7 +18,7 @@ function StageLink({ stage, active, className }) {
     <NavLink
       to={`/${stage.id}`}
       className={cn(
-        'flex items-baseline gap-2 rounded-[10px] px-3 py-2 font-mono text-[13px] font-medium no-underline transition-colors',
+        'flex items-baseline gap-2 whitespace-nowrap rounded-[10px] px-3 py-2 font-mono text-[13px] font-medium no-underline transition-colors',
         active ? 'bg-ac-coral/15 text-ac-coral-dark' : 'text-ac-dark hover:bg-ac-cream hover:text-ac-coral-dark',
         className,
       )}
@@ -90,10 +90,22 @@ export function Header() {
         <Link to="/" className="flex-shrink-0">
           <img src={assetUrl('assets/backstory-logo-lockup-dark.svg')} alt="Backstory" className="h-7 w-auto" />
         </Link>
-        <div className="hidden h-8 w-px bg-ac-coral/25 sm:block" />
-        <div className="hidden text-[13px] text-ac-dark-secondary sm:block">MCP starter library</div>
+        <div className="hidden h-8 w-px bg-ac-coral/25 sm:block md:hidden lg:block" />
+        <div className="hidden text-[13px] text-ac-dark-secondary sm:block md:hidden lg:block">MCP starter library</div>
       </div>
       <nav aria-label="Stages" className="hidden items-center gap-1 md:flex">
+        <NavLink
+          to="/"
+          end
+          className={({ isActive }) =>
+            cn(
+              'mr-1 flex items-center gap-1.5 whitespace-nowrap rounded-[10px] px-3 py-2 font-mono text-[13px] font-medium no-underline transition-colors',
+              isActive ? 'bg-ac-coral/15 text-ac-coral-dark' : 'text-ac-dark hover:bg-ac-cream hover:text-ac-coral-dark',
+            )
+          }
+        >
+          <Home size={14} /> Home
+        </NavLink>
         {STAGES.map((s) => (
           <StageLink key={s.id} stage={s} active={activeStage === s.id} />
         ))}
