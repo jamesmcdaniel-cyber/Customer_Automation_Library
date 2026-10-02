@@ -122,7 +122,7 @@ export function ResourceThumb({ id, label, aspect = 'aspect-[16/9]' }) {
     <ResourceDialog id={id}>
       <button type="button" className="group block w-full text-left" aria-label={`Open ${resourceTitle(id)}`}>
         <span className={cn('block overflow-hidden rounded-lg border border-ac-light-gray bg-ac-warm-white transition-all duration-200 group-hover:border-ac-coral group-hover:shadow-cardhover', aspect)}>
-          <img src={thumbUrl(id)} alt="" loading="lazy" className="h-full w-full object-cover object-top" />
+          <img src={thumbUrl(id)} alt="" loading="lazy" className="h-full w-full object-cover object-left-top" />
         </span>
         {label && <span className="mt-1.5 block text-[12.5px] font-medium leading-4 text-ac-dark group-hover:text-ac-coral-dark">{label}</span>}
       </button>

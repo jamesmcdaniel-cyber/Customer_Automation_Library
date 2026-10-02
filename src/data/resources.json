@@ -9,8 +9,11 @@
     {
       "title": "MCP in plain English",
       "audience": "Everyone",
-      "body": "What MCP is, how it works, and what it changes for GTM teams. A good first read for anyone new to it.",
-      "items": [{ "pdf": "plainEnglish", "label": "One-pager" }]
+      "body": "What MCP is, how it works, and what it changes for GTM teams. A good first read for anyone new to it, as a one-pager or a deck to present.",
+      "items": [
+        { "pdf": "plainEnglish", "label": "One-pager" },
+        { "pdf": "plainEnglishDeck", "label": "Slide deck" }
+      ]
     },
     {
       "title": "The first 15 minutes",
@@ -75,6 +78,12 @@
       "audience": "RevOps and admins",
       "body": "When to use each, eight common jobs sorted, and how to move a recurring report from MCP to the API.",
       "items": [{ "pdf": "mcpVsApi", "label": "Two-pager" }]
+    },
+    {
+      "title": "The tools you didn’t know you had",
+      "audience": "Reps, managers, and VPs",
+      "body": "How Backstory’s tools chain into one answer, six scenarios by role, and three power moves most teams never try.",
+      "items": [{ "pdf": "didYouKnow", "label": "Deck" }]
     }
   ]
 }

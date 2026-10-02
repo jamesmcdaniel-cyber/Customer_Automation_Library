@@ -1,8 +1,10 @@
 {
   "plainEnglish": { "title": "MCP in plain English", "file": "mcp-101-plain-english-v3.pdf", "pages": 3 },
+  "plainEnglishDeck": { "title": "MCP in plain English: the deck", "file": "mcp-101-plain-english-deck.pdf", "pages": 13 },
   "businessCase": { "title": "The business case for MCP", "file": "mcp-101-business-case.pdf", "pages": 2 },
   "first15": { "title": "The first 15 minutes", "file": "mcp-101-first-15-minutes.pdf", "pages": 2 },
   "mcpVsApi": { "title": "MCP vs API", "file": "mcp-101-mcp-vs-api.pdf", "pages": 2 },
+  "didYouKnow": { "title": "The tools you didn’t know you had", "file": "mcp-101-did-you-know.pdf", "pages": 17 },
   "securityData": { "title": "Security and data FAQ", "file": "mcp-101-security-and-data.pdf", "pages": 2 },
   "aiEthics": { "title": "AI ethics and best practices", "file": "mcp-101-ai-ethics.pdf", "pages": 1 },
   "swapCards": { "title": "Instead of this, do this", "file": "mcp-101-instead-of-this-do-this-v2.pdf", "pages": 15 },
