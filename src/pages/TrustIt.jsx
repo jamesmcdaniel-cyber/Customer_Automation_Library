@@ -36,8 +36,8 @@ const ROUGH = [
   },
   {
     problem: 'Some filters don’t exist yet',
-    what: 'Lists can’t filter on forecast category, renewal date, or deal type yet. The assistant may drop that part of the question or read it as a stage name.',
-    fix: 'Filter by owner, close date, stage, or amount, and check how it says it read your request before you confirm the list.',
+    what: 'Lists can’t filter on forecast category, renewal date, deal type, or contact seniority yet, and a loose phrase like “gone quiet” can be read as something else. The assistant may drop that part of the question or swap in a different filter.',
+    fix: 'Filter by owner, close date, stage, amount, or meetings (“no meetings in the last 30 days”, “no upcoming meetings”), and check how it says it read your request before you confirm the list.',
   },
   {
     problem: 'Closed deals are hard to reach',

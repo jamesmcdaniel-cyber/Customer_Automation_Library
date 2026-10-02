@@ -10,9 +10,9 @@
       "CSMs"
     ],
     "timeToTry": "2 minutes",
-    "prompt": "I'm meeting with Acme Corp tomorrow. Brief me: where things stand, who's engaged on their side, any open risks, and what I should push for in the meeting.",
+    "prompt": "Using Backstory, brief me on Acme Corp before my meeting tomorrow: where things stand, who's engaged on their side, any open risks, and what I should push for in the meeting.",
     "variations": [
-      "Give me a 5-bullet brief on Acme Corp before my call in 10 minutes.",
+      "Using Backstory, give me a 5-bullet brief on Acme Corp before my call in 10 minutes.",
       "Who at Acme Corp has been most engaged in the last 30 days, and what have we been discussing with them?",
       "Brief me on Acme Corp as a table: status, key contacts, risks, next steps."
     ],
@@ -37,11 +37,11 @@
       "Managers"
     ],
     "timeToTry": "3 minutes",
-    "prompt": "What's putting the Acme Corp renewal at risk, and what are the three most important things I should do this week to keep it on track?",
+    "prompt": "Using Backstory, what's putting the Acme Corp renewal at risk, and what are the three most important things I should do this week to keep it on track?",
     "variations": [
       "Is the Acme Corp deal healthy? Give me a one-line verdict, then the evidence.",
-      "What has changed on the Acme Corp opportunity in the last two weeks?",
-      "Have we seen deals like Acme Corp's before? How did they turn out?"
+      "What has happened on the Acme Corp opportunity in the last two weeks?",
+      "Find past deals similar to the Acme Corp opportunity and tell me how they turned out."
     ],
     "expectedOutput": "## Acme Corp renewal — risk review\n\n**Verdict:** At moderate risk. Momentum is good, but the buying group is incomplete.\n\n**What's putting it at risk**\n1. **No economic buyer engaged.** All recent activity is with Operations and IT; nobody with budget authority has joined a call.\n2. **Procurement arrived late.** First contact was 9 days ago, with close planned in 3 weeks.\n3. **Security review still open.** The questionnaire was promised last week and hasn't been sent.\n\n**Do this week**\n1. Send the security questionnaire today and confirm receipt with Marcus Lee.\n2. Ask Dana Whitfield to introduce you to the budget owner before the pricing review.\n3. Book the pricing review with Priya Shah and share the proposal 48 hours ahead.",
     "checklist": [
@@ -63,7 +63,7 @@
       "Reps"
     ],
     "timeToTry": "2 minutes",
-    "prompt": "Draft a follow-up email to Dana Whitfield at Acme Corp based on our recent activity and agreed next steps. Keep it under 150 words, friendly but direct.",
+    "prompt": "Using Backstory, draft a follow-up email to Dana Whitfield at Acme Corp based on our recent activity and agreed next steps. Keep it under 150 words, friendly but direct.",
     "variations": [
       "Draft a follow-up to Acme Corp that recaps our agreed next steps as a short bulleted list.",
       "Write a short note to Priya Shah at Acme Corp proposing times for a pricing review.",
@@ -89,19 +89,19 @@
       "Managers"
     ],
     "timeToTry": "5 minutes",
-    "prompt": "Review my top deals. Flag any with open risks, missing next steps, or scorecard gaps, and tell me which reps need a coaching conversation and what to cover.",
+    "prompt": "Using Backstory, list the open deals owned by Alex Chen that close this quarter, largest first. For the top three, give me the open risks, agreed next steps, and scorecard gaps, and tell me what to cover in our next 1:1.",
     "variations": [
-      "List my team's open deals closing this quarter. Which have no agreed next step?",
-      "Show my top deals as a table: owner, stage, biggest risk, scorecard gaps.",
+      "List the open deals owned by Alex Chen closing this quarter that have no upcoming meetings.",
+      "Show my open deals closing this quarter as a table: deal, amount, stage, and close date.",
       "For the Acme Corp opportunity, which MEDDPICC elements are still missing?"
     ],
-    "expectedOutput": "## Pipeline coaching review\n\n| Deal | Owner | Biggest risk | Scorecard gaps |\n|---|---|---|---|\n| Acme Corp renewal | Alex Chen | No economic buyer | Economic buyer, Decision process |\n| Northwind expansion | Sam Ortiz | No next step agreed | Paper process |\n| Globex new logo | Alex Chen | Single-threaded | Champion, Competition |\n| Initech upsell | Jordan Kim | None flagged | — |\n\n**Coaching conversations**\n- **Alex Chen** — Two deals depend on a single contact. Work on multi-threading: who else should be in the room at Acme and Globex?\n- **Sam Ortiz** — Northwind has good activity but no agreed next step. Practice closing each call with a dated commitment.\n\n**No action needed:** Initech is well qualified with a clear path to close.",
+    "expectedOutput": "## Alex Chen — open deals closing this quarter\n\n9 open deals. The top three by amount:\n\n| Deal | Amount | Close date | Biggest risk | Scorecard gaps |\n|---|---|---|---|---|\n| Acme Corp renewal | $240K | Nov 14 | No economic buyer engaged | Economic buyer, Decision process |\n| Globex new logo | $180K | Dec 5 | Single-threaded with one contact | Champion, Competition |\n| Initech upsell | $95K | Oct 30 | None flagged | — |\n\n**Agreed next steps**\n- **Acme Corp:** send the security questionnaire; book a pricing review with Procurement\n- **Globex:** none agreed on the last two calls\n- **Initech:** contract with legal, signature expected next week\n\n**Cover in your 1:1**\n- **Multi-threading:** Acme and Globex both depend on a single contact. Who else should be in the room?\n- **Next steps:** Globex has good activity but no dated commitment. Practice closing each call with one.\n- **No action needed:** Initech is well qualified with a clear path to close.",
     "checklist": [
       "Backstory connector added and signed in with a manager account",
       "Your team's deals are visible to you in Backstory",
       "Your team uses a scorecard (MEDDIC, MEDDPICC, or SPICED) for scorecard gaps"
     ],
-    "caveat": "For a full team view, add a filter such as owner or close date. The assistant may show you how many deals it found and ask you to confirm before it fetches them. Activity checks cover the last 30 days, and it can't show week-over-week changes.",
+    "caveat": "Name the rep rather than asking about \"my team\": team questions only return results if your team is set up in Backstory. The assistant shows how many deals it found and how it read your request, then asks you to confirm before it fetches them. Activity checks cover the last 30 days.",
     "videoUrl": "https://share.zight.com/01a0d585-e237-7a45-9758-9512e13b306c",
     "stretchLink": "https://backstory-workflows.vercel.app/#/workflow/36-pipeline-forecast-digest",
     "stretchLabel": "Pipeline & Forecast Digest — a weekly team review delivered to Slack or email"

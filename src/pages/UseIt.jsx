@@ -25,8 +25,8 @@ const PHASES = [
 ];
 
 const CONFIRM = [
-  { prompt: 'What meetings did I have with Nimbus Robotics in the last 30 days?', proves: 'It can see your captured activity.', outcome: 'Meeting prep' },
-  { prompt: 'Who at Nimbus Robotics is most engaged with us right now, and who has gone quiet?', proves: 'It knows the people, not just the account.', outcome: 'Relationship coverage' },
+  { prompt: 'What meetings and emails have we had with Nimbus Robotics in the last 30 days?', proves: 'It can see your captured activity.', outcome: 'Meeting prep' },
+  { prompt: 'Who at Nimbus Robotics has been most engaged with us in the last 30 days, and who has been least active?', proves: 'It knows the people, not just the account.', outcome: 'Relationship coverage' },
   { prompt: 'What are the open risks and agreed next steps on the Nimbus Robotics deal?', proves: 'It reads deal context you’d otherwise dig for.', outcome: 'Deal risk' },
 ];
 

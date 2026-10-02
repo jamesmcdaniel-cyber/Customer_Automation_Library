@@ -11,7 +11,7 @@
     "roles": [
       { "name": "Account executive", "steps": [["Day 1", "Prep one call by asking for a brief instead of opening tabs."], ["Week 2", "Morning prep takes minutes. Follow-ups start from captured notes."], ["Month 1", "You ask sharper questions and spot quiet deals before they go cold."]] },
       { "name": "Sales manager", "steps": [["Day 1", "Prep one 1:1 from Backstory instead of a status readout."], ["Week 2", "Every standing meeting has a prompt. Forecast prep runs on evidence."], ["Month 1", "Coaching time goes to the deals that need a decision."]] },
-      { "name": "Customer success", "steps": [["Day 1", "Ask for a 90-day summary on one renewing account."], ["Week 2", "Handoffs and QBR outlines start from what was captured."], ["Month 1", "Quiet contacts and book risk surface while there’s time to act."]] }
+      { "name": "Customer success", "steps": [["Day 1", "Ask for a 30-day summary on one renewing account."], ["Week 2", "Handoffs and QBR outlines start from what was captured."], ["Month 1", "Quiet contacts and book risk surface while there’s time to act."]] }
     ]
   },
   "practices": [
@@ -54,19 +54,19 @@
               "title": "Pipeline check",
               "pattern": "specific",
               "instead": "“How’s my pipeline?”",
-              "ask": "Which of my deals closing this quarter have no exec contact in 30 days?",
+              "ask": "Which of my open deals closing this quarter have no upcoming meetings?",
               "why": "Result: a to-do list, not a vague summary.",
               "highlights": [
-                { "text": "closing this quarter", "kind": "filter" },
-                { "text": "no exec contact", "kind": "signal" },
-                { "text": "in 30 days", "kind": "window" }
+                { "text": "open deals", "kind": "filter" },
+                { "text": "closing this quarter", "kind": "window" },
+                { "text": "no upcoming meetings", "kind": "signal" }
               ]
             },
             {
               "title": "Stakeholder map",
               "pattern": "specific",
               "instead": "Rebuilding the buying group from memory.",
-              "ask": "Who at Vantage Retail have we met with in the last 90 days, and who’s missing from the buying group?",
+              "ask": "Who at Vantage Retail have we met with in the last 30 days, and who’s missing from the buying group?",
               "why": "See who’s engaged and who’s missing, based on real meetings."
             },
             {
@@ -131,7 +131,8 @@
               "pattern": "specific",
               "instead": "Coaching from gut feel on who’s struggling.",
               "ask": "Which of my team’s accounts have had no meetings in the last 30 days, by owner?",
-              "why": "Coach from facts, not hunches. Backstory shows which accounts have gone quiet, so you know where to spend time."
+              "why": "Coach from facts, not hunches. Backstory shows which accounts have gone quiet, so you know where to spend time.",
+              "note": "If “my team” comes back empty, name the rep instead: “accounts owned by Priya”."
             },
             {
               "moment": "Tuesday · 1:1s",
@@ -146,7 +147,7 @@
               "title": "Forecast prep",
               "pattern": "pull",
               "instead": "Exporting the pipeline to a spreadsheet.",
-              "ask": "Using Backstory, list Priya’s open deals closing this quarter and flag any with new risks.",
+              "ask": "Using Backstory, list Priya’s open deals closing this quarter and flag any with open risks.",
               "why": "Backstory flags what moved and what’s at risk, so the forecast call runs on evidence, not a rep’s recall."
             }
           ]
@@ -187,11 +188,12 @@
               "title": "At-risk accounts",
               "pattern": "specific",
               "instead": "Reading every call summary to find accounts going cold.",
-              "ask": "Which accounts on my team have gone quiet in the last 30 days, ranked by deal size?",
+              "ask": "Which accounts on my team have had no meetings in the last 30 days, ranked by open deal size?",
               "why": "Ranking by size shows where to look first.",
+              "note": "If “my team” comes back empty, name the rep instead: “accounts owned by Priya”.",
               "mock": {
                 "type": "bars",
-                "title": "Gone quiet · ranked by size",
+                "title": "No meetings in 30 days · ranked by size",
                 "rows": [
                   { "label": "Halden Freight", "value": "$240K · 26d", "pct": 100 },
                   { "label": "Corvia Health", "value": "$180K · 34d", "pct": 75 },
@@ -243,7 +245,7 @@
               "title": "QBR prep",
               "pattern": "ask",
               "instead": "Building the QBR deck from a blank page.",
-              "ask": "Draft a QBR outline for Corvia Health from this quarter’s meetings and emails.",
+              "ask": "Draft a QBR outline for Corvia Health from the last 30 days of meetings and emails.",
               "why": "Walk in with the quarter already summarized.",
               "whyLabel": "What changes"
             },
@@ -252,7 +254,7 @@
               "title": "Renewal prep",
               "pattern": "ask",
               "instead": "Piecing the renewal story together the week before.",
-              "ask": "Using Backstory, summarize Corvia Health’s last 90 days: meetings, open issues and renewal risks.",
+              "ask": "Using Backstory, summarize Corvia Health’s last 30 days: meetings, open issues and renewal risks.",
               "why": "Spot renewal risk while there’s time to act.",
               "whyLabel": "What changes"
             },
@@ -261,7 +263,7 @@
               "title": "Expansion",
               "pattern": "specific",
               "instead": "“Any expansion opportunities?”",
-              "ask": "Which teams at Corvia Health have we met with outside the original buying group this quarter?",
+              "ask": "Which teams at Corvia Health have we met with in the last 30 days, beyond our main contacts?",
               "why": "Find new teams before a competitor does.",
               "whyLabel": "What changes"
             }
@@ -275,7 +277,7 @@
               "title": "Quiet contacts",
               "pattern": "specific",
               "instead": "Finding out your champion left when an email bounces.",
-              "ask": "Which Corvia Health contacts haven’t been contacted in the last two weeks?",
+              "ask": "Which Corvia Health contacts were active earlier this month but have had no activity in the last two weeks?",
               "why": "Spot the drop-off before the renewal.",
               "mock": {
                 "type": "rows",
@@ -292,7 +294,7 @@
               "title": "Book health",
               "pattern": "specific",
               "instead": "Scanning your book account by account.",
-              "ask": "Which of my accounts have had no meeting in the last 45 days?",
+              "ask": "Which of my accounts have had no meeting in the last 30 days?",
               "why": "Two filters turn a whole book into a short list.",
               "mock": {
                 "type": "bars",
@@ -300,7 +302,7 @@
                 "rows": [
                   { "label": "Your book", "value": "48 accounts", "pct": 100 },
                   { "label": "Renewing in 90 days", "value": "12 accounts", "pct": 25 },
-                  { "label": "No meeting in 45 days", "value": "3 accounts", "pct": 6 }
+                  { "label": "No meeting in 30 days", "value": "3 accounts", "pct": 6 }
                 ]
               }
             }

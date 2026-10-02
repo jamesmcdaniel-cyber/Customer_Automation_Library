@@ -4,10 +4,11 @@ import { SectionHero } from '../components/SectionHero';
 import { BackLink } from '../components/BackLink';
 import { Accordion } from '../components/ui/Accordion';
 import { CopyButton } from '../components/ui/CopyButton';
+import { HelpLink } from '../components/HelpLink';
 import { Checklist } from '../components/Checklist';
 import { NextStep } from '../components/NextStep';
 import { ResourceButton } from '../components/Resource';
-import { GUIDES, findGuide } from '../data/connectGuides';
+import { GUIDES, findGuide, guideUrl } from '../data/connectGuides';
 import { assetUrl, cn } from '../lib/cn';
 
 export function PlatformLogo({ guide, className }) {
@@ -72,13 +73,13 @@ function StepItem({ n, step, last }) {
 }
 
 // Row of platform pills, so readers can jump between guides.
-export function PlatformSwitcher({ current }) {
+export function PlatformSwitcher({ current, base = '/use-it/connect' }) {
   return (
     <nav aria-label="Choose your assistant" className="flex flex-wrap gap-2">
       {GUIDES.map((g) => (
         <Link
           key={g.id}
-          to={`/use-it/connect/${g.id}`}
+          to={`${base}/${g.id}`}
           aria-current={g.id === current ? 'page' : undefined}
           className={cn(
             'inline-flex items-center gap-2 rounded-full border px-3.5 py-1.5 text-[13.5px] font-medium no-underline transition-colors',
@@ -90,6 +91,41 @@ export function PlatformSwitcher({ current }) {
         </Link>
       ))}
     </nav>
+  );
+}
+
+// What you need, the steps, and troubleshooting: shared by the site page and the standalone page.
+// `pdfAction` is how the PDF version opens: in the resource window on the site, as a file elsewhere.
+export function GuideContent({ g, pdfAction }) {
+  return (
+    <>
+      <section className="surface-card p-6">
+        <div className="mb-3 flex items-center gap-3">
+          <PlatformLogo guide={g} className="h-7 w-7" />
+          <h2 className="font-display text-[17px] font-bold">You&rsquo;ll need</h2>
+        </div>
+        <Checklist items={g.need} />
+      </section>
+
+      <section className="surface-card p-6">
+        <div className="mb-6 flex flex-wrap items-center justify-between gap-2">
+          <h2 className="font-display text-[19px] font-bold">Steps</h2>
+          {pdfAction}
+        </div>
+        <ol>
+          {g.steps.map((s, i) => <StepItem key={s.title} n={i + 1} step={s} last={i === g.steps.length - 1} />)}
+        </ol>
+        <p className="mt-8 rounded-lg border border-ac-success/30 bg-ac-success/5 px-4 py-3 text-[14px] leading-6 text-ac-dark">
+          <strong>Check it works:</strong> ask &ldquo;What&rsquo;s the current status of [one of your accounts]?&rdquo; and look for a
+          Backstory tool call in the answer.
+        </p>
+      </section>
+
+      <section>
+        <h2 className="eyebrow mb-3">If something goes wrong</h2>
+        <Accordion items={g.troubleshooting.map(([q, a]) => ({ value: q, title: q, content: a }))} />
+      </section>
+    </>
   );
 }
 
@@ -113,32 +149,14 @@ export function ConnectGuide() {
           <PlatformSwitcher current={g.id} />
         </div>
 
-        <section className="surface-card p-6">
-          <div className="mb-3 flex items-center gap-3">
-            <PlatformLogo guide={g} className="h-7 w-7" />
-            <h2 className="font-display text-[17px] font-bold">You&rsquo;ll need</h2>
-          </div>
-          <Checklist items={g.need} />
-        </section>
+        <GuideContent g={g} pdfAction={g.pdf && <ResourceButton id={g.pdf} label="Open the PDF guide" />} />
 
-        <section className="surface-card p-6">
-          <div className="mb-6 flex flex-wrap items-center justify-between gap-2">
-            <h2 className="font-display text-[19px] font-bold">Steps</h2>
-            {g.pdf && <ResourceButton id={g.pdf} label="Open the PDF guide" />}
-          </div>
-          <ol>
-            {g.steps.map((s, i) => <StepItem key={s.title} n={i + 1} step={s} last={i === g.steps.length - 1} />)}
-          </ol>
-          <p className="mt-8 rounded-lg border border-ac-success/30 bg-ac-success/5 px-4 py-3 text-[14px] leading-6 text-ac-dark">
-            <strong>Check it works:</strong> ask &ldquo;What&rsquo;s the current status of [one of your accounts]?&rdquo; and look for a
-            Backstory tool call in the answer.
-          </p>
-        </section>
-
-        <section>
-          <h2 className="eyebrow mb-3">If something goes wrong</h2>
-          <Accordion items={g.troubleshooting.map(([q, a]) => ({ value: q, title: q, content: a }))} />
-        </section>
+        <p className="flex flex-wrap items-center gap-x-4 gap-y-2 text-[13.5px] text-ac-dark-secondary">
+          <strong className="text-ac-dark">Share this guide:</strong>
+          <a href={`/guides/${g.id}`} target="_blank" rel="noopener" className="font-medium text-ac-coral-dark hover:underline">Standalone page</a>
+          <CopyButton text={guideUrl(g.id)} label="Copy link" />
+          <HelpLink k="connect" label="Help Center article" />
+        </p>
 
         <NextStep text="Connected? Run three prompts that prove it's working." to="/use-it#confirm" label="Confirm it works" />
       </div>

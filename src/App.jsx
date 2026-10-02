@@ -8,10 +8,13 @@ import { Example } from './pages/Example';
 import { StretchIt } from './pages/StretchIt';
 import { Swaps } from './pages/Swaps';
 import { ConnectGuide } from './pages/ConnectGuide';
+import { GuideIndex, StandaloneGuide } from './pages/StandaloneGuide';
 
 export function App() {
   return (
     <Routes>
+      <Route path="/guides" element={<GuideIndex />} />
+      <Route path="/guides/:platform" element={<StandaloneGuide />} />
       <Route element={<Layout />}>
         <Route path="/" element={<Home />} />
         <Route path="/get-it" element={<GetIt />} />

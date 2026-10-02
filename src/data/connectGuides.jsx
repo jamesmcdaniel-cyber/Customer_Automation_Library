@@ -315,3 +315,6 @@ export const GUIDES = [
 ];
 
 export const findGuide = (id) => GUIDES.find((g) => g.id === id);
+
+// Each guide also has a standalone page (no site navigation) that other docs can link to.
+export const guideUrl = (id) => `https://customer-automation-library.vercel.app/guides/${id}`;

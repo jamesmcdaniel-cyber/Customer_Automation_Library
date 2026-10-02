@@ -65,7 +65,7 @@ const PLAYBOOKS = [
     intro: 'Three prompts, run in order each morning, turn “what’s on today?” into a plan.',
     steps: [
       'Use Backstory. For each of these accounts I’m meeting today: Nimbus Robotics, Vantage Retail. Give me where things stand and the open risks.',
-      'Which of those accounts has anyone gone quiet in the last 30 days?',
+      'On those accounts, which contacts have been least active in the last 30 days?',
       'Turn that into my top three actions for today, in priority order.',
     ],
     automate: { label: 'Sales Digest', href: `${LIB}01-sales-digest` },
@@ -76,8 +76,8 @@ const PLAYBOOKS = [
     title: '1:1 prep and forecast-call prep',
     intro: 'Walk into each 1:1 with the deal context already in hand, instead of asking the rep to recap it.',
     steps: [
-      'Use Backstory. Review my top deals owned by Alex Chen: open risks, missing next steps, and scorecard gaps.',
-      'Which of those deals have no executive engaged in the last 30 days?',
+      'Use Backstory. List the open deals owned by Alex Chen that close this quarter, largest first. For the top three, give me open risks, agreed next steps, and scorecard gaps.',
+      'For each of those deals, who has been engaged in the last 30 days, and is anyone at VP level or above?',
       'Give me three coaching questions for my 1:1 with Alex, based on that.',
     ],
     before: '“So, how are your deals looking?” The rep recaps from memory, and the first 20 minutes go to status.',
