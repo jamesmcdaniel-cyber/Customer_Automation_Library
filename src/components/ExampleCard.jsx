@@ -9,18 +9,18 @@ export function ExampleCard({ example: e }) {
       to={`/example/${e.id}`}
       className={cn(
         'group flex flex-col rounded-xl border bg-ac-card p-5 shadow-card no-underline transition-all duration-200 hover:-translate-y-0.5 hover:border-ac-coral hover:shadow-cardhover',
-        // "Then here" (Graphite) is the step after Get it's "Start here" (Horizon Blue).
-        e.thenHere ? 'border-ac-dark ring-1 ring-ac-dark' : 'border-ac-light-gray',
+        // "Then here" (light grass green) is the step after Get it's "Start here" (Horizon Blue).
+        e.thenHere ? 'border-[#8CD17D] ring-1 ring-[#8CD17D]' : 'border-ac-light-gray',
       )}
     >
       <div className="mb-2.5 flex items-center gap-2">
         <span
           className={cn(
             'rounded-md px-2 py-0.5 font-mono text-[10.5px] font-medium uppercase tracking-[0.12em]',
-            e.thenHere ? 'bg-ac-dark text-white' : 'bg-ac-coral/12 text-ac-coral-dark',
+            e.thenHere ? 'bg-[#8CD17D] text-[#173B1F]' : 'bg-ac-coral/12 text-ac-coral-dark',
           )}
         >
-          {e.thenHere ? `Example 0${e.order} · Then here` : `Example 0${e.order}`}
+          {e.thenHere ? `0${e.order} · Then here` : `0${e.order}`}
         </span>
       </div>
       <h3 className="font-display text-[15px] font-bold leading-snug tracking-[-0.01em] text-ac-dark">{e.title}</h3>
