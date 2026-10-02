@@ -2,6 +2,7 @@
   {
     "id": "meeting-prep",
     "order": 1,
+    "thenHere": true,
     "title": "Meeting prep brief",
     "helpsYou": "Walk into any customer meeting knowing where things stand, who's involved, and what to push for — in about a minute.",
     "whoFor": [
