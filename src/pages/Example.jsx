@@ -1,13 +1,14 @@
 import { Link, Navigate, useParams } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
-import { AlertTriangle, Clock, ExternalLink } from 'lucide-react';
+import { AlertTriangle, Clock, ExternalLink, Zap } from 'lucide-react';
 import { SectionHero } from '../components/SectionHero';
 import { BackLink } from '../components/BackLink';
 import { Video } from '../components/Video';
 import { Tabs } from '../components/ui/Tabs';
 import { CopyButton } from '../components/ui/CopyButton';
 import { Checklist } from '../components/Checklist';
+import { Button } from '../components/ui/Button';
 import { NextStep } from '../components/NextStep';
 import { examples, findExample } from '../lib/content';
 
@@ -60,6 +61,29 @@ function ResponsePanel({ e }) {
   );
 }
 
+function MakeItAutomatic({ e }) {
+  const [name, ...rest] = e.stretchLabel.split(' — ');
+  const detail = rest.join(' — ');
+  return (
+    <section className="flex flex-wrap items-center gap-x-5 gap-y-4 rounded-xl border border-ac-horizon-200 bg-ac-horizon-50 p-5 shadow-card sm:p-6">
+      <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-ac-coral text-white">
+        <Zap size={20} />
+      </span>
+      <div className="min-w-0 flex-1 basis-[240px]">
+        <div className="eyebrow mb-1 text-ac-coral-dark">Make it automatic</div>
+        <h2 className="text-[18px] font-bold leading-6 text-ac-dark">Skip the prompt. Have this run on its own.</h2>
+        <p className="mt-1 text-[14.5px] leading-6 text-ac-dark-secondary">
+          <strong className="font-bold text-ac-dark">{name}</strong>
+          {detail && `: ${detail}`}
+        </p>
+      </div>
+      <Button as="a" href={e.stretchLink} target="_blank" rel="noopener" className="shrink-0">
+        See the workflow <ExternalLink size={14} />
+      </Button>
+    </section>
+  );
+}
+
 function Fact({ label, children }) {
   return (
     <div>
@@ -105,6 +129,7 @@ export function Example() {
               ]}
             />
           </section>
+          <MakeItAutomatic e={e} />
           {next ? (
             <NextStep text={<>Next: <strong>{next.title}</strong></>} to={`/example/${next.id}`} label="Next example" />
           ) : (
@@ -123,12 +148,6 @@ export function Example() {
             <Link to="/use-it" className="mt-4 inline-block text-[13.5px] font-medium text-ac-coral-dark hover:underline">
               Not connected yet? Connect in 5 minutes
             </Link>
-          </div>
-          <div className="surface-card p-6">
-            <div className="eyebrow mb-2">Make it automatic</div>
-            <a href={e.stretchLink} target="_blank" rel="noopener" className="inline-flex items-start gap-1.5 text-[14px] font-medium leading-6 text-ac-coral-dark hover:underline">
-              {e.stretchLabel} <ExternalLink size={13} className="mt-1.5 shrink-0" />
-            </a>
           </div>
         </aside>
       </div>
