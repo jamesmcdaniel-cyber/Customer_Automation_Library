@@ -62,10 +62,10 @@ const PLAYBOOKS = [
     value: 'rep',
     label: 'Rep',
     title: 'Morning prep, chained into your Win the Day routine',
-    intro: 'Three prompts, run in order each morning, turn “what’s on today?” into a plan.',
+    intro: 'Three prompts, run in order for each account you’re meeting today, turn an account name into a plan.',
     steps: [
-      'Use Backstory. For each of these accounts I’m meeting today: Nimbus Robotics, Vantage Retail. Give me where things stand and the open risks.',
-      'On those accounts, which contacts have been least active in the last 30 days?',
+      'Help me prep for my call with Nimbus Robotics.',
+      'Using Backstory, who have we been talking to at Nimbus Robotics in the last 30 days, and when?',
       'Turn that into my top three actions for today, in priority order.',
     ],
     automate: { label: 'Sales Digest', href: `${LIB}01-sales-digest` },
@@ -76,8 +76,8 @@ const PLAYBOOKS = [
     title: '1:1 prep and forecast-call prep',
     intro: 'Walk into each 1:1 with the deal context already in hand, instead of asking the rep to recap it.',
     steps: [
-      'Use Backstory. List the open deals owned by Alex Chen that close this quarter, largest first. For the top three, give me open risks, agreed next steps, and scorecard gaps.',
-      'For each of those deals, who has been engaged in the last 30 days, and is anyone at VP level or above?',
+      'What deals does Alex Chen have closing this quarter? Give me the risks and next steps on each.',
+      'Which of Alex Chen’s deals have nothing on the calendar in the next 30 days?',
       'Give me three coaching questions for my 1:1 with Alex, based on that.',
     ],
     before: '“So, how are your deals looking?” The rep recaps from memory, and the first 20 minutes go to status.',
@@ -90,8 +90,8 @@ const PLAYBOOKS = [
     title: 'A QBR narrative built from account activity',
     intro: 'Build the story of the quarter for a key account from what actually happened, not from memory.',
     steps: [
-      'Use Backstory. For Nimbus Robotics, summarize engagement over the last 30 days: who we’re talking to, how often, and about what.',
-      'What risks and agreed next steps are open, and how do they compare with similar deals we’ve seen before?',
+      'Ask Backstory’s assistant what the big themes have been with Nimbus Robotics over the last 90 days.',
+      'Any risks on the Nimbus Robotics renewal deal?',
       'Draft a one-page QBR narrative for their executive sponsor: what went well, what’s at risk, and what we propose next.',
     ],
     automate: { label: 'QBR Auto-Prep', href: `${LIB}15-qbr-auto-prep` },
@@ -110,7 +110,7 @@ const DID_YOU_KNOW = [
     icon: Repeat,
     title: 'Standing instructions',
     body: 'Put “always check Backstory for account questions” in a Claude Project, so you stop re-explaining context.',
-    prompt: 'For any question about a customer, account, or deal, always check Backstory first and tell me which records you used.',
+    prompt: 'For any question about a customer, account, or deal, always check Backstory first and tell me what dates and people your answer is based on.',
     note: 'Paste into a Claude Project’s instructions.',
   },
   {
@@ -121,16 +121,17 @@ const DID_YOU_KNOW = [
   },
   {
     icon: Sparkles,
-    title: 'Ask for an answer, not a summary',
-    body: 'Status gives you a quick read. For a question that needs judgment, ask Backstory’s Sales AI directly.',
-    prompt: 'Ask Backstory’s Sales AI: is the Nimbus Robotics deal at risk, and who is the economic buyer?',
+    title: 'Reach further back',
+    body: 'Your AI tool answers most account questions from the last 30 days. Start with “Ask Backstory’s assistant” to hand the question to Backstory’s own assistant, which reaches about three months back.',
+    prompt: 'Ask Backstory’s assistant what the big themes have been with Nimbus Robotics over the last 90 days.',
+    note: 'Themes come back steady. Dated detail from further back can come back thin.',
   },
   {
     icon: Newspaper,
     title: 'Add outside context',
-    body: 'For publicly traded accounts, layer in recent news and filings: exec changes, earnings, M&A.',
-    prompt: 'Use Backstory. What’s happened at Nimbus Robotics in the news lately that gives me a reason to reach out?',
-    note: 'Public companies only. Private accounts return no news, and that’s expected.',
+    body: 'For publicly traded accounts, layer in recent filings and earnings, including exec hires and departures.',
+    prompt: 'Any news on Nimbus Robotics?',
+    note: 'Public companies only. News comes from company filings, not the press, and you may get different items each time.',
   },
   {
     icon: Hash,
@@ -296,7 +297,7 @@ export function StretchIt() {
             </div>
             <div className="surface-card p-5">
               <div className="mb-2 font-mono text-[11px] font-semibold uppercase tracking-[0.12em] text-ac-med-gray">The gray zone</div>
-              <p className="text-[14px] leading-6 text-ac-dark">Recurring reports a person still reviews. Start with MCP, and move to the API once the format stops changing.</p>
+              <p className="text-[14px] leading-6 text-ac-dark">Recurring reports a person still reviews. Move record and metric data to the API. Reports built on Backstory&rsquo;s summaries stay with a person running them in MCP.</p>
             </div>
           </div>
         </section>
@@ -307,7 +308,7 @@ export function StretchIt() {
               <h2 className="eyebrow mb-1">Start with the API</h2>
               <p className="max-w-3xl text-[14px] leading-6 text-ac-dark-secondary">
                 For jobs a system runs, not a person. The Backstory Public API gives your developers read access to the data
-                Backstory captures.
+                Backstory captures. An API key sees your whole organization&rsquo;s data. MCP sees only what each signed-in person can see.
               </p>
             </div>
             <Button as="a" href={site.apiDocsUrl} target="_blank" rel="noopener" variant="secondary" size="sm">

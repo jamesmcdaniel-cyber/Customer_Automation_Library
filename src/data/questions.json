@@ -1,0 +1,79 @@
+{
+  "intro": "You never pick a Backstory tool. Your AI tool does that. What helps is knowing which questions work, and where each one stops. We asked every prompt here five times in a row.",
+  "kinds": [
+    {
+      "id": "one",
+      "name": "Ask about one account or deal",
+      "short": "One account or deal",
+      "example": "Catch me up on Nimbus Robotics.",
+      "goodToKnow": "Covers the last 30 days. Use the full company name, and check it in the first answer.",
+      "prompts": [
+        { "text": "Help me prep for my call with Nimbus Robotics.", "who": ["Rep"], "note": "Finds the same account and deal every time." },
+        { "text": "Catch me up on Nimbus Robotics.", "who": ["Rep", "AM/CSM"], "note": "Sometimes pulls in the deal too and goes deeper." },
+        { "text": "Summarize the last month with Halden Freight.", "who": ["Rep", "AM/CSM"], "note": "Covers the last 30 days, which matches “last month”." },
+        { "text": "What’s the latest on the Nimbus Robotics renewal deal?", "who": ["Rep"] },
+        { "text": "Any risks on the Nimbus Robotics renewal deal?", "who": ["Rep", "Manager"], "note": "Flags the same risks each time." },
+        { "text": "What’s Backstory flagging on the Nimbus Robotics renewal deal?", "who": ["Manager"], "note": "Flags the same risks each time." },
+        { "text": "What next steps did we agree on for the Nimbus Robotics renewal?", "who": ["Manager"], "note": "AI summaries of the last 30 days. Most next steps have no due date." },
+        { "text": "What did we agree to do for Nimbus Robotics, and who’s on the hook?", "who": ["AM/CSM"], "note": "Names the same owners each time." },
+        { "text": "Who’s active at Nimbus Robotics right now?", "who": ["AM/CSM"], "note": "The same top contacts each time." },
+        { "text": "Using Backstory, who have we been talking to at Nimbus Robotics in the last 30 days, and when?", "who": ["AM/CSM", "Rep"], "note": "Shows the 25 most engaged people." },
+        { "text": "Who have we been talking to on the Nimbus Robotics renewal?", "who": ["Rep"], "note": "The most engaged people from the last 30 days." },
+        { "text": "Who have we been talking to on the Nimbus Robotics renewal, and when?", "who": ["Manager"], "note": "Gives each person’s last contact date, not every meeting." },
+        { "text": "What’s in our account plan for Halden Freight?", "who": ["AM/CSM"], "note": "Only if your team keeps account plans in Backstory. The answer is as complete as the plan." },
+        { "text": "Write a follow-up email with the next steps from my recent Nimbus Robotics meetings.", "who": ["Rep"], "care": true, "note": "Drafts can pick different next steps, and one can give a task to someone Backstory didn’t name. Check owners and dates before you send." },
+        { "text": "Using Backstory, compare Nimbus Robotics and Halden Freight over the last 30 days. Which one needs attention?", "who": ["AM/CSM", "Manager"], "care": true, "note": "Read it as a side-by-side, not a verdict. Ask again and the pick can change." },
+        { "text": "Have we had a deal like the Nimbus Robotics renewal before? How’d it go?", "who": ["Rep", "Manager"], "care": true, "note": "Finds similar deals at other customers, and some may still be open. You may get a different set each time, so treat them as examples." },
+        { "text": "Any news on Halden Freight?", "who": ["Rep", "AM/CSM"], "care": true, "note": "Public companies only. News means filings and earnings, and you may get different items each time." },
+        { "text": "Any exec hires or departures at Halden Freight lately?", "who": ["AM/CSM"], "care": true, "note": "News comes from company filings, not the press, so it can miss a hire." }
+      ]
+    },
+    {
+      "id": "list",
+      "name": "Ask for a list",
+      "short": "A list",
+      "example": "Which of my team’s deals closing this quarter have engagement under 50?",
+      "goodToKnow": "Stick to whose deals, close date, engagement and what’s on the calendar ahead. Backstory says how many it found and how it read your question before it pulls them. Check that the reading says your deals, and for “biggest”, that it sorts highest first.",
+      "prompts": [
+        { "text": "Using Backstory, what deals do I have closing this quarter?", "who": ["Rep"] },
+        { "text": "What deals does my team have closing this quarter?", "who": ["Manager", "VP"], "note": "“My team” is the team set up for you in Backstory." },
+        { "text": "Which of my team’s deals closing this quarter have engagement under 50?", "who": ["Manager", "VP"] },
+        { "text": "Which of my team’s accounts have engagement under 30?", "who": ["AM/CSM", "VP"] },
+        { "text": "What deals does Alex Chen have closing this quarter? Give me the risks and next steps on each.", "who": ["Manager"], "note": "Lists each deal with its risks and next steps." },
+        { "text": "Which of Alex Chen’s deals have nothing on the calendar in the next 30 days?", "who": ["Manager"] },
+        { "text": "Which of my deals closing this quarter have nothing on the calendar in the next 30 days?", "who": ["Rep"], "care": true, "note": "Once in testing, Backstory dropped “my” and listed deals from across the company. Check that the reading says your deals." },
+        { "text": "What are my team’s 10 biggest deals closing this quarter?", "who": ["Manager", "VP"], "care": true, "note": "Backstory can drop the sort. Check that the reading says highest first." },
+        { "text": "What are the 10 biggest deals closing this quarter?", "who": ["VP"], "care": true, "note": "Backstory can drop the sort. Check that the reading says highest first." }
+      ]
+    },
+    {
+      "id": "assistant",
+      "name": "Ask Backstory’s assistant",
+      "short": "Backstory’s assistant",
+      "example": "Ask Backstory’s assistant what the big themes have been with Nimbus Robotics over the last 90 days.",
+      "goodToKnow": "Start the question with “Ask Backstory’s assistant” so your AI tool passes it on. Themes over 90 days come back steady. Dated detail from more than about three months back can come back thin, and it won’t list single emails or meetings from back then.",
+      "prompts": [
+        { "text": "Ask Backstory’s assistant what the big themes have been with Nimbus Robotics over the last 90 days.", "who": ["VP"], "note": "The same themes each time. Themes are undated." },
+        { "text": "I just took over Nimbus Robotics. Give me the history in five bullets.", "who": ["AM/CSM"], "care": true, "note": "Where the history starts can vary. Check key dates against your CRM." },
+        { "text": "Who at Halden Freight should we be talking to that we aren’t?", "who": ["AM/CSM"], "care": true, "note": "Names can change each time. Check them against your account plan." }
+      ]
+    }
+  ],
+  "notYet": [
+    { "ask": "Renewals or commit in a list", "happens": "Backstory drops those words without saying so and returns every deal." },
+    { "ask": "Deal lists that look back, like “no activity in two weeks” or “haven’t had a meeting in 60 days”", "happens": "Backstory switches to upcoming meetings or reads it backwards.", "instead": "“…nothing on the calendar in the next 30 days”" },
+    { "ask": "Won or lost deals, past quarters, win patterns", "happens": "Lists of won deals come back empty." },
+    { "ask": "Forecast changes and the commit category", "happens": "Backstory MCP can’t read forecast data yet.", "instead": "Backstory Forecasting in the app" },
+    { "ask": "Ranking a pipeline by risk, judging reps, predicting which deals close", "happens": "Backstory doesn’t answer these.", "instead": "Pull a list, then ask about the risks on each deal that matters" },
+    { "ask": "What changed this week, like stage moves", "happens": "Backstory can’t see changes over time." },
+    { "ask": "Tomorrow’s meetings or the latest single email", "happens": "Backstory summarizes captured activity by week.", "instead": "Add your calendar or email connector to the same AI tool" },
+    { "ask": "Stage words like “late-stage”, groupings like “by owner”", "happens": "Backstory guesses a stage name or ignores the grouping." },
+    { "ask": "News on private companies", "happens": "News works for public companies only." },
+    { "ask": "Long history, like “why has engagement dropped over 90 days?”", "happens": "Your AI tool often answers from the last 30 days, and engagement numbers stay at 30 days even through Backstory’s assistant.", "instead": "Start with “Ask Backstory’s assistant”, e.g. “Ask Backstory’s assistant what the big themes have been with Nimbus Robotics over the last 90 days.”" }
+  ],
+  "habits": [
+    ["Check the company name in the first answer.", "Short names can match the wrong account: “Box” can pull up Mapbox."],
+    ["Start a new chat for each new question.", "If a question doesn’t build on what you already asked, open a fresh chat. An AI tool can only hold so much of a conversation, and the longer a chat runs, the more likely it is to make mistakes."],
+    ["Read how Backstory understood a list before saying yes.", "Check that it says your deals (or your team’s), the right window, and “highest first” when you asked for the biggest."]
+  ]
+}

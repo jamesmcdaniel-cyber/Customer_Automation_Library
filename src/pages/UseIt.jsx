@@ -8,8 +8,9 @@ import { HelpLink } from '../components/HelpLink';
 import { ResourceButton } from '../components/Resource';
 import { Video } from '../components/Video';
 import { ResourceKit, ResourceKitLink } from '../components/ResourceKit';
-import { examples, site, swaps } from '../lib/content';
+import { examples, questions, site, swaps } from '../lib/content';
 import { PatternBars, SwapCard } from './Swaps';
+import { Habits, KindCard, questionCount } from './Questions';
 import { PlatformLogo } from './ConnectGuide';
 import { GUIDES } from '../data/connectGuides';
 
@@ -25,15 +26,15 @@ const PHASES = [
 ];
 
 const CONFIRM = [
-  { prompt: 'What meetings and emails have we had with Nimbus Robotics in the last 30 days?', proves: 'It can see your captured activity.', outcome: 'Meeting prep' },
-  { prompt: 'Who at Nimbus Robotics has been most engaged with us in the last 30 days, and who has been least active?', proves: 'It knows the people, not just the account.', outcome: 'Relationship coverage' },
-  { prompt: 'What are the open risks and agreed next steps on the Nimbus Robotics deal?', proves: 'It reads deal context you’d otherwise dig for.', outcome: 'Deal risk' },
+  { prompt: 'Catch me up on Nimbus Robotics.', proves: 'It can see the last 30 days of captured activity.', outcome: 'Meeting prep' },
+  { prompt: 'Using Backstory, who have we been talking to at Nimbus Robotics in the last 30 days, and when?', proves: 'It knows the people, not just the account.', outcome: 'Relationship coverage' },
+  { prompt: 'Any risks on the Nimbus Robotics renewal deal?', proves: 'It reads deal context you’d otherwise dig for.', outcome: 'Deal risk' },
 ];
 
 const REAL = [
   'A tool step appears in the conversation, such as “Used Backstory” or a named tool like get_account_status. You can expand it to see what came back.',
   'The answer names specific people, dates, and meetings from your account.',
-  'Ask “which records did you use?” and it can list them.',
+  'Ask “What dates and people is that based on?” and it can tell you.',
 ];
 const GUESS = [
   'No tool step appears; the answer arrives instantly.',
@@ -91,9 +92,9 @@ export function UseIt() {
       </SectionHero>
 
       <div className="mx-auto max-w-4xl space-y-6">
-        <Phase {...PHASES[0]} title="Connect Backstory to your assistant">
+        <Phase {...PHASES[0]} title="Connect Backstory to your AI tool">
           <p className="text-[14px] leading-6 text-ac-dark-secondary">
-            Pick your assistant for a step-by-step guide with screenshots. Every setup points at the same Backstory address, and
+            Pick your AI tool for a step-by-step guide with screenshots. Every setup points at the same Backstory address, and
             everyone signs in with their own Backstory login, so they only see what they can already see in Backstory.
           </p>
           <div className="mt-4 flex items-center justify-between gap-3 rounded-lg border border-ac-light-gray bg-ac-warm-white px-4 py-3">
@@ -139,7 +140,9 @@ export function UseIt() {
         </Phase>
 
         <Phase {...PHASES[1]} title="Three prompts that prove it's working">
-          <p className="mb-4 text-[14px] leading-6 text-ac-dark-secondary">Swap in one of your own accounts for Nimbus Robotics.</p>
+          <p className="mb-4 text-[14px] leading-6 text-ac-dark-secondary">
+            Swap in one of your own accounts and deals for Nimbus Robotics. Use the full company name, and check it in the first answer.
+          </p>
           <div className="space-y-3">
             {CONFIRM.map((c, i) => (
               <div key={i} className="rounded-xl border border-ac-light-gray">
@@ -179,6 +182,10 @@ export function UseIt() {
             <strong className="text-ac-dark">If it guessed:</strong> ask again with &ldquo;use Backstory&rdquo; and the account name.
             More fixes are under <Link to="/trust-it" className="font-medium text-ac-coral-dark hover:underline">where it&rsquo;s still rough</Link>.
           </p>
+          <div className="mt-5 rounded-xl border border-ac-horizon-100 bg-ac-horizon-50 p-5">
+            <h3 className="mb-3 font-display text-[15px] font-bold">Three habits that catch most wrong answers</h3>
+            <Habits />
+          </div>
         </Phase>
 
         <Phase {...PHASES[3]} title="From questions to decisions">
@@ -206,6 +213,25 @@ export function UseIt() {
             ))}
           </div>
         </Phase>
+
+        <section id="questions" className="scroll-mt-24 pt-2">
+          <div className="flex flex-wrap items-end justify-between gap-3">
+            <div>
+              <h2 className="font-display text-[22px] font-bold tracking-[-0.01em]">Three kinds of questions</h2>
+              <p className="mt-1.5 max-w-3xl text-[14px] leading-6 text-ac-dark-secondary">
+                You never pick a Backstory tool. Your AI tool does that. What helps is knowing which questions work, and where each one stops.
+              </p>
+            </div>
+            <Button as={Link} to="/use-it/questions" variant="secondary" size="sm">
+              See all {questionCount} tested prompts <ArrowRight size={14} />
+            </Button>
+          </div>
+          <div className="mt-4 grid gap-4 md:grid-cols-3">
+            {questions.kinds.map((k, i) => (
+              <KindCard key={k.id} kind={k} n={i + 1} />
+            ))}
+          </div>
+        </section>
 
         <section className="pt-2">
           <div className="flex flex-wrap items-end justify-between gap-3">

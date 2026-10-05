@@ -10,12 +10,12 @@ import { AfterDiagram, BeforeDiagram } from '../components/IntegrationDiagram';
 const DRAWERS = [
   ['Find', 'Look up an account or deal by name or Salesforce ID.'],
   ['Lists', 'Pull up to 1,000 accounts or deals from a plain-language filter, like “deals closing this quarter”.'],
-  ['Activity', 'Emails, calls, and meetings from the last 30 days, matched to your CRM.'],
+  ['Activity', 'Summaries of the emails, calls, and meetings Backstory captured in the last 30 days, matched to your CRM.'],
   ['Deal context', 'Risks, agreed next steps, topics, and scorecard coverage.'],
   ['People', 'Who is engaged on the customer’s side, and how active they are.'],
-  ['Analysis', 'Ask Backstory’s Sales AI a harder question about an account or deal, and get a synthesized answer.'],
-  ['News', 'Recent news and filings for publicly traded companies.'],
-  ['Precedents', 'Similar past deals, and how they turned out. In beta, and your organization turns it on.'],
+  ['Analysis', 'Hand a harder question to Backstory’s own assistant, which reaches about three months back.'],
+  ['News', 'Recent filings and earnings for publicly traded companies.'],
+  ['Precedents', 'Similar deals at other customers. You may get a different set each time. In beta, and your organization turns it on.'],
 ];
 
 const GLOSSARY = [
@@ -26,7 +26,7 @@ const GLOSSARY = [
   ['Prompt', 'What you type to the assistant. Plain English works; naming the account helps.'],
   ['Agent', 'An AI assistant set up for one job, with standing instructions and the Backstory tools attached. You build it once, in a tool like Copilot Studio, Gemini Enterprise, n8n, or a Claude Project, and it follows the same steps every time.'],
   ['API', 'A way for software to talk to Backstory directly, with exact requests and exact outputs. Built for code, not for conversation.'],
-  ['API key', 'The credential software uses to call the Backstory API. It’s usually created and scoped by an admin, and code trades it for a short-lived access token.'],
+  ['API key', 'The credential software uses to call the Backstory API. An API key sees your whole organization’s data, so it’s usually created by an admin. Code trades it for a short-lived access token.'],
 ];
 
 // Three ways to put Backstory data to work with AI, from simplest to most technical.
@@ -120,6 +120,10 @@ export function GetIt() {
                   </div>
                 ))}
               </div>
+              <p className="mt-4 text-[13.5px] leading-6">
+                You never pick a drawer. Claude does. What helps is knowing the{' '}
+                <Link to="/use-it/questions" className="font-medium text-ac-coral-dark hover:underline">three kinds of questions</Link> that work.
+              </p>
             </Analogy>
             <Analogy icon={Plug} tag="The standard plug" title="One standard plug. Every appliance. Every wall.">
               <p>

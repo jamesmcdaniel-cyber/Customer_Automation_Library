@@ -9,7 +9,7 @@ import { site } from '../lib/content';
 
 const PILLARS = [
   [KeyRound, 'Sign-in', 'You sign in yourself', 'Connecting opens the standard Backstory sign-in (OAuth 2.0), with the login you already use. Your password is never shared with the AI assistant, and you can disconnect at any time.'],
-  [Eye, 'Access', 'Your permissions, not more', 'Permissions mirror each user’s Backstory access. A rep sees their book; a manager sees their team. No one gets extra visibility.'],
+  [Eye, 'Access', 'Your permissions, not more', 'Each person sees what their Backstory user sees. That follows Backstory’s visibility settings, which can differ from Salesforce sharing.'],
   [Lock, 'Read-only', 'It can look, not change', 'The connector can only read. It cannot update your CRM, send email, or change anything in Backstory.'],
 ];
 
@@ -20,14 +20,24 @@ const ROUGH = [
     fix: 'Say “use Backstory”, or name the account explicitly.',
   },
   {
-    problem: 'Broad asks fall apart',
-    what: '“Summarize my whole pipeline” hits output limits or comes back shallow.',
-    fix: 'Scope it: by segment, by stage, by time window, or by a named account.',
+    problem: 'Short names match the wrong account',
+    what: '“Box” can pull up Mapbox. The answer looks right, but it’s about a different company.',
+    fix: 'Use the full company name, and check it in the first answer.',
+  },
+  {
+    problem: 'Big judgment calls don’t land',
+    what: '“Rank my pipeline by risk”, “which reps are struggling” or “which deals will close” come back shallow or not at all.',
+    fix: 'Pull a list, then ask about the risks on each deal that matters.',
   },
   {
     problem: 'Missing data looks like a confident “nothing”',
-    what: 'If meetings weren’t captured, the assistant reports only what exists and may not tell you something is missing.',
-    fix: 'Ask it to list the records it used.',
+    what: 'If meetings weren’t captured, your AI tool reports only what exists and may not tell you something is missing.',
+    fix: 'Ask “What dates and people is that based on?”',
+  },
+  {
+    problem: 'Long history comes back as 30 days',
+    what: 'Ask about the last 90 days and your AI tool often answers from the last 30. Engagement numbers stay at 30 days either way.',
+    fix: 'Start with “Ask Backstory’s assistant”, e.g. “Ask Backstory’s assistant what the big themes have been with Acme Corp over the last 90 days.”',
   },
   {
     problem: '“My team” comes back empty',
@@ -35,14 +45,19 @@ const ROUGH = [
     fix: 'Name the rep (“deals owned by Alex Chen”), or ask your admin to set up your team in Backstory.',
   },
   {
-    problem: 'Some filters don’t exist yet',
-    what: 'Lists can’t filter on forecast category, renewal date, deal type, or contact seniority yet, and a loose phrase like “gone quiet” can be read as something else. The assistant may drop that part of the question or swap in a different filter.',
-    fix: 'Filter by owner, close date, stage, amount, or meetings (“no meetings in the last 30 days”, “no upcoming meetings”), and check how it says it read your request before you confirm the list.',
+    problem: 'Some list filters don’t exist yet',
+    what: 'Renewals, commit, stage words like “late-stage” and groupings like “by owner” can be dropped without a word. Lists that look back, like “no activity in two weeks”, can be read as upcoming meetings.',
+    fix: 'Stick to whose deals, close date, engagement and what’s on the calendar ahead (“nothing on the calendar in the next 30 days”). Check how it read your request before you confirm the list.',
   },
   {
-    problem: 'Closed deals are hard to reach',
-    what: 'Lists, activity, and engaged people focus on open deals, so “what did our won deals have in common?” comes back thin.',
-    fix: 'Name an open deal and ask for similar past deals and what worked.',
+    problem: 'Won deals and past quarters are out of reach',
+    what: 'Lists of won or lost deals come back empty. Backstory can’t see past quarters, forecast data, or changes like stage moves.',
+    fix: 'Ask “Have we had a deal like the Acme Corp renewal before?” and treat the matches as examples. For forecast, use Backstory Forecasting in the app.',
+  },
+  {
+    problem: 'Long chats drift',
+    what: 'An AI tool can only hold so much of a conversation. The longer a chat runs, the more likely it is to make mistakes.',
+    fix: 'Start a new chat for each question that doesn’t build on the last one.',
   },
 ];
 
@@ -50,7 +65,7 @@ const TROUBLESHOOTING = [
   {
     value: 'not-found',
     title: 'Account not found',
-    content: 'The account name has to match your CRM closely. Abbreviations, punctuation, and spacing can cause a miss. Try a shorter version of the name, or paste the Salesforce record ID instead.',
+    content: 'The account name has to match your CRM closely. Abbreviations, punctuation, and spacing can cause a miss. Use the full company name as it appears in your CRM, or paste the Salesforce record ID instead.',
   },
   {
     value: 'no-news',
@@ -102,8 +117,8 @@ export function TrustIt() {
       title: 'Access: who can see what?',
       content: (
         <p>
-          Permissions mirror each user&rsquo;s Backstory access. Every request runs as the signed-in user, so the assistant can
-          only return accounts and deals that person could already see in Backstory. No one gets extra visibility.
+          Every request runs as the signed-in user, so your AI tool can only return accounts and deals that person could
+          already see in Backstory. That follows Backstory&rsquo;s visibility settings, which can differ from Salesforce sharing.
         </p>
       ),
     },
@@ -166,9 +181,9 @@ export function TrustIt() {
         <>
           <p>
             The API uses an API key and secret instead of a person&rsquo;s sign-in. Code trades them for an access token that
-            lasts two hours, then sends that token with each request. MCP runs as each signed-in person; API integrations are
-            usually set up and scoped by an admin instead. Confirm with your Backstory team how API access works for your
-            workspace.
+            lasts two hours, then sends that token with each request. An API key sees your whole organization&rsquo;s data. MCP
+            sees only what each signed-in person can see. That&rsquo;s why API integrations are usually set up by an admin.
+            Confirm with your Backstory team how API access works for your workspace.
           </p>
           <p className="mt-2">
             Most of the API only reads data. The exceptions start a bulk export or add an email activity to Backstory. Keep the
@@ -189,21 +204,22 @@ export function TrustIt() {
             <li><PolicyLink href={p.openaiEnterprise}>OpenAI enterprise privacy</PolicyLink> (ChatGPT Team and Enterprise)</li>
             <li><PolicyLink href={p.backstoryPrivacy}>Backstory privacy policy</PolicyLink> and <PolicyLink href={p.backstorySecurity}>Backstory trust &amp; security</PolicyLink></li>
           </ul>
+          <p className="mt-2">Using Copilot, Gemini, or another AI tool? Its own data policies apply.</p>
         </>
       ),
     },
     {
       value: 'can-see',
-      title: 'What can the assistant see through Backstory?',
+      title: 'What can your AI tool see through Backstory?',
       content: (
         <Checklist
           items={[
             'Accounts and opportunities the user has access to in Backstory, including lists of up to 1,000 at a time',
             'Summaries of emails, calls, and meetings from the last 30 days, matched to those records',
             'Deal risks, next steps, engaged contacts, and scorecard coverage',
-            'Answers from Backstory’s Sales AI, built from the same data',
-            'Similar past deals and how they turned out, where your organization has turned this on (beta)',
-            'Public news about publicly traded companies',
+            'Answers from Backstory’s own assistant, which reaches about three months back',
+            'Similar deals at other customers, where your organization has turned this on (beta)',
+            'Filings and earnings news about publicly traded companies',
           ]}
         />
       ),
@@ -216,10 +232,12 @@ export function TrustIt() {
           negative
           items={[
             'Change CRM records or anything else in Backstory',
-            'Look up your schedule, such as “my next meeting” (Backstory syncs with your calendar to capture meetings, but the assistant looks things up by account)',
+            'Look up your calendar ahead or a single email, such as “my next meeting” (Backstory captures meetings by account; add your calendar or email connector to the same AI tool for these)',
             'Read full call transcripts',
-            'Summarize activity older than 30 days (lists can count meetings up to 90 days back, but not summarize them)',
+            'Summarize activity older than 30 days (Backstory’s own assistant reaches about three months back, as themes rather than single emails or meetings)',
             'Compare before and now, such as stage changes or engagement trends',
+            'Read forecast data or the commit category (use Backstory Forecasting in the app)',
+            'List won or lost deals, or look at past quarters',
             'See accounts or deals outside the user’s own permissions',
           ]}
         />

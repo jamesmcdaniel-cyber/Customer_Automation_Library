@@ -22,6 +22,15 @@ function PromptPanel({ e }) {
         </div>
         <p className="px-4 py-4 text-[16px] leading-7 text-ac-dark">{e.prompt}</p>
       </div>
+      {e.followUp && (
+        <div className="flex items-start justify-between gap-3 rounded-xl border border-ac-light-gray px-4 py-3">
+          <div className="min-w-0">
+            <div className="eyebrow mb-1">Then ask</div>
+            <p className="text-[15px] leading-6 text-ac-dark">{e.followUp}</p>
+          </div>
+          <CopyButton text={e.followUp} className="shrink-0" />
+        </div>
+      )}
       {e.caveat && (
         <div className="flex gap-2.5 rounded-xl border border-[#F3DDB0] bg-[#FFF7E6] px-4 py-3 text-[13.5px] leading-6 text-[#7A5200]">
           <AlertTriangle size={16} className="mt-1 shrink-0" />
