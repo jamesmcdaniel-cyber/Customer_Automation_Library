@@ -60,6 +60,12 @@
   ],
   "use-it": [
     {
+      "title": "Build better prompts",
+      "audience": "End users",
+      "body": "The three kinds of questions and the prompts that work for each, quick rewrites for the ones that miss, and seven habits for a strong first answer.",
+      "items": [{ "pdf": "betterPrompts", "label": "Guide" }]
+    },
+    {
       "title": "Instead of this, do this",
       "audience": "Reps, managers, and VPs",
       "body": "Swap cards for account executives, sales managers, and customer success: the old habit, and the prompt to use instead.",
