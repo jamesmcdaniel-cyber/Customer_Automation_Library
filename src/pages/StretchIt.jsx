@@ -122,9 +122,9 @@ const DID_YOU_KNOW = [
   {
     icon: Sparkles,
     title: 'Reach further back',
-    body: 'Your AI tool answers most account questions from the last 30 days. Start with “Ask Backstory’s assistant” to hand the question to Backstory’s own assistant, which reaches about three months back.',
+    body: 'Quick summaries cover the last 30 days. For older context, up to 90 days, or a product-specific question, start with “Ask Backstory’s assistant.”',
     prompt: 'Ask Backstory’s assistant what the big themes have been with Nimbus Robotics over the last 90 days.',
-    note: 'Themes come back steady. Dated detail from further back can come back thin.',
+    note: 'Themes hold up well. Details get thinner past about 60 days, so check key dates.',
   },
   {
     icon: Newspaper,

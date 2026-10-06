@@ -51,7 +51,7 @@
       "name": "Ask Backstory’s assistant",
       "short": "Backstory’s assistant",
       "example": "Ask Backstory’s assistant what the big themes have been with Nimbus Robotics over the last 90 days.",
-      "goodToKnow": "Start the question with “Ask Backstory’s assistant” so your AI tool passes it on. Themes over 90 days come back steady. Dated detail from more than about three months back can come back thin, and it won’t list single emails or meetings from back then.",
+      "goodToKnow": "Quick summaries cover 30 days. Backstory’s assistant goes to 90, and takes product- or topic-specific questions. Start with “Ask Backstory’s assistant” so your AI tool passes it on. Themes hold up well; details get thinner past about 60 days, and it won’t list single emails or meetings from back then.",
       "prompts": [
         { "text": "Ask Backstory’s assistant what the big themes have been with Nimbus Robotics over the last 90 days.", "who": ["VP"], "note": "The same themes each time. Themes are undated." },
         { "text": "I just took over Nimbus Robotics. Give me the history in five bullets.", "who": ["AM/CSM"], "care": true, "note": "Where the history starts can vary. Check key dates against your CRM." },

@@ -13,7 +13,7 @@ const DRAWERS = [
   ['Activity', 'Summaries of the emails, calls, and meetings Backstory captured in the last 30 days, matched to your CRM.'],
   ['Deal context', 'Risks, agreed next steps, topics, and scorecard coverage.'],
   ['People', 'Who is engaged on the customer’s side, and how active they are.'],
-  ['Analysis', 'Hand a harder question to Backstory’s own assistant, which reaches about three months back.'],
+  ['Analysis', 'Hand Backstory’s own assistant an older or product-specific question. It looks back up to 90 days.'],
   ['News', 'Recent filings and earnings for publicly traded companies.'],
   ['Precedents', 'Similar deals at other customers. You may get a different set each time. In beta, and your organization turns it on.'],
 ];

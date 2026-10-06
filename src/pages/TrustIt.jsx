@@ -217,11 +217,31 @@ export function TrustIt() {
             'Accounts and opportunities the user has access to in Backstory, including lists of up to 1,000 at a time',
             'Summaries of emails, calls, and meetings from the last 30 days, matched to those records',
             'Deal risks, next steps, engaged contacts, and scorecard coverage',
-            'Answers from Backstory’s own assistant, which reaches about three months back',
+            'Answers from Backstory’s own assistant, up to 90 days back',
             'Similar deals at other customers, where your organization has turned this on (beta)',
             'Filings and earnings news about publicly traded companies',
           ]}
         />
+      ),
+    },
+    {
+      value: 'thirty-days',
+      title: 'Why do some answers cover 30 days and others go further?',
+      content: (
+        <>
+          <p>
+            Backstory prepares its quick summaries in advance: account and deal status, engaged people, and recent activity
+            (get_account_status, get_engaged_people, get_recent_account_activity, and their deal-level versions). They cover
+            the last 30 days. Because they&rsquo;re prepared ahead, they come back fast and use fewer of your AI tool&rsquo;s
+            tokens. For a general summary, 30 days is usually enough.
+          </p>
+          <p className="mt-2">
+            For anything outside that, Backstory&rsquo;s assistant tools take over: ask_sales_ai_about_account and
+            ask_sales_ai_about_opportunity. Use them for more than 30 days of context, product- or topic-specific questions, or
+            the reasoning behind a risk. They look back up to 90 days. Big themes hold up well; details get thinner past about
+            60 days, so check key dates. Questions? Your Backstory CSM can help.
+          </p>
+        </>
       ),
     },
     {
@@ -234,7 +254,7 @@ export function TrustIt() {
             'Change CRM records or anything else in Backstory',
             'Look up your calendar ahead or a single email, such as “my next meeting” (Backstory captures meetings by account; add your calendar or email connector to the same AI tool for these)',
             'Read full call transcripts',
-            'Summarize activity older than 30 days (Backstory’s own assistant reaches about three months back, as themes rather than single emails or meetings)',
+            'Give a quick summary of activity older than 30 days (for older context, up to 90 days, ask Backstory’s assistant)',
             'Compare before and now, such as stage changes or engagement trends',
             'Read forecast data or the commit category (use Backstory Forecasting in the app)',
             'List won or lost deals, or look at past quarters',
