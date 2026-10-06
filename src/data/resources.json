@@ -55,7 +55,7 @@
       "title": "AI ethics and best practices",
       "audience": "Everyone",
       "body": "Five principles for using AI with customer data, where data can go, and what to do if something goes wrong.",
-      "items": [{ "pdf": "aiEthics", "label": "One-pager" }]
+      "items": [{ "pdf": "aiEthics", "label": "Two-pager" }]
     }
   ],
   "use-it": [
@@ -80,9 +80,9 @@
       "items": [{ "pdf": "mcpVsApi", "label": "Two-pager" }]
     },
     {
-      "title": "The tools you didn’t know you had",
+      "title": "From good answers to your own workflow",
       "audience": "Reps, managers, and VPs",
-      "body": "How Backstory’s tools chain into one answer, six scenarios by role, and three power moves most teams never try.",
+      "body": "The questions that work, seven habits that keep answers right, and how to turn your best answer into a skill the whole team can share.",
       "items": [{ "pdf": "didYouKnow", "label": "Deck" }]
     }
   ]
