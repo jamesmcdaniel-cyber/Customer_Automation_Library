@@ -5,6 +5,8 @@ import { Button } from '../components/ui/Button';
 import { Tabs } from '../components/ui/Tabs';
 import { CopyButton } from '../components/ui/CopyButton';
 import { ResourceKit, ResourceKitLink } from '../components/ResourceKit';
+import { TocLayout } from '../components/PageToc';
+import { SectionHeading } from '../components/SectionHeading';
 import { Code, PlatformLogo } from './ConnectGuide';
 import { findGuide } from '../data/connectGuides';
 import { examples, site, stories } from '../lib/content';
@@ -195,17 +197,16 @@ export function StretchIt() {
           <ResourceKitLink stage="stretch-it" />
         </div>
       </SectionHero>
-      <div className="mx-auto max-w-5xl space-y-10">
-        <section>
-          <h2 className="eyebrow mb-3">Playbooks by role</h2>
+      <TocLayout className="space-y-16">
+        <section id="playbooks" data-toc="Playbooks by role">
+          <SectionHeading title="Playbooks by role" />
           <div className="surface-card p-6">
             <Tabs tabs={PLAYBOOKS.map((p) => ({ value: p.value, label: p.label, content: <Playbook p={p} /> }))} />
           </div>
         </section>
 
-        <section>
-          <h2 className="eyebrow mb-1">Did you know?</h2>
-          <p className="mb-4 text-[14px] text-ac-dark-secondary">The most valuable capabilities are the ones nobody thinks to try.</p>
+        <section id="did-you-know" data-toc="Did you know?">
+          <SectionHeading title="Did you know?" intro="The most valuable capabilities are the ones nobody thinks to try." />
           <div className="grid gap-4 md:grid-cols-3">
             {DID_YOU_KNOW.map(({ icon: Icon, ...d }) => (
               <div key={d.title} className="surface-card flex flex-col p-5">
@@ -220,12 +221,11 @@ export function StretchIt() {
           </div>
         </section>
 
-        <section>
-          <h2 className="eyebrow mb-1">What customers are building</h2>
-          <p className="mb-4 max-w-3xl text-[14px] leading-6 text-ac-dark-secondary">
-            A bird&rsquo;s-eye view of how MCP use varies with the tools and outcomes each team cares about. Company names are
-            withheld, and most of these are pilots or builds in progress.
-          </p>
+        <section id="customers" data-toc="What customers are building">
+          <SectionHeading
+            title="What customers are building"
+            intro="A bird’s-eye view of how MCP use varies with the tools and outcomes each team cares about. Company names are withheld, and most of these are pilots or builds in progress."
+          />
           <div className="grid gap-4 md:grid-cols-2">
             {stories.map((s) => (
               <div key={s.id} className="surface-card flex flex-col p-5">
@@ -245,19 +245,16 @@ export function StretchIt() {
           </div>
         </section>
 
-        <section id="agents" className="scroll-mt-24">
-          <div className="mb-4 flex flex-wrap items-end justify-between gap-3">
-            <div>
-              <h2 className="eyebrow mb-1">Build an agent</h2>
-              <p className="max-w-2xl text-[14px] leading-6 text-ac-dark-secondary">
-                Turn a prompt you run every week into an agent: standing instructions plus the Backstory tools, so anyone on the
-                team can run it by naming an account.
-              </p>
-            </div>
-            <Button as="a" href={AGENT_LIBRARY} target="_blank" rel="noopener" variant="secondary" size="sm">
-              Browse 30 ready-made agents <ExternalLink size={13} />
-            </Button>
-          </div>
+        <section id="agents" data-toc="Build an agent">
+          <SectionHeading
+            title="Build an agent"
+            intro="Turn a prompt you run every week into an agent: standing instructions plus the Backstory tools, so anyone on the team can run it by naming an account."
+            action={
+              <Button as="a" href={AGENT_LIBRARY} target="_blank" rel="noopener" variant="secondary" size="sm">
+                Browse 30 ready-made agents <ExternalLink size={13} />
+              </Button>
+            }
+          />
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {AGENTS.map((a) => (
               <div key={a.name} className="surface-card flex flex-col p-5">
@@ -283,9 +280,8 @@ export function StretchIt() {
           </p>
         </section>
 
-        <section>
-          <h2 className="eyebrow mb-1">MCP or API?</h2>
-          <p className="mb-4 text-[14px] text-ac-dark-secondary">Admins ask this and usually get vague answers. Here&rsquo;s the rule.</p>
+        <section id="mcp-or-api" data-toc="MCP or API?">
+          <SectionHeading title="MCP or API?" intro="Admins ask this and usually get vague answers. Here’s the rule." />
           <div className="grid gap-4 md:grid-cols-3">
             <div className="surface-card border-ac-coral/40 p-5">
               <div className="mb-2 font-mono text-[11px] font-semibold uppercase tracking-[0.12em] text-ac-coral-dark">Use MCP</div>
@@ -302,19 +298,16 @@ export function StretchIt() {
           </div>
         </section>
 
-        <section id="api" className="scroll-mt-24">
-          <div className="mb-4 flex flex-wrap items-end justify-between gap-3">
-            <div>
-              <h2 className="eyebrow mb-1">Start with the API</h2>
-              <p className="max-w-3xl text-[14px] leading-6 text-ac-dark-secondary">
-                For jobs a system runs, not a person. The Backstory Public API gives your developers read access to the data
-                Backstory captures. An API key sees your whole organization&rsquo;s data. MCP sees only what each signed-in person can see.
-              </p>
-            </div>
-            <Button as="a" href={site.apiDocsUrl} target="_blank" rel="noopener" variant="secondary" size="sm">
-              Full API reference <ExternalLink size={13} />
-            </Button>
-          </div>
+        <section id="api" data-toc="Start with the API">
+          <SectionHeading
+            title="Start with the API"
+            intro="For jobs a system runs, not a person. The Backstory Public API gives your developers read access to the data Backstory captures. An API key sees your whole organization’s data. MCP sees only what each signed-in person can see."
+            action={
+              <Button as="a" href={site.apiDocsUrl} target="_blank" rel="noopener" variant="secondary" size="sm">
+                Full API reference <ExternalLink size={13} />
+              </Button>
+            }
+          />
           <div className="grid gap-4 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)]">
             <div className="surface-card min-w-0 p-6">
               <ol className="space-y-5">
@@ -351,9 +344,12 @@ export function StretchIt() {
           </div>
         </section>
 
-        <section>
-          <h2 className="eyebrow mb-1">Ready to automate? Each starter prompt has an automated version</h2>
-          <p className="mb-4 text-[14px] text-ac-dark-secondary">These run on a schedule and deliver to Slack, Teams, or email.</p>
+        <section id="automate" data-toc="Ready to automate?">
+          <SectionHeading
+            kicker="Ready to automate?"
+            title="Each starter prompt has an automated version"
+            intro="These run on a schedule and deliver to Slack, Teams, or email."
+          />
           <div className="grid gap-4 sm:grid-cols-2">
             {examples.map((e) => {
               const [name, desc] = e.stretchLabel.split(' — ');
@@ -379,8 +375,8 @@ export function StretchIt() {
           </div>
         </section>
 
-        <section className="surface-card p-6">
-          <h2 className="font-display text-[19px] font-bold">The full automation library</h2>
+        <section id="library" data-toc="The full automation library" className="surface-card p-6 sm:p-8">
+          <h2 className="font-display text-[22px] font-bold leading-tight tracking-[-0.01em] sm:text-[25px]">The full automation library</h2>
           <p className="mt-2 text-[15px] leading-7 text-ac-dark-secondary">
             Nearly 40 ready-made workflows for tools like n8n, Zapier, Workato, and Power Automate, covering daily digests, churn
             risk, renewals, QBR prep, forecasting, and more. These take some technical setup, usually by an admin or RevOps.
@@ -399,7 +395,7 @@ export function StretchIt() {
         </section>
 
         <ResourceKit stage="stretch-it" />
-      </div>
+      </TocLayout>
     </div>
   );
 }

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import * as RD from '@radix-ui/react-dialog';
-import { Home, Menu, X } from 'lucide-react';
+import { Home, Library, Menu, X } from 'lucide-react';
 import { BrandMark } from './BrandMark';
 import { assetUrl, cn } from '../lib/cn';
 import { STAGES } from '../lib/stages';
@@ -29,6 +29,22 @@ function StageLink({ stage, active, className }) {
   );
 }
 
+// Additional resources sits after the four stages, unnumbered: it's a reference shelf, not a step.
+function ResourcesLink({ active, className }) {
+  return (
+    <NavLink
+      to="/resources"
+      className={cn(
+        'flex items-center gap-1.5 whitespace-nowrap rounded-[10px] px-3 py-2 font-mono text-[13px] font-medium no-underline transition-colors',
+        active ? 'bg-ac-coral/15 text-ac-coral-dark' : 'text-ac-dark hover:bg-ac-cream hover:text-ac-coral-dark',
+        className,
+      )}
+    >
+      <Library size={14} /> Resources
+    </NavLink>
+  );
+}
+
 function MobileMenu({ activeStage }) {
   const [open, setOpen] = useState(false);
   const { pathname } = useLocation();
@@ -37,7 +53,7 @@ function MobileMenu({ activeStage }) {
   return (
     <RD.Root open={open} onOpenChange={setOpen}>
       <RD.Trigger
-        className="grid h-10 w-10 place-items-center rounded-[10px] text-ac-dark transition-colors hover:bg-ac-cream md:hidden"
+        className="grid h-10 w-10 place-items-center rounded-[10px] text-ac-dark transition-colors hover:bg-ac-cream lg:hidden"
         aria-label="Open menu"
       >
         <Menu size={20} />
@@ -75,6 +91,8 @@ function MobileMenu({ activeStage }) {
             {STAGES.map((s) => (
               <StageLink key={s.id} stage={s} active={activeStage === s.id} className="py-2.5" />
             ))}
+            <div className="my-2 h-px bg-ac-light-gray" />
+            <ResourcesLink active={activeStage === 'resources'} className="py-2.5" />
           </nav>
         </RD.Content>
       </RD.Portal>
@@ -85,15 +103,15 @@ function MobileMenu({ activeStage }) {
 export function Header() {
   const activeStage = useActiveStage();
   return (
-    <header className="sticky top-0 z-40 flex items-center justify-between border-b border-ac-light-gray bg-ac-ink/95 px-5 py-4 shadow-card sm:px-8">
+    <header className="sticky top-0 z-40 flex items-center justify-between border-b border-ac-light-gray bg-ac-ink px-5 py-4 shadow-card sm:px-8">
       <div className="flex items-center gap-4">
         <Link to="/" className="flex-shrink-0">
           <img src={assetUrl('assets/backstory-logo-lockup-dark.svg')} alt="Backstory" className="h-7 w-auto" />
         </Link>
-        <div className="hidden h-8 w-px bg-ac-coral/25 sm:block md:hidden lg:block" />
-        <div className="hidden text-[13px] text-ac-dark-secondary sm:block md:hidden lg:block">MCP starter library</div>
+        <div className="hidden h-8 w-px bg-ac-coral/25 sm:block lg:hidden xl:block" />
+        <div className="hidden text-[13px] text-ac-dark-secondary sm:block lg:hidden xl:block">MCP starter library</div>
       </div>
-      <nav aria-label="Stages" className="hidden items-center gap-1 md:flex">
+      <nav aria-label="Stages" className="hidden items-center gap-1 lg:flex">
         <NavLink
           to="/"
           end
@@ -109,6 +127,8 @@ export function Header() {
         {STAGES.map((s) => (
           <StageLink key={s.id} stage={s} active={activeStage === s.id} />
         ))}
+        <span className="mx-1.5 h-5 w-px bg-ac-light-gray" aria-hidden />
+        <ResourcesLink active={activeStage === 'resources'} />
       </nav>
       <MobileMenu activeStage={activeStage} />
     </header>

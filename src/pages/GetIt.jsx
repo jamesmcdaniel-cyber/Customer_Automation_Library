@@ -4,6 +4,8 @@ import { SectionHero } from '../components/SectionHero';
 import { Accordion } from '../components/ui/Accordion';
 import { NextStep } from '../components/NextStep';
 import { ResourceKit, ResourceKitLink } from '../components/ResourceKit';
+import { TocLayout } from '../components/PageToc';
+import { SectionHeading } from '../components/SectionHeading';
 import { AfterDiagram, BeforeDiagram } from '../components/IntegrationDiagram';
 
 // Each drawer is one group of Backstory tools.
@@ -103,9 +105,9 @@ export function GetIt() {
           <ResourceKitLink stage="get-it" />
         </div>
       </SectionHero>
-      <div className="mx-auto max-w-5xl space-y-8">
-        <section>
-          <h2 className="eyebrow mb-3">Two ways to picture it</h2>
+      <TocLayout className="space-y-16">
+        <section id="picture" data-toc="Two ways to picture it">
+          <SectionHeading title="Two ways to picture it" />
           <div className="grid items-start gap-4 md:grid-cols-2">
             <Analogy icon={Archive} tag="The filing cabinet" title="Backstory is the filing cabinet. Claude is the analyst.">
               <p>
@@ -122,7 +124,7 @@ export function GetIt() {
               </div>
               <p className="mt-4 text-[13.5px] leading-6">
                 You never pick a drawer. Claude does. What helps is knowing the{' '}
-                <Link to="/use-it/questions" className="font-medium text-ac-coral-dark hover:underline">three kinds of questions</Link> that work.
+                <Link to="/resources/questions" className="font-medium text-ac-coral-dark hover:underline">three kinds of questions</Link> that work.
               </p>
             </Analogy>
             <Analogy icon={Plug} tag="The standard plug" title="One standard plug. Every appliance. Every wall.">
@@ -139,11 +141,11 @@ export function GetIt() {
           </div>
         </section>
 
-        <section>
-          <h2 className="eyebrow mb-1">Three ways to use Backstory with AI</h2>
-          <p className="mb-4 max-w-3xl text-[14px] leading-6 text-ac-dark-secondary">
-            Most people start with chat. Agents and the API use the same Backstory data, for jobs that repeat.
-          </p>
+        <section id="ways" data-toc="Three ways to use it">
+          <SectionHeading
+            title="Three ways to use Backstory with AI"
+            intro="Most people start with chat. Agents and the API use the same Backstory data, for jobs that repeat."
+          />
           <div className="grid gap-4 md:grid-cols-3">
             {WAYS.map((w) => (
               <Analogy key={w.tag} icon={w.icon} tag={w.tag} title={w.title}>
@@ -156,12 +158,11 @@ export function GetIt() {
           </div>
         </section>
 
-        <section>
-          <h2 className="eyebrow mb-3">MCP vs API</h2>
-          <p className="mb-4 max-w-3xl text-[15px] leading-7 text-ac-dark-secondary">
-            APIs and MCP both expose what a tool can do, but they&rsquo;re designed for different users. MCP doesn&rsquo;t replace
-            the API. It sits on top of it and gives AI a standard way to use it.
-          </p>
+        <section id="mcp-vs-api" data-toc="MCP vs API">
+          <SectionHeading
+            title="MCP vs API"
+            intro="APIs and MCP both expose what a tool can do, but they’re designed for different users. MCP doesn’t replace the API. It sits on top of it and gives AI a standard way to use it."
+          />
           <div className="grid gap-4 md:grid-cols-2">
             <Analogy icon={Code2} tag="API · built for code" title="You fill out the form yourself.">
               A developer sends a request to an exact endpoint, with exact parameters, in an exact format.
@@ -173,8 +174,8 @@ export function GetIt() {
           </div>
         </section>
 
-        <section className="rounded-xl border border-ac-horizon-100 bg-ac-horizon-50 p-6">
-          <h2 className="font-display text-[19px] font-bold">Why this matters for GTM</h2>
+        <section id="why-gtm" data-toc="Why it matters for GTM" className="rounded-xl border border-ac-horizon-100 bg-ac-horizon-50 p-6 sm:p-8">
+          <h2 className="font-display text-[22px] font-bold leading-tight tracking-[-0.01em] sm:text-[25px]">Why this matters for GTM</h2>
           <p className="mt-2 text-[15px] leading-7 text-ac-dark-secondary">
             GTM stacks are fragmented: CRM, sales intelligence, email, content, enrichment, analytics. MCP lets AI stop being one
             more tab in that stack and become the layer that works across it. Instead of only generating content, your assistant
@@ -183,15 +184,15 @@ export function GetIt() {
           </p>
         </section>
 
-        <section>
-          <h2 className="eyebrow mb-3">Words to know</h2>
+        <section id="glossary" data-toc="Words to know">
+          <SectionHeading title="Words to know" />
           <Accordion items={GLOSSARY.map(([t, d]) => ({ value: t, title: t, content: d }))} defaultValue={['MCP']} />
         </section>
 
         <ResourceKit stage="get-it" />
 
         <NextStep text="Next: what moves, who can see it, and where it's still rough." to="/trust-it" label="Trust it" />
-      </div>
+      </TocLayout>
     </div>
   );
 }

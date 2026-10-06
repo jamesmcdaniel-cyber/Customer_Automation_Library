@@ -6,6 +6,8 @@ import { Tabs } from '../components/ui/Tabs';
 import { CopyButton } from '../components/ui/CopyButton';
 import { NextStep } from '../components/NextStep';
 import { ResourceButton } from '../components/Resource';
+import { TocLayout } from '../components/PageToc';
+import { SectionHeading } from '../components/SectionHeading';
 import { swaps } from '../lib/content';
 import { cn } from '../lib/cn';
 
@@ -24,6 +26,8 @@ const TONE = {
 };
 
 const patternName = (id) => swaps.patterns.find((p) => p.id === id)?.name;
+const countFor = (r) => r.groups.reduce((b, g) => b + g.swaps.length, 0);
+export const swapCount = swaps.roles.reduce((a, r) => a + countFor(r), 0);
 
 export function PatternPill({ id }) {
   return (
@@ -199,32 +203,34 @@ export function PatternBars() {
 }
 
 export function Swaps() {
-  const total = swaps.roles.reduce((a, r) => a + r.groups.reduce((b, g) => b + g.swaps.length, 0), 0);
-  const countFor = (r) => r.groups.reduce((b, g) => b + g.swaps.length, 0);
   return (
     <div className="container-page">
-      <BackLink to="/use-it" label="First 15 minutes" className="mb-4 font-mono text-[12px] font-medium uppercase tracking-[0.08em] text-ac-coral-dark hover:text-ac-coral" />
+      <BackLink to="/resources" label="Additional resources" className="mb-4 font-mono text-[12px] font-medium uppercase tracking-[0.08em] text-ac-coral-dark hover:text-ac-coral" />
       <SectionHero
-        eyebrow="03 · Use it · Swap cards"
+        eyebrow="Additional resources · Swap cards"
         title="Instead of this, do this"
-        subtitle={`${total} swaps across three roles for the habits that keep Claude and Backstory from doing their best work.`}
+        subtitle={`${swapCount} swaps across three roles for the habits that keep Claude and Backstory from doing their best work.`}
         image="bg-04.jpg"
       >
         <div className="mt-6">
           <ResourceButton id="swapCards" tone="dark" label="Open the swap-card deck" />
         </div>
       </SectionHero>
-      <div className="mx-auto max-w-6xl space-y-10">
-        <section className="surface-card p-6">
-          <div className="eyebrow mb-2">The pattern</div>
-          <h2 className="max-w-3xl font-display text-[22px] font-bold leading-tight tracking-[-0.01em]">
-            People keep their old habits and <em className="font-normal">bolt Claude onto the end of them.</em>
-          </h2>
-          <p className="mb-6 mt-2 max-w-3xl text-[14px] leading-6 text-ac-dark-secondary">{swaps.intro}</p>
-          <PatternBars />
+      <TocLayout className="space-y-16">
+        <section id="pattern" data-toc="The pattern">
+          <SectionHeading
+            kicker="The pattern"
+            title={<>People keep their old habits and <em className="font-normal">bolt Claude onto the end of them.</em></>}
+            intro={swaps.intro}
+          />
+          <div className="surface-card p-6">
+            <PatternBars />
+          </div>
         </section>
 
-        <section className="surface-card p-6">
+        <section id="cards" data-toc="Swap cards by role">
+          <SectionHeading title="Swap cards by role" />
+          <div className="surface-card p-6">
           <Tabs
             tabs={swaps.roles.map((r) => ({
               value: r.id,
@@ -232,13 +238,12 @@ export function Swaps() {
               content: <Role role={r} />,
             }))}
           />
+          </div>
         </section>
 
-        <section className="surface-card p-6">
-          <div className="eyebrow mb-2">Wrap-up · all three roles</div>
-          <h2 className="font-display text-[22px] font-bold leading-tight tracking-[-0.01em]">{swaps.progression.heading}</h2>
-          <p className="mt-2 max-w-3xl text-[14px] leading-6 text-ac-dark-secondary">{swaps.progression.intro}</p>
-          <div className="mt-5 grid gap-4 md:grid-cols-3">
+        <section id="wrap-up" data-toc="Wrap-up">
+          <SectionHeading kicker="Wrap-up · all three roles" title={swaps.progression.heading} intro={swaps.progression.intro} />
+          <div className="surface-card grid gap-4 p-6 md:grid-cols-3">
             {swaps.progression.roles.map((r) => (
               <div key={r.name} className="rounded-lg border border-ac-light-gray p-4">
                 <h3 className="font-display text-[15px] font-bold">{r.name}</h3>
@@ -255,7 +260,7 @@ export function Swaps() {
           </div>
         </section>
 
-        <section className="rounded-xl border border-ac-horizon-100 bg-ac-horizon-50 px-6 py-8">
+        <section id="one-habit" data-toc="Every swap, one habit" className="rounded-xl border border-ac-horizon-100 bg-ac-horizon-50 px-6 py-8 sm:px-8">
           <div className="eyebrow mb-2 !text-ac-coral-dark">Every swap, one habit</div>
           <p className="font-display text-[26px] font-bold leading-tight tracking-[-0.01em] sm:text-[30px]">
             Name the tool. Scope the ask. <em className="font-normal text-ac-coral-dark">Ask for receipts.</em>
@@ -274,7 +279,7 @@ export function Swaps() {
         </section>
 
         <NextStep text="Up next: from prompt to playbook." to="/stretch-it" label="Stretch it" />
-      </div>
+      </TocLayout>
     </div>
   );
 }

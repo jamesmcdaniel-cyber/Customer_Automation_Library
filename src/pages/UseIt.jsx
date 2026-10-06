@@ -8,21 +8,19 @@ import { HelpLink } from '../components/HelpLink';
 import { ResourceButton } from '../components/Resource';
 import { Video } from '../components/Video';
 import { ResourceKit, ResourceKitLink } from '../components/ResourceKit';
-import { examples, questions, site, swaps } from '../lib/content';
-import { PatternBars, SwapCard } from './Swaps';
-import { Habits, KindCard, questionCount } from './Questions';
-import { PlatformLogo } from './ConnectGuide';
-import { GUIDES } from '../data/connectGuides';
-
-// One card per pattern, from the account executive set.
-const previewSwaps = swaps.roles[0].groups.flatMap((g) => g.swaps).slice(0, 3);
-const swapCount = swaps.roles.reduce((a, r) => a + r.groups.reduce((b, g) => b + g.swaps.length, 0), 0);
+import { TocLayout } from '../components/PageToc';
+import { SectionHeading } from '../components/SectionHeading';
+import { examples, site } from '../lib/content';
+import { Habits, questionCount } from './Questions';
+import { swapCount } from './Swaps';
+import { GuideCards } from './ConnectGuide';
+import { LinkCard } from './Resources';
 
 const PHASES = [
-  { id: 'connect', time: '0–5 min', label: 'Connect' },
-  { id: 'confirm', time: '5–8 min', label: 'Confirm' },
-  { id: 'tell', time: '8–10 min', label: 'Tell' },
-  { id: 'decide', time: '10–15 min', label: 'Decide' },
+  { id: 'connect', time: '0–5 min', label: 'Connect', toc: 'Connect your AI tool' },
+  { id: 'confirm', time: '5–8 min', label: 'Confirm', toc: 'Prove it’s working' },
+  { id: 'tell', time: '8–10 min', label: 'Tell', toc: 'Real answer or guess?' },
+  { id: 'decide', time: '10–15 min', label: 'Decide', toc: 'Questions to decisions' },
 ];
 
 const CONFIRM = [
@@ -43,14 +41,14 @@ const GUESS = [
 ];
 
 
-function Phase({ id, time, label, title, children }) {
+function Phase({ id, time, label, toc, title, children }) {
   return (
-    <section id={id} className="surface-card scroll-mt-24 p-6">
+    <section id={id} data-toc={toc} className="surface-card p-6 sm:p-7">
       <div className="mb-4 flex flex-wrap items-baseline gap-x-3 gap-y-1">
         <span className="rounded-md bg-ac-coral px-2 py-0.5 font-mono text-[11px] font-semibold text-white">{time}</span>
         <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.12em] text-ac-coral-dark">{label}</span>
       </div>
-      <h2 className="mb-4 font-display text-[19px] font-bold">{title}</h2>
+      <h2 className="mb-4 font-display text-[22px] font-bold leading-tight tracking-[-0.01em] sm:text-[25px]">{title}</h2>
       {children}
     </section>
   );
@@ -91,7 +89,7 @@ export function UseIt() {
         </div>
       </SectionHero>
 
-      <div className="mx-auto max-w-4xl space-y-6">
+      <TocLayout className="space-y-12">
         <Phase {...PHASES[0]} title="Connect Backstory to your AI tool">
           <p className="text-[14px] leading-6 text-ac-dark-secondary">
             Pick your AI tool for a step-by-step guide with screenshots. Every setup points at the same Backstory address, and
@@ -101,25 +99,8 @@ export function UseIt() {
             <code className="min-w-0 break-all font-mono text-[13px] text-ac-dark">{site.mcpUrl}</code>
             <CopyButton text={site.mcpUrl} />
           </div>
-          <div className="mt-4 grid gap-3 sm:grid-cols-2">
-            {GUIDES.map((g) => (
-              <Link
-                key={g.id}
-                to={`/use-it/connect/${g.id}`}
-                className="group flex items-start gap-3.5 rounded-xl border border-ac-light-gray bg-white p-4 no-underline transition-all duration-200 hover:-translate-y-0.5 hover:border-ac-coral hover:shadow-cardhover"
-              >
-                <span className="grid h-11 w-11 shrink-0 place-items-center rounded-lg border border-ac-light-gray bg-ac-warm-white">
-                  <PlatformLogo guide={g} className="h-6 w-6" />
-                </span>
-                <span className="min-w-0 flex-1">
-                  <span className="flex items-center justify-between gap-2">
-                    <span className="font-display text-[15px] font-bold text-ac-dark">{g.name}</span>
-                    <ArrowRight size={15} className="shrink-0 text-ac-coral-dark transition-transform group-hover:translate-x-0.5" />
-                  </span>
-                  <span className="mt-0.5 block text-[13px] leading-5 text-ac-dark-secondary">{g.setup} · {g.time.toLowerCase()} · {g.steps.length} steps</span>
-                </span>
-              </Link>
-            ))}
+          <div className="mt-4">
+            <GuideCards />
           </div>
           <div className="mt-5 max-w-2xl">
             <p className="mb-2.5 text-[13px] leading-6 text-ac-dark-secondary">
@@ -180,7 +161,7 @@ export function UseIt() {
           </div>
           <p className="mt-4 text-[14px] leading-6 text-ac-dark-secondary">
             <strong className="text-ac-dark">If it guessed:</strong> ask again with &ldquo;use Backstory&rdquo; and the account name.
-            More fixes are under <Link to="/trust-it" className="font-medium text-ac-coral-dark hover:underline">where it&rsquo;s still rough</Link>.
+            More fixes are under <Link to="/trust-it#rough" className="font-medium text-ac-coral-dark hover:underline">where it&rsquo;s still rough</Link>.
           </p>
           <div className="mt-5 rounded-xl border border-ac-horizon-100 bg-ac-horizon-50 p-5">
             <h3 className="mb-3 font-display text-[15px] font-bold">Three habits that catch most wrong answers</h3>
@@ -214,51 +195,36 @@ export function UseIt() {
           </div>
         </Phase>
 
-        <section id="questions" className="scroll-mt-24 pt-2">
-          <div className="flex flex-wrap items-end justify-between gap-3">
-            <div>
-              <h2 className="font-display text-[22px] font-bold tracking-[-0.01em]">Three kinds of questions</h2>
-              <p className="mt-1.5 max-w-3xl text-[14px] leading-6 text-ac-dark-secondary">
-                You never pick a Backstory tool. Your AI tool does that. What helps is knowing which questions work, and where each one stops.
-              </p>
-            </div>
-            <Button as={Link} to="/use-it/questions" variant="secondary" size="sm">
-              See all {questionCount} tested prompts <ArrowRight size={14} />
-            </Button>
-          </div>
-          <div className="mt-4 grid gap-4 md:grid-cols-3">
-            {questions.kinds.map((k, i) => (
-              <KindCard key={k.id} kind={k} n={i + 1} />
-            ))}
-          </div>
-        </section>
-
-        <section className="pt-2">
-          <div className="flex flex-wrap items-end justify-between gap-3">
-            <div>
-              <h2 className="font-display text-[22px] font-bold tracking-[-0.01em]">Instead of this, do this</h2>
-              <p className="mt-1.5 max-w-3xl text-[14px] leading-6 text-ac-dark-secondary">
-                People keep their old habits and bolt Claude onto the end of them. Every swap applies one of three shifts.
-              </p>
-            </div>
-            <Button as={Link} to="/use-it/swaps" variant="secondary" size="sm">
-              See all {swapCount} swaps <ArrowRight size={14} />
-            </Button>
-          </div>
-          <div className="surface-card mt-4 p-6">
-            <PatternBars />
-          </div>
-          <div className="mt-4 grid gap-4 md:grid-cols-3">
-            {previewSwaps.map((s) => (
-              <SwapCard key={s.title} s={s} />
-            ))}
+        <section id="go-deeper" data-toc="Go deeper">
+          <SectionHeading
+            title="Go deeper"
+            intro="Two references to keep open while you practice. You’ll find them, and more, under Additional resources."
+            action={
+              <Button as={Link} to="/resources" variant="secondary" size="sm">
+                All additional resources <ArrowRight size={14} />
+              </Button>
+            }
+          />
+          <div className="grid gap-4 md:grid-cols-2">
+            <LinkCard
+              to="/resources/questions"
+              kicker={`${questionCount} tested prompts`}
+              title="Three kinds of questions"
+              body="Which questions work as worded, which need a check, and where each kind stops."
+            />
+            <LinkCard
+              to="/resources/swaps"
+              kicker={`${swapCount} swaps · 3 roles`}
+              title="Instead of this, do this"
+              body="Trade the habits that hold your AI tool back for prompts that work, by role."
+            />
           </div>
         </section>
 
         <ResourceKit stage="use-it" />
 
         <NextStep text="Got your first answer? See what else is possible." to="/stretch-it" label="Stretch it" variant="secondary" />
-      </div>
+      </TocLayout>
     </div>
   );
 }

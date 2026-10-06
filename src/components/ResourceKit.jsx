@@ -18,7 +18,7 @@ function HelpLinks({ items }) {
     ));
 }
 
-function ResourceCard({ r }) {
+export function ResourceCard({ r }) {
   const views = r.items.filter(viewId);
   const header = (
     <>
@@ -64,14 +64,14 @@ function ResourceCard({ r }) {
 // articles customers can share with their teams for training, refreshers, and adoption.
 export function ResourceKit({ stage }) {
   return (
-    <section id="resources" className="scroll-mt-24 rounded-xl border border-ac-horizon-100 bg-ac-horizon-50 p-6">
+    <section id="resources" data-toc="Leave-behind resources" className="rounded-xl border border-ac-horizon-100 bg-ac-horizon-50 p-6 sm:p-8">
       <div className="eyebrow mb-2 !text-ac-coral-dark">Take it to your team</div>
-      <h2 className="font-display text-[19px] font-bold">Leave-behind resources</h2>
-      <p className="mt-1.5 max-w-3xl text-[14px] leading-6 text-ac-dark-secondary">
+      <h2 className="font-display text-[22px] font-bold leading-tight tracking-[-0.01em] sm:text-[25px]">Leave-behind resources</h2>
+      <p className="mt-2 max-w-3xl text-[15px] leading-7 text-ac-dark-secondary">
         We built these for you to share with your team. Use them for training, refreshers, and adoption. Select any one to
         open it right here.
       </p>
-      <div className="mt-5 grid gap-4 md:grid-cols-2">
+      <div className="mt-6 grid gap-4 md:grid-cols-2">
         {resources[stage].map((r) => (
           <ResourceCard key={r.title} r={r} />
         ))}

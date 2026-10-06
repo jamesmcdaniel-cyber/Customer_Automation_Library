@@ -5,6 +5,8 @@ import { Checklist } from '../components/Checklist';
 import { NextStep } from '../components/NextStep';
 import { HelpLink } from '../components/HelpLink';
 import { ResourceKit, ResourceKitLink } from '../components/ResourceKit';
+import { TocLayout } from '../components/PageToc';
+import { SectionHeading } from '../components/SectionHeading';
 import { site } from '../lib/content';
 
 const PILLARS = [
@@ -277,8 +279,8 @@ export function TrustIt() {
           <ResourceKitLink stage="trust-it" />
         </div>
       </SectionHero>
-      <div className="mx-auto max-w-5xl space-y-8">
-        <div className="grid gap-4 md:grid-cols-3">
+      <TocLayout className="space-y-16">
+        <section id="basics" data-toc="At a glance" className="grid gap-4 md:grid-cols-3">
           {PILLARS.map(([Icon, tag, title, body]) => (
             <div key={tag} className="surface-card p-5">
               <div className="mb-3 flex items-center gap-2">
@@ -291,21 +293,18 @@ export function TrustIt() {
               <p className="mt-1.5 text-[13.5px] leading-6 text-ac-dark-secondary">{body}</p>
             </div>
           ))}
-        </div>
+        </section>
 
-        <section>
-          <div className="mb-3 flex flex-wrap items-baseline justify-between gap-2">
-            <h2 className="eyebrow">Security &amp; data FAQ</h2>
-            <span className="font-mono text-[11px] text-ac-med-gray">For admins · share with your champion</span>
-          </div>
+        <section id="faq" data-toc="Security & data FAQ">
+          <SectionHeading kicker="For admins · share with your champion" title="Security & data FAQ" />
           <Accordion items={faq} defaultValue={['moves']} />
         </section>
 
-        <section>
-          <h2 className="eyebrow mb-1">Where it&rsquo;s still rough</h2>
-          <p className="mb-4 max-w-3xl text-[14px] leading-6 text-ac-dark-secondary">
-            You&rsquo;ll find these on your own eventually, so here they are up front, each with its fix.
-          </p>
+        <section id="rough" data-toc="Where it’s still rough">
+          <SectionHeading
+            title="Where it’s still rough"
+            intro="You’ll find these on your own eventually, so here they are up front, each with its fix."
+          />
           <div className="grid gap-4 md:grid-cols-3">
             {ROUGH.map((r) => (
               <div key={r.problem} className="surface-card flex flex-col p-5">
@@ -320,14 +319,14 @@ export function TrustIt() {
           </div>
         </section>
 
-        <section>
-          <h2 className="eyebrow mb-3">Troubleshooting</h2>
+        <section id="troubleshooting" data-toc="Troubleshooting">
+          <SectionHeading title="Troubleshooting" />
           <Accordion items={TROUBLESHOOTING} />
         </section>
 
-        <section className="surface-card p-6">
-          <h2 className="eyebrow mb-4">More detail and help</h2>
-          <ul className="space-y-2.5 text-[14px]">
+        <section id="help" data-toc="More detail and help">
+          <SectionHeading title="More detail and help" />
+          <ul className="surface-card space-y-2.5 p-6 text-[14px]">
             <li><HelpLink k="security" label="Backstory MCP security overview" /></li>
             <li><HelpLink k="permissions" label="How Backstory permissions work" /></li>
             <li><HelpLink k="troubleshooting" label="Troubleshooting the connector" /></li>
@@ -344,7 +343,7 @@ export function TrustIt() {
         <ResourceKit stage="trust-it" />
 
         <NextStep text="Next: your first 15 minutes." to="/use-it" label="Use it" />
-      </div>
+      </TocLayout>
     </div>
   );
 }

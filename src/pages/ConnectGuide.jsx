@@ -1,5 +1,5 @@
 import { Link, Navigate, useParams } from 'react-router-dom';
-import { Clock, UserRound } from 'lucide-react';
+import { ArrowRight, Clock, UserRound } from 'lucide-react';
 import { SectionHero } from '../components/SectionHero';
 import { BackLink } from '../components/BackLink';
 import { Accordion } from '../components/ui/Accordion';
@@ -72,6 +72,32 @@ function StepItem({ n, step, last }) {
   );
 }
 
+// One card per connect guide: logo, who sets it up, how long, and how many steps.
+export function GuideCards() {
+  return (
+    <div className="grid gap-3 sm:grid-cols-2">
+      {GUIDES.map((g) => (
+        <Link
+          key={g.id}
+          to={`/use-it/connect/${g.id}`}
+          className="group flex items-start gap-3.5 rounded-xl border border-ac-light-gray bg-white p-4 no-underline transition-all duration-200 hover:-translate-y-0.5 hover:border-ac-coral hover:shadow-cardhover"
+        >
+          <span className="grid h-11 w-11 shrink-0 place-items-center rounded-lg border border-ac-light-gray bg-ac-warm-white">
+            <PlatformLogo guide={g} className="h-6 w-6" />
+          </span>
+          <span className="min-w-0 flex-1">
+            <span className="flex items-center justify-between gap-2">
+              <span className="font-display text-[15px] font-bold text-ac-dark">{g.name}</span>
+              <ArrowRight size={15} className="shrink-0 text-ac-coral-dark transition-transform group-hover:translate-x-0.5" />
+            </span>
+            <span className="mt-0.5 block text-[13px] leading-5 text-ac-dark-secondary">{g.setup} · {g.time.toLowerCase()} · {g.steps.length} steps</span>
+          </span>
+        </Link>
+      ))}
+    </div>
+  );
+}
+
 // Row of platform pills, so readers can jump between guides.
 export function PlatformSwitcher({ current, base = '/use-it/connect' }) {
   return (
@@ -122,7 +148,7 @@ export function GuideContent({ g, pdfAction }) {
       </section>
 
       <section>
-        <h2 className="eyebrow mb-3">If something goes wrong</h2>
+        <h2 className="mb-4 font-display text-[19px] font-bold">If something goes wrong</h2>
         <Accordion items={g.troubleshooting.map(([q, a]) => ({ value: q, title: q, content: a }))} />
       </section>
     </>

@@ -3,6 +3,8 @@ import { BackLink } from '../components/BackLink';
 import { Tabs } from '../components/ui/Tabs';
 import { CopyButton } from '../components/ui/CopyButton';
 import { NextStep } from '../components/NextStep';
+import { TocLayout } from '../components/PageToc';
+import { SectionHeading } from '../components/SectionHeading';
 import { questions } from '../lib/content';
 
 export const questionCount = questions.kinds.reduce((a, k) => a + k.prompts.length, 0);
@@ -113,18 +115,19 @@ function NotYet() {
 export function Questions() {
   return (
     <div className="container-page">
-      <BackLink to="/use-it" label="First 15 minutes" className="mb-4 font-mono text-[12px] font-medium uppercase tracking-[0.08em] text-ac-coral-dark hover:text-ac-coral" />
-      <SectionHero eyebrow="03 · Use it · Questions that work" title="Three kinds of questions" subtitle={questions.intro} image="bg-04.jpg" />
-      <div className="mx-auto max-w-5xl space-y-10">
-        <section className="grid gap-4 md:grid-cols-3">
+      <BackLink to="/resources" label="Additional resources" className="mb-4 font-mono text-[12px] font-medium uppercase tracking-[0.08em] text-ac-coral-dark hover:text-ac-coral" />
+      <SectionHero eyebrow="Additional resources · Questions that work" title="Three kinds of questions" subtitle={questions.intro} image="bg-04.jpg" />
+      <TocLayout className="space-y-16">
+        <section id="kinds" data-toc="The three kinds" className="grid gap-4 md:grid-cols-3">
           {questions.kinds.map((k, i) => <KindCard key={k.id} kind={k} n={i + 1} />)}
         </section>
 
-        <section className="surface-card p-6">
-          <h2 className="mb-1 font-display text-[22px] font-bold tracking-[-0.01em]">All {questionCount} prompts</h2>
-          <p className="mb-5 max-w-3xl text-[14px] leading-6 text-ac-dark-secondary">
-            Each one says who usually asks it. The ones in amber work, but check the part of the answer the note names.
-          </p>
+        <section id="prompts" data-toc={`All ${questionCount} prompts`}>
+          <SectionHeading
+            title={`All ${questionCount} prompts`}
+            intro="Each one says who usually asks it. The ones in amber work, but check the part of the answer the note names."
+          />
+          <div className="surface-card p-6">
           <Tabs
             tabs={questions.kinds.map((k) => ({
               value: k.id,
@@ -132,18 +135,19 @@ export function Questions() {
               content: <KindPanel kind={k} />,
             }))}
           />
+          </div>
         </section>
 
-        <section>
-          <h2 className="eyebrow mb-1">Not yet</h2>
-          <p className="mb-4 max-w-3xl text-[14px] leading-6 text-ac-dark-secondary">
-            These come back wrong, empty, or quietly misread today. Where there&rsquo;s a question that works instead, it&rsquo;s on the right.
-          </p>
+        <section id="not-yet" data-toc="Not yet">
+          <SectionHeading
+            title="Not yet"
+            intro="These come back wrong, empty, or quietly misread today. Where there’s a question that works instead, it’s on the right."
+          />
           <NotYet />
         </section>
 
-        <section className="rounded-xl border border-ac-horizon-100 bg-ac-horizon-50 p-6">
-          <h2 className="mb-4 font-display text-[19px] font-bold">Three habits that catch most wrong answers</h2>
+        <section id="habits" data-toc="Three habits" className="rounded-xl border border-ac-horizon-100 bg-ac-horizon-50 p-6 sm:p-8">
+          <h2 className="mb-5 font-display text-[22px] font-bold leading-tight tracking-[-0.01em] sm:text-[25px]">Three habits that catch most wrong answers</h2>
           <Habits />
         </section>
 
@@ -151,8 +155,8 @@ export function Questions() {
           Accounts and people shown are mock examples: Nimbus Robotics, Halden Freight, Alex Chen. Swap in your own.
         </p>
 
-        <NextStep text="Next: swap old habits for prompts, by role." to="/use-it/swaps" label="Swap cards" />
-      </div>
+        <NextStep text="Next: swap old habits for prompts, by role." to="/resources/swaps" label="Swap cards" />
+      </TocLayout>
     </div>
   );
 }

@@ -60,6 +60,10 @@
     outline: 2px solid theme('colors.ac.coral');
     outline-offset: 2px;
   }
+  /* Page sections listed in the "On this page" rail land below the sticky header. */
+  [data-toc] {
+    scroll-margin-top: 6rem;
+  }
 }
 
 @layer components {

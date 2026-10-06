@@ -4,6 +4,7 @@ import { SectionHero } from '../components/SectionHero';
 import { Video } from '../components/Video';
 import { Button } from '../components/ui/Button';
 import { ExampleCard } from '../components/ExampleCard';
+import { SectionHeading } from '../components/SectionHeading';
 import { examples, site } from '../lib/content';
 import { cn } from '../lib/cn';
 import { STAGES } from '../lib/stages';
@@ -43,11 +44,11 @@ export function Home() {
         </div>
       </SectionHero>
 
-      <section id="tour" className="mb-8 scroll-mt-24">
+      <section id="tour" className="mb-16 scroll-mt-24">
         <div className="mb-4 flex flex-wrap items-end justify-between gap-3 px-1">
           <div>
             <div className="eyebrow mb-2">Ready to take a tour?</div>
-            <h2 className="font-display text-[22px] font-bold leading-tight tracking-[-0.01em]">This is what a day in the life looks like</h2>
+            <h2 className="font-display text-[22px] font-bold leading-tight tracking-[-0.01em] sm:text-[25px]">This is what a day in the life looks like</h2>
             <p className="mt-2 max-w-3xl text-[15px] leading-7 text-ac-dark-secondary">
               Click through an interactive tour at your own pace. When you&rsquo;re ready, there&rsquo;s a{' '}
               <Link to="/use-it#connect" className="font-medium text-ac-coral-dark hover:underline">step-by-step guide</Link> to connect
@@ -67,8 +68,8 @@ export function Home() {
         </Button>
       </section>
 
-      <section className="mb-8">
-        <div className="eyebrow mb-3">Four steps, at your own pace</div>
+      <section className="mb-16">
+        <SectionHeading title="Four steps, at your own pace" />
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {STAGES.map((s) => (
             <Link
@@ -98,7 +99,7 @@ export function Home() {
       </section>
 
       <section>
-        <div className="eyebrow mb-3">Try it today: four prompts</div>
+        <SectionHeading title="Try it today: four prompts" />
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {examples.map((e) => (
             <ExampleCard key={e.id} example={e} />
