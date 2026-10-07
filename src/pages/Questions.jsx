@@ -1,5 +1,4 @@
 import { SectionHero } from '../components/SectionHero';
-import { BackLink } from '../components/BackLink';
 import { Tabs } from '../components/ui/Tabs';
 import { CopyButton } from '../components/ui/CopyButton';
 import { NextStep } from '../components/NextStep';
@@ -115,8 +114,7 @@ function NotYet() {
 export function Questions() {
   return (
     <div className="container-page">
-      <BackLink to="/resources" label="Additional resources" className="mb-4 font-mono text-[12px] font-medium uppercase tracking-[0.08em] text-ac-coral-dark hover:text-ac-coral" />
-      <SectionHero eyebrow="Additional resources · Questions that work" title="Three kinds of questions" subtitle={questions.intro} image="bg-04.jpg" />
+      <SectionHero eyebrow="Additional resources · Questions that work" title="Three kinds of questions" subtitle={questions.intro} image="bg-04.jpg" back={{ to: '/resources', label: 'Additional resources' }} />
       <TocLayout className="space-y-16">
         <section id="kinds" data-toc="The three kinds" className="grid gap-4 md:grid-cols-3">
           {questions.kinds.map((k, i) => <KindCard key={k.id} kind={k} n={i + 1} />)}

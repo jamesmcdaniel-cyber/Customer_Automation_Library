@@ -3,7 +3,6 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { AlertTriangle, Clock, ExternalLink, Zap } from 'lucide-react';
 import { SectionHero } from '../components/SectionHero';
-import { BackLink } from '../components/BackLink';
 import { Video } from '../components/Video';
 import { Tabs } from '../components/ui/Tabs';
 import { CopyButton } from '../components/ui/CopyButton';
@@ -111,14 +110,14 @@ export function Example() {
 
   return (
     <div className="container-page">
-      <BackLink to="/use-it#decide" label="All examples" className="mb-4 font-mono text-[12px] font-medium uppercase tracking-[0.08em] text-ac-coral-dark hover:text-ac-coral" />
       <SectionHero
         eyebrow={`03 · Use it · Example ${e.order} of ${examples.length}`}
         title={e.title}
         subtitle={e.helpsYou}
         image="meeting-bg-05.jpg"
+        back={{ to: '/use-it#decide', label: 'All examples' }}
       >
-        <div className="mt-5 flex flex-wrap items-center gap-2">
+        <div className="flex flex-wrap items-center gap-2">
           {e.whoFor.map((w) => (
             <span key={w} className="rounded-md border border-white/25 px-2 py-0.5 font-mono text-[10.5px] font-medium uppercase tracking-[0.12em] text-white/90">{w}</span>
           ))}

@@ -101,9 +101,7 @@ export function GetIt() {
         subtitle="MCP is one of the most common words in GTM right now, and it's rarely explained simply. It's a standard that lets AI assistants like Claude or ChatGPT connect to tools and use them, without every integration being built from scratch."
         image="bg-01.jpg"
       >
-        <div className="mt-6">
-          <ResourceKitLink stage="get-it" />
-        </div>
+        <ResourceKitLink stage="get-it" />
       </SectionHero>
       <TocLayout className="space-y-16">
         <section id="picture" data-toc="Two ways to picture it">

@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { SectionHero } from '../components/SectionHero';
-import { BackLink } from '../components/BackLink';
 import { Tabs } from '../components/ui/Tabs';
 import { CopyButton } from '../components/ui/CopyButton';
 import { NextStep } from '../components/NextStep';
@@ -205,16 +204,14 @@ export function PatternBars() {
 export function Swaps() {
   return (
     <div className="container-page">
-      <BackLink to="/resources" label="Additional resources" className="mb-4 font-mono text-[12px] font-medium uppercase tracking-[0.08em] text-ac-coral-dark hover:text-ac-coral" />
       <SectionHero
         eyebrow="Additional resources · Swap cards"
         title="Instead of this, do this"
         subtitle={`${swapCount} swaps across three roles for the habits that keep Claude and Backstory from doing their best work.`}
         image="bg-04.jpg"
+        back={{ to: '/resources', label: 'Additional resources' }}
       >
-        <div className="mt-6">
-          <ResourceButton id="swapCards" tone="dark" label="Open the swap-card deck" />
-        </div>
+        <ResourceButton id="swapCards" tone="dark" label="Open the swap-card deck" />
       </SectionHero>
       <TocLayout className="space-y-16">
         <section id="pattern" data-toc="The pattern">

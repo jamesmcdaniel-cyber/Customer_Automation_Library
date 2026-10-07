@@ -193,9 +193,7 @@ export function StretchIt() {
         subtitle="A single prompt impresses people once. Workflows are what keep them coming back. Chain prompts into routines, try what nobody thinks to try, and know when to hand the job to an agent, an automation, or the API."
         image="bg-05.jpg"
       >
-        <div className="mt-6">
-          <ResourceKitLink stage="stretch-it" />
-        </div>
+        <ResourceKitLink stage="stretch-it" />
       </SectionHero>
       <TocLayout className="space-y-16">
         <section id="playbooks" data-toc="Playbooks by role">

@@ -9,10 +9,10 @@ import { examples, site } from '../lib/content';
 import { cn } from '../lib/cn';
 import { STAGES } from '../lib/stages';
 
-function Plug() {
+function Plug({ className }) {
   return (
     <div
-      className="mt-6 flex flex-wrap items-center gap-2.5 font-mono text-[11px] font-medium uppercase tracking-[0.12em]"
+      className={cn('flex-wrap items-center gap-2.5 font-mono text-[11px] font-medium uppercase tracking-[0.12em]', className)}
       aria-label="Your AI assistant connects to Backstory through MCP"
     >
       <span className="rounded-lg border border-white/30 px-3 py-2">Claude / ChatGPT</span>
@@ -33,14 +33,18 @@ export function Home() {
         subtitle="MCP is a standard plug. It lets assistants like Claude and ChatGPT safely look things up in Backstory, so you can prep for meetings, check deal health, and draft follow-ups just by asking."
         image="meeting-bg-01.jpg"
       >
-        <Plug />
-        <div className="mt-7 flex flex-wrap gap-3">
-          <Button as={Link} to="/get-it">
-            Start here: Get it <ArrowRight size={15} />
-          </Button>
-          <Button as="a" href="#tour" variant="secondary" className="border-white/30 bg-transparent text-white hover:border-white">
-            Take the tour
-          </Button>
+        {/* One row, like every other banner: buttons left, the plug diagram right. Tablets would
+            wrap it onto a second row and make this banner taller, so it's hidden there. */}
+        <div className="flex flex-wrap items-center justify-between gap-x-6 gap-y-5">
+          <div className="flex flex-wrap gap-3">
+            <Button as={Link} to="/get-it">
+              Start here: Get it <ArrowRight size={15} />
+            </Button>
+            <Button as="a" href="#tour" variant="secondary" className="border-white/30 bg-transparent text-white hover:border-white">
+              Take the tour
+            </Button>
+          </div>
+          <Plug className="flex sm:hidden lg:flex" />
         </div>
       </SectionHero>
 

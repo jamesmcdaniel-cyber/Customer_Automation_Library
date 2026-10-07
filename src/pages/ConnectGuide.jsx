@@ -163,7 +163,7 @@ export function ConnectGuide() {
   return (
     <div className="container-page">
       <SectionHero eyebrow="03 · Use it · Connect" title={`Connect Backstory to ${g.name}`} subtitle={g.summary} image="bg-04.jpg">
-        <div className="mt-5 flex flex-wrap gap-2 font-mono text-[11px] uppercase tracking-[0.1em] text-white/85">
+        <div className="flex flex-wrap gap-2 font-mono text-[11px] uppercase tracking-[0.1em] text-white/85">
           <span className="inline-flex items-center gap-1.5 rounded-md bg-white/10 px-2.5 py-1"><UserRound size={12} /> {g.setup}</span>
           <span className="inline-flex items-center gap-1.5 rounded-md bg-white/10 px-2.5 py-1"><Clock size={12} /> {g.time}</span>
         </div>

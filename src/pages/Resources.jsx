@@ -61,7 +61,7 @@ export function Resources() {
         subtitle="The references people come back to: tested prompts, swap cards, setup guides, and every leave-behind from the four stages, in one place."
         image="meeting-bg-05.jpg"
       >
-        <div className="mt-6 flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-2">
           {JUMPS.map(([id, label]) => (
             <a
               key={id}

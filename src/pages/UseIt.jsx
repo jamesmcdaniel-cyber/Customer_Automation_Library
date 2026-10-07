@@ -76,20 +76,19 @@ export function UseIt() {
         subtitle="By minute 15 you'll have an answer in 30 seconds that you couldn't have gotten without Backstory. Connect, confirm it's working, learn to tell a real answer from a guess, then move from questions to decisions."
         image="bg-04.jpg"
       >
-        <div className="mt-6 grid grid-cols-2 gap-2 sm:grid-cols-4">
-          {PHASES.map((p) => (
-            <a key={p.id} href={`#${p.id}`} className="rounded-xl border border-white/20 bg-ac-horizon-900/40 px-4 py-3 text-white no-underline transition-colors hover:border-white/50">
-              <div className="font-mono text-[10.5px] uppercase tracking-[0.14em] text-white/70">{p.time}</div>
-              <div className="mt-0.5 font-display text-[15px] font-bold">{p.label}</div>
-            </a>
-          ))}
-        </div>
-        <div className="mt-5">
-          <ResourceKitLink stage="use-it" />
-        </div>
+        <ResourceKitLink stage="use-it" />
       </SectionHero>
 
       <TocLayout className="space-y-12">
+        {/* The 15-minute timeline lives here, not in the banner, so the banner matches every other page. */}
+        <nav aria-label="Your first 15 minutes" className="grid grid-cols-2 gap-2 sm:grid-cols-4">
+          {PHASES.map((p) => (
+            <a key={p.id} href={`#${p.id}`} className="rounded-xl border border-ac-light-gray bg-ac-card px-4 py-3 no-underline shadow-card transition-colors hover:border-ac-coral">
+              <div className="font-mono text-[10.5px] uppercase tracking-[0.14em] text-ac-coral-dark">{p.time}</div>
+              <div className="mt-0.5 font-display text-[15px] font-bold text-ac-dark">{p.label}</div>
+            </a>
+          ))}
+        </nav>
         <Phase {...PHASES[0]} title="Connect Backstory to your AI tool">
           <p className="text-[14px] leading-6 text-ac-dark-secondary">
             Pick your AI tool for a step-by-step guide with screenshots. Every setup points at the same Backstory address, and

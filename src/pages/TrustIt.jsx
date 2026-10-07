@@ -275,9 +275,7 @@ export function TrustIt() {
         subtitle="Read-only, permission-scoped, and you sign in yourself. Written for admins, and meant to be shared with your champion before the IT meeting gets booked."
         image="bg-02.jpg"
       >
-        <div className="mt-6">
-          <ResourceKitLink stage="trust-it" />
-        </div>
+        <ResourceKitLink stage="trust-it" />
       </SectionHero>
       <TocLayout className="space-y-16">
         <section id="basics" data-toc="At a glance" className="grid gap-4 md:grid-cols-3">
