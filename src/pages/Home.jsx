@@ -31,7 +31,7 @@ export function Home() {
         eyebrow="Backstory MCP"
         title="Ask your AI assistant about your customers, and get answers from Backstory."
         subtitle="MCP is a standard plug. It lets assistants like Claude and ChatGPT safely look things up in Backstory, so you can prep for meetings, check deal health, and draft follow-ups just by asking."
-        image="meeting-bg-01.jpg"
+        section="home"
       >
         {/* One row, like every other banner: buttons left, the plug diagram right. Tablets would
             wrap it onto a second row and make this banner taller, so it's hidden there. */}

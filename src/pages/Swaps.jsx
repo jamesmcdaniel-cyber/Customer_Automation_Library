@@ -208,7 +208,7 @@ export function Swaps() {
         eyebrow="Additional resources · Swap cards"
         title="Instead of this, do this"
         subtitle={`${swapCount} swaps across three roles for the habits that keep Claude and Backstory from doing their best work.`}
-        image="bg-04.jpg"
+        section="resources"
         back={{ to: '/resources', label: 'Additional resources' }}
       >
         <ResourceButton id="swapCards" tone="dark" label="Open the swap-card deck" />

@@ -1,18 +1,20 @@
 import { assetUrl } from '../lib/cn';
+import { sectionBackground } from '../lib/backgrounds';
 import { BrandMark } from './BrandMark';
 import { BackLink } from './BackLink';
 
 // Section header: a brand painterly image under a deep-petrol Horizon scrim —
 // the brand's "looking out at the horizon" metaphor. The eyebrow leads with the
-// Backstory symbol mark (white variant, on the dark scrim).
+// Backstory symbol mark (white variant, on the dark scrim). `section` picks the image:
+// each section gets its own, shuffled per visit (see lib/backgrounds.js).
 //
 // Every banner is the same height from sm up, so moving between pages doesn't shift the
 // content: the eyebrow and title stay at the top and `children` (one row of buttons or
 // chips) is pinned to the bottom. Keep to a one-line title, at most three lines of
 // subtitle and a single action row, or this banner grows taller than the others.
 // `back` ({ to, label }) puts the back link inside the banner rather than above it.
-export function SectionHero({ eyebrow, title, subtitle, image, back, children }) {
-  const img = image ? `url('${assetUrl('assets/backgrounds/' + image)}')` : 'none';
+export function SectionHero({ eyebrow, title, subtitle, section, back, children }) {
+  const img = section ? `url('${assetUrl('assets/backgrounds/' + sectionBackground(section))}')` : 'none';
   return (
     <div
       data-hero

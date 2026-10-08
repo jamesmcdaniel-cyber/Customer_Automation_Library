@@ -74,7 +74,7 @@ export function UseIt() {
         eyebrow="03 · Use it"
         title="Your first 15 minutes"
         subtitle="By minute 15 you'll have an answer in 30 seconds that you couldn't have gotten without Backstory. Connect, confirm it's working, learn to tell a real answer from a guess, then move from questions to decisions."
-        image="bg-04.jpg"
+        section="use-it"
       >
         <ResourceKitLink stage="use-it" />
       </SectionHero>

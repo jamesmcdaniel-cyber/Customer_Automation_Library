@@ -114,7 +114,7 @@ export function Example() {
         eyebrow={`03 · Use it · Example ${e.order} of ${examples.length}`}
         title={e.title}
         subtitle={e.helpsYou}
-        image="meeting-bg-05.jpg"
+        section="use-it"
         back={{ to: '/use-it#decide', label: 'All examples' }}
       >
         <div className="flex flex-wrap items-center gap-2">

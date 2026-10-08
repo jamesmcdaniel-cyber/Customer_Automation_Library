@@ -59,7 +59,7 @@ export function Resources() {
         eyebrow="Go deeper"
         title="Additional resources"
         subtitle="The references people come back to: tested prompts, swap cards, setup guides, and every leave-behind from the four stages, in one place."
-        image="meeting-bg-05.jpg"
+        section="resources"
       >
         <div className="flex flex-wrap gap-2">
           {JUMPS.map(([id, label]) => (

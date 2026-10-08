@@ -273,7 +273,7 @@ export function TrustIt() {
         eyebrow="02 · Trust it"
         title="Security, data, and the honest limits"
         subtitle="Read-only, permission-scoped, and you sign in yourself. Written for admins, and meant to be shared with your champion before the IT meeting gets booked."
-        image="bg-02.jpg"
+        section="trust-it"
       >
         <ResourceKitLink stage="trust-it" />
       </SectionHero>

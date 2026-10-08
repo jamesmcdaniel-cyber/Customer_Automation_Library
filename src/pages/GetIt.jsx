@@ -99,7 +99,7 @@ export function GetIt() {
         eyebrow="01 · Get it"
         title="MCP in plain English"
         subtitle="MCP is one of the most common words in GTM right now, and it's rarely explained simply. It's a standard that lets AI assistants like Claude or ChatGPT connect to tools and use them, without every integration being built from scratch."
-        image="bg-01.jpg"
+        section="get-it"
       >
         <ResourceKitLink stage="get-it" />
       </SectionHero>
