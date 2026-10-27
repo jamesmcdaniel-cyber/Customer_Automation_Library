@@ -40,6 +40,16 @@ export function ResourceCard({ r }) {
             <ResourceThumb key={item.label} id={viewId(item)} label={item.label} aspect="aspect-[4/3]" />
           ))}
         </div>
+        {/* `links` adds a text link per file, for small sets where thumbnails alone are easy to miss. */}
+        {r.links && (
+          <div className="mt-auto pt-4">
+            <div className="flex flex-wrap gap-x-4 gap-y-1.5 border-t border-ac-light-gray pt-3 text-[13.5px]">
+              {views.map((item) => (
+                <ResourceButton key={item.label} id={viewId(item)} inline label={actionLabel(item)} />
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     );
   }

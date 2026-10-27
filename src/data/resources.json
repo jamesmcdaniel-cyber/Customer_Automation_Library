@@ -10,6 +10,7 @@
       "title": "MCP in plain English",
       "audience": "Everyone",
       "body": "What MCP is, how it works, and what it changes for GTM teams. A good first read for anyone new to it, as a one-pager or a deck to present.",
+      "links": true,
       "items": [
         { "pdf": "plainEnglish", "label": "One-pager" },
         { "pdf": "plainEnglishDeck", "label": "Slide deck" }
