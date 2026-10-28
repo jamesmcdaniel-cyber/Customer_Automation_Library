@@ -220,6 +220,7 @@ export const GUIDES = [
     setup: 'A Google Cloud admin sets it up',
     time: 'About 15 minutes',
     summary: 'Register Gemini with Backstory, add Backstory as a custom MCP data store in Google Cloud, and tell Gemini when to use it.',
+    video: { url: '/assets/videos/gemini-enterprise.mp4', poster: '/assets/videos/gemini-enterprise-poster.jpg', title: 'Backstory MCP in Gemini Enterprise' },
     need: [
       'Access to Gemini Enterprise in Google Cloud Console, with permission to create data stores.',
       'Your Backstory Admin API Secret. Ask your Backstory account team if you don’t have it.',

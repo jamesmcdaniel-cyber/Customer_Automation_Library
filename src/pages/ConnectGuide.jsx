@@ -8,6 +8,7 @@ import { HelpLink } from '../components/HelpLink';
 import { Checklist } from '../components/Checklist';
 import { NextStep } from '../components/NextStep';
 import { ResourceButton } from '../components/Resource';
+import { Video } from '../components/Video';
 import { GUIDES, findGuide, guideUrl } from '../data/connectGuides';
 import { assetUrl, cn } from '../lib/cn';
 
@@ -125,6 +126,9 @@ export function PlatformSwitcher({ current, base = '/use-it/connect' }) {
 export function GuideContent({ g, pdfAction }) {
   return (
     <>
+      {/* A guide with a `video` leads with it, so people can see the result before the steps. */}
+      {g.video && <Video url={g.video.url} poster={g.video.poster} title={g.video.title} />}
+
       <section className="surface-card p-6">
         <div className="mb-3 flex items-center gap-3">
           <PlatformLogo guide={g} className="h-7 w-7" />

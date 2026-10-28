@@ -15,7 +15,7 @@ function source(url) {
   return { kind: 'embed', src: url };
 }
 
-export function Video({ url, title, tone = 'light' }) {
+export function Video({ url, title, poster, tone = 'light' }) {
   const s = source(url);
   // Hold a 16:9 box until metadata arrives, then match the recording exactly.
   const [ratio, setRatio] = useState(null);
@@ -25,6 +25,7 @@ export function Video({ url, title, tone = 'light' }) {
       <video
         src={s.src}
         title={title}
+        poster={poster}
         controls
         playsInline
         preload="metadata"

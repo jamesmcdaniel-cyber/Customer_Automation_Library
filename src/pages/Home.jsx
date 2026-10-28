@@ -4,7 +4,6 @@ import { SectionHero } from '../components/SectionHero';
 import { Video } from '../components/Video';
 import { Button } from '../components/ui/Button';
 import { ExampleCard } from '../components/ExampleCard';
-import { ResourceButton, ResourceThumb } from '../components/Resource';
 import { SectionHeading } from '../components/SectionHeading';
 import { examples, site } from '../lib/content';
 import { cn } from '../lib/cn';
@@ -49,8 +48,8 @@ export function Home() {
         </div>
       </SectionHero>
 
-      {/* A day in the life is Nicole's deck (a Capsule video of it once site.dayInTheLifeVideoUrl is
-          set); the Storylane product tour is its own asset, right below it. */}
+      {/* A day in the life is Nicole's video; the Storylane product tour is its own asset, right below it.
+          The deck the video was made from is in the Get it leave-behind kit. */}
       <section id="day-in-the-life" className="mb-10 scroll-mt-24">
         <div className="mb-4 px-1">
           <div className="eyebrow mb-2">A day in the life</div>
@@ -59,16 +58,7 @@ export function Home() {
             How Backstory MCP connects, the plays reps, managers, and VPs run with it, and the prompts to start with.
           </p>
         </div>
-        {site.dayInTheLifeVideoUrl ? (
-          <Video url={site.dayInTheLifeVideoUrl} title="A day in the life with Backstory MCP" />
-        ) : (
-          <div className="grid items-center gap-5 sm:grid-cols-[minmax(0,3fr)_minmax(0,2fr)]">
-            <ResourceThumb id="dayInTheLife" full />
-            <div className="flex flex-col items-start gap-3 text-[14px]">
-              <ResourceButton id="dayInTheLife" label="Open the deck" />
-            </div>
-          </div>
-        )}
+        <Video url={site.dayInTheLifeVideo.url} poster={site.dayInTheLifeVideo.poster} title="A day in the life with Backstory MCP" />
       </section>
 
       <section id="tour" className="mb-16 scroll-mt-24">
