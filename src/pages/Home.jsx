@@ -48,17 +48,17 @@ export function Home() {
         </div>
       </SectionHero>
 
-      {/* A day in the life is Nicole's video; the Storylane product tour is its own asset, right below it.
-          The deck the video was made from is in the Get it leave-behind kit. */}
-      <section id="day-in-the-life" className="mb-10 scroll-mt-24">
+      {/* Nicole's short intro video leads; the Storylane product tour is its own asset, right below it.
+          The day-in-the-life video and deck live on Use it. */}
+      <section id="intro" className="mb-10 scroll-mt-24">
         <div className="mb-4 px-1">
-          <div className="eyebrow mb-2">A day in the life</div>
-          <h2 className="font-display text-[22px] font-bold leading-tight tracking-[-0.01em] sm:text-[25px]">This is what a day in the life looks like</h2>
+          <div className="eyebrow mb-2">Backstory MCP in 50 seconds</div>
+          <h2 className="font-display text-[22px] font-bold leading-tight tracking-[-0.01em] sm:text-[25px]">Stop checking dashboards. Get accurate answers.</h2>
           <p className="mt-2 max-w-3xl text-[15px] leading-7 text-ac-dark-secondary">
-            How Backstory MCP connects, the plays reps, managers, and VPs run with it, and the prompts to start with.
+            Backstory brings every email, meeting, and call into the AI tool your team already uses, so answers come from what actually happened.
           </p>
         </div>
-        <Video url={site.dayInTheLifeVideo.url} poster={site.dayInTheLifeVideo.poster} title="A day in the life with Backstory MCP" />
+        <Video url={site.introVideo.url} poster={site.introVideo.poster} title="Backstory MCP in 50 seconds" />
       </section>
 
       <section id="tour" className="mb-16 scroll-mt-24">

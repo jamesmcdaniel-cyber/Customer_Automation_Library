@@ -5,7 +5,7 @@ import { CopyButton } from '../components/ui/CopyButton';
 import { Button } from '../components/ui/Button';
 import { NextStep } from '../components/NextStep';
 import { HelpLink } from '../components/HelpLink';
-import { ResourceButton, ResourceThumb } from '../components/Resource';
+import { ResourceButton } from '../components/Resource';
 import { Video } from '../components/Video';
 import { ResourceKit, ResourceKitLink } from '../components/ResourceKit';
 import { TocLayout } from '../components/PageToc';
@@ -197,14 +197,15 @@ export function UseIt() {
         <section id="day-in-the-life" data-toc="A day in the life">
           <SectionHeading
             kicker="A day in the life"
-            title="A full day with Backstory MCP"
-            intro="How it connects, the plays reps, managers, and VPs run with it, the prompts to start with, and where to get help."
+            title="This is what a day in the life looks like"
+            intro="The plays reps, managers, and VPs run with Backstory MCP, from the morning priority scan to the forecast call."
           />
-          <div className="grid items-center gap-5 sm:grid-cols-[minmax(0,3fr)_minmax(0,2fr)]">
-            <ResourceThumb id="dayInTheLife" full />
-            <div className="flex flex-col items-start gap-3">
-              <ResourceButton id="dayInTheLife" label="Open the deck" />
-            </div>
+          <Video url={site.dayInTheLifeVideo.url} poster={site.dayInTheLifeVideo.poster} title="A day in the life with Backstory MCP" />
+          <div className="mt-4 flex flex-wrap items-center justify-between gap-3 rounded-lg border border-ac-light-gray bg-ac-card px-4 py-3">
+            <p className="text-[13.5px] leading-6 text-ac-dark-secondary">
+              <strong className="text-ac-dark">Want the slides?</strong> The full deck has every play, the prompt library, setup, and support.
+            </p>
+            <ResourceButton id="dayInTheLife" label="Open the deck" />
           </div>
         </section>
 
