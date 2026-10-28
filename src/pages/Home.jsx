@@ -58,7 +58,7 @@ export function Home() {
             Backstory brings every email, meeting, and call into the AI tool your team already uses, so answers come from what actually happened.
           </p>
         </div>
-        <Video url={site.introVideo.url} poster={site.introVideo.poster} title="Backstory MCP in 50 seconds" />
+        <Video url={site.introVideo.url} poster={site.introVideo.poster} silent={site.introVideo.silent} title="Backstory MCP in 50 seconds" />
       </section>
 
       <section id="tour" className="mb-16 scroll-mt-24">

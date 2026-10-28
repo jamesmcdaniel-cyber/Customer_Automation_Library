@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { PlayCircle, Volume2 } from 'lucide-react';
+import { PlayCircle, Volume2, VolumeX } from 'lucide-react';
 
 // Zight share links play as a native <video> straight from the MP4, so the frame
 // hugs the recording with no player chrome or padding around it.
@@ -19,7 +19,9 @@ function source(url) {
 // scrolled away, until the viewer takes over (any click on it). Browsers only allow autoplay
 // with sound after the visitor has interacted with the site, so it tries with sound first and
 // falls back to muted with a "Turn on sound" button, which restarts it from the top.
-function FileVideo({ src, title, poster, autoPlay }) {
+// `silent` marks a recording with no audio track, where the browser greys out the speaker,
+// so viewers aren't left hunting for a setting.
+function FileVideo({ src, title, poster, autoPlay, silent }) {
   const ref = useRef(null);
   // Hold a 16:9 box until metadata arrives, then match the recording exactly.
   const [ratio, setRatio] = useState(null);
@@ -73,6 +75,11 @@ function FileVideo({ src, title, poster, autoPlay }) {
         style={{ aspectRatio: ratio || '16 / 9' }}
         className="block h-auto w-full rounded-xl bg-ac-horizon-900 object-cover shadow-card"
       />
+      {silent && (
+        <span className="pointer-events-none absolute right-4 top-4 inline-flex items-center gap-1.5 rounded-full bg-ac-horizon-900/75 px-3 py-1.5 text-[12px] font-medium text-white backdrop-blur">
+          <VolumeX size={14} /> No sound
+        </span>
+      )}
       {muted && (
         <button
           type="button"
@@ -86,9 +93,9 @@ function FileVideo({ src, title, poster, autoPlay }) {
   );
 }
 
-export function Video({ url, title, poster, autoPlay = false, tone = 'light' }) {
+export function Video({ url, title, poster, autoPlay = false, silent = false, tone = 'light' }) {
   const s = source(url);
-  if (s?.kind === 'file') return <FileVideo src={s.src} title={title} poster={poster} autoPlay={autoPlay} />;
+  if (s?.kind === 'file') return <FileVideo src={s.src} title={title} poster={poster} autoPlay={autoPlay} silent={silent} />;
 
   if (s?.kind === 'embed') {
     return (

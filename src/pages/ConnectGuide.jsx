@@ -127,7 +127,7 @@ export function GuideContent({ g, pdfAction }) {
   return (
     <>
       {/* A guide with a `video` leads with it, so people can see the result before the steps. */}
-      {g.video && <Video url={g.video.url} poster={g.video.poster} title={g.video.title} />}
+      {g.video && <Video url={g.video.url} poster={g.video.poster} title={g.video.title} silent={g.video.silent} />}
 
       <section className="surface-card p-6">
         <div className="mb-3 flex items-center gap-3">
