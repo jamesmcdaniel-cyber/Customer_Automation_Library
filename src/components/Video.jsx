@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { PlayCircle } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
+import { PlayCircle, Volume2 } from 'lucide-react';
 
 // Zight share links play as a native <video> straight from the MP4, so the frame
 // hugs the recording with no player chrome or padding around it.
@@ -15,20 +15,57 @@ function source(url) {
   return { kind: 'embed', src: url };
 }
 
-export function Video({ url, title, poster, tone = 'light' }) {
-  const s = source(url);
+// A native video. With `autoPlay` it starts once half of it is on screen and pauses when
+// scrolled away, until the viewer takes over (any click on it). Browsers only allow autoplay
+// with sound after the visitor has interacted with the site, so it tries with sound first and
+// falls back to muted with a "Turn on sound" button, which restarts it from the top.
+function FileVideo({ src, title, poster, autoPlay }) {
+  const ref = useRef(null);
   // Hold a 16:9 box until metadata arrives, then match the recording exactly.
   const [ratio, setRatio] = useState(null);
+  const [auto, setAuto] = useState(autoPlay);
+  const [muted, setMuted] = useState(false);
 
-  if (s?.kind === 'file') {
-    return (
+  useEffect(() => {
+    const v = ref.current;
+    if (!auto || !v || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const io = new IntersectionObserver(
+      ([e]) => {
+        if (!e.isIntersecting) return v.pause();
+        if (!v.paused) return;
+        v.play().catch(() => {
+          v.muted = true;
+          setMuted(true);
+          v.play().catch(() => {});
+        });
+      },
+      { threshold: 0.5 },
+    );
+    io.observe(v);
+    return () => io.disconnect();
+  }, [auto]);
+
+  const soundOn = () => {
+    const v = ref.current;
+    setAuto(false);
+    setMuted(false);
+    v.muted = false;
+    v.currentTime = 0;
+    v.play().catch(() => {});
+  };
+
+  return (
+    <div className="relative">
       <video
-        src={s.src}
+        ref={ref}
+        src={src}
         title={title}
         poster={poster}
         controls
         playsInline
-        preload="metadata"
+        preload={autoPlay ? 'auto' : 'metadata'}
+        onPointerDown={() => setAuto(false)}
+        onVolumeChange={(ev) => !ev.currentTarget.muted && setMuted(false)}
         onLoadedMetadata={(ev) => {
           const v = ev.currentTarget;
           if (v.videoWidth && v.videoHeight) setRatio(`${v.videoWidth} / ${v.videoHeight}`);
@@ -36,8 +73,22 @@ export function Video({ url, title, poster, tone = 'light' }) {
         style={{ aspectRatio: ratio || '16 / 9' }}
         className="block h-auto w-full rounded-xl bg-ac-horizon-900 object-cover shadow-card"
       />
-    );
-  }
+      {muted && (
+        <button
+          type="button"
+          onClick={soundOn}
+          className="absolute left-4 top-4 inline-flex items-center gap-2 rounded-full bg-ac-horizon-900/85 px-4 py-2 text-[13.5px] font-semibold text-white shadow-card backdrop-blur transition-colors hover:bg-ac-horizon-900"
+        >
+          <Volume2 size={16} /> Turn on sound
+        </button>
+      )}
+    </div>
+  );
+}
+
+export function Video({ url, title, poster, autoPlay = false, tone = 'light' }) {
+  const s = source(url);
+  if (s?.kind === 'file') return <FileVideo src={s.src} title={title} poster={poster} autoPlay={autoPlay} />;
 
   if (s?.kind === 'embed') {
     return (

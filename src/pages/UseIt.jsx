@@ -200,7 +200,7 @@ export function UseIt() {
             title="This is what a day in the life looks like"
             intro="The plays reps, managers, and VPs run with Backstory MCP, from the morning priority scan to the forecast call."
           />
-          <Video url={site.dayInTheLifeVideo.url} poster={site.dayInTheLifeVideo.poster} title="A day in the life with Backstory MCP" />
+          <Video url={site.dayInTheLifeVideo.url} poster={site.dayInTheLifeVideo.poster} title="A day in the life with Backstory MCP" autoPlay />
           <div className="mt-4 flex flex-wrap items-center justify-between gap-3 rounded-lg border border-ac-light-gray bg-ac-card px-4 py-3">
             <p className="text-[13.5px] leading-6 text-ac-dark-secondary">
               <strong className="text-ac-dark">Want the slides?</strong> The full deck has every play, the prompt library, setup, and support.
