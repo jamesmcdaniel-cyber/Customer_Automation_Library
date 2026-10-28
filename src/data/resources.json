@@ -3,7 +3,13 @@
     {
       "title": "A day in the life",
       "audience": "Everyone",
-      "body": "An interactive tour of Backstory MCP at work. Share it with anyone who wants to see it before they connect.",
+      "body": "The connection, the tools, plays for reps and for managers and VPs, a prompt library, setup, and support, in one deck.",
+      "items": [{ "pdf": "dayInTheLife", "label": "Deck" }]
+    },
+    {
+      "title": "Take the tour for yourself",
+      "audience": "Everyone",
+      "body": "A one-minute interactive product tour of Backstory MCP at work. Share it with anyone who wants to see it before they connect.",
       "items": [{ "url": "tour", "label": "Take the interactive tour" }]
     },
     {

@@ -4,6 +4,7 @@ import { SectionHero } from '../components/SectionHero';
 import { Video } from '../components/Video';
 import { Button } from '../components/ui/Button';
 import { ExampleCard } from '../components/ExampleCard';
+import { ResourceButton, ResourceThumb } from '../components/Resource';
 import { SectionHeading } from '../components/SectionHeading';
 import { examples, site } from '../lib/content';
 import { cn } from '../lib/cn';
@@ -48,13 +49,35 @@ export function Home() {
         </div>
       </SectionHero>
 
+      {/* A day in the life is Nicole's deck (a Capsule video of it once site.dayInTheLifeVideoUrl is
+          set); the Storylane product tour is its own asset, right below it. */}
+      <section id="day-in-the-life" className="mb-10 scroll-mt-24">
+        <div className="mb-4 px-1">
+          <div className="eyebrow mb-2">A day in the life</div>
+          <h2 className="font-display text-[22px] font-bold leading-tight tracking-[-0.01em] sm:text-[25px]">This is what a day in the life looks like</h2>
+          <p className="mt-2 max-w-3xl text-[15px] leading-7 text-ac-dark-secondary">
+            How Backstory MCP connects, the plays reps, managers, and VPs run with it, and the prompts to start with.
+          </p>
+        </div>
+        {site.dayInTheLifeVideoUrl ? (
+          <Video url={site.dayInTheLifeVideoUrl} title="A day in the life with Backstory MCP" />
+        ) : (
+          <div className="grid items-center gap-5 sm:grid-cols-[minmax(0,3fr)_minmax(0,2fr)]">
+            <ResourceThumb id="dayInTheLife" full />
+            <div className="flex flex-col items-start gap-3 text-[14px]">
+              <ResourceButton id="dayInTheLife" label="Open the deck" />
+            </div>
+          </div>
+        )}
+      </section>
+
       <section id="tour" className="mb-16 scroll-mt-24">
         <div className="mb-4 flex flex-wrap items-end justify-between gap-3 px-1">
           <div>
             <div className="eyebrow mb-2">Ready to take a tour?</div>
-            <h2 className="font-display text-[22px] font-bold leading-tight tracking-[-0.01em] sm:text-[25px]">This is what a day in the life looks like</h2>
+            <h2 className="font-display text-[22px] font-bold leading-tight tracking-[-0.01em] sm:text-[25px]">Take the tour for yourself</h2>
             <p className="mt-2 max-w-3xl text-[15px] leading-7 text-ac-dark-secondary">
-              Click through an interactive tour at your own pace. When you&rsquo;re ready, there&rsquo;s a{' '}
+              Click through an interactive product tour at your own pace. When you&rsquo;re ready, there&rsquo;s a{' '}
               <Link to="/use-it#connect" className="font-medium text-ac-coral-dark hover:underline">step-by-step guide</Link> to connect
               your own assistant.
             </p>
@@ -65,7 +88,7 @@ export function Home() {
         </div>
         {/* The tour needs room to click through, so phones get a button instead of a tiny embed. */}
         <div className="hidden sm:block">
-          <Video url={site.tourUrl} title="A day in the life with Backstory MCP" />
+          <Video url={site.tourUrl} title="Backstory MCP guided tour" />
         </div>
         <Button as="a" href={site.tourUrl} target="_blank" rel="noopener" className="sm:hidden">
           Take the tour <ExternalLink size={14} />

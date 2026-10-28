@@ -48,7 +48,7 @@ export function ResourceDownload({ id, label = 'Download PDF', button = false, t
 }
 
 export function resourceTitle(id) {
-  return id === TOUR ? 'A day in the life with Backstory MCP' : downloads[id].title;
+  return id === TOUR ? 'Backstory MCP guided tour' : downloads[id].title;
 }
 
 // Window sizes: compact by default, enlargeable to nearly the full screen. The tour keeps its
@@ -160,13 +160,14 @@ export function ResourceButton({ id, label, tone, inline = false, className }) {
   );
 }
 
-// A first-page thumbnail that opens the resource.
-export function ResourceThumb({ id, label, aspect = 'aspect-[16/9]' }) {
+// A first-page thumbnail that opens the resource. `full` uses the full-size first page, for
+// places that show it larger than a card.
+export function ResourceThumb({ id, label, aspect = 'aspect-[16/9]', full = false }) {
   return (
     <ResourceDialog id={id}>
       <button type="button" className="group block w-full text-left" aria-label={`Open ${resourceTitle(id)}`}>
         <span className={cn('block overflow-hidden rounded-lg border border-ac-light-gray bg-ac-warm-white transition-all duration-200 group-hover:border-ac-coral group-hover:shadow-cardhover', aspect)}>
-          <img src={thumbUrl(id)} alt="" loading="lazy" className="h-full w-full object-cover object-left-top" />
+          <img src={full ? pageUrl(id, 0) : thumbUrl(id)} alt="" loading="lazy" className="h-full w-full object-cover object-left-top" />
         </span>
         {label && <span className="mt-1.5 block text-[12.5px] font-medium leading-4 text-ac-dark group-hover:text-ac-coral-dark">{label}</span>}
       </button>

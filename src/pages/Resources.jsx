@@ -128,7 +128,7 @@ export function Resources() {
         <section id="library" data-toc="Leave-behind library">
           <SectionHeading
             title="Leave-behind library"
-            intro="Every guide, deck, and tour from the four stages, for training, refreshers, and adoption. Select any one to open it right here."
+            intro="Every guide, deck, and tour from the four stages, for training, refreshers, and adoption. Open any one right here, or download the PDF to share."
           />
           <div className="rounded-xl border border-ac-horizon-100 bg-ac-horizon-50 p-6">
             <Tabs
