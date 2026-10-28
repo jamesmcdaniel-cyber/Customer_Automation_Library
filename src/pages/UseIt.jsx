@@ -5,7 +5,7 @@ import { CopyButton } from '../components/ui/CopyButton';
 import { Button } from '../components/ui/Button';
 import { NextStep } from '../components/NextStep';
 import { HelpLink } from '../components/HelpLink';
-import { ResourceButton } from '../components/Resource';
+import { ResourceButton, ResourceThumb } from '../components/Resource';
 import { Video } from '../components/Video';
 import { ResourceKit, ResourceKitLink } from '../components/ResourceKit';
 import { TocLayout } from '../components/PageToc';
@@ -193,6 +193,20 @@ export function UseIt() {
             ))}
           </div>
         </Phase>
+
+        <section id="day-in-the-life" data-toc="A day in the life">
+          <SectionHeading
+            kicker="A day in the life"
+            title="A full day with Backstory MCP"
+            intro="How it connects, the plays reps, managers, and VPs run with it, the prompts to start with, and where to get help."
+          />
+          <div className="grid items-center gap-5 sm:grid-cols-[minmax(0,3fr)_minmax(0,2fr)]">
+            <ResourceThumb id="dayInTheLife" full />
+            <div className="flex flex-col items-start gap-3">
+              <ResourceButton id="dayInTheLife" label="Open the deck" />
+            </div>
+          </div>
+        </section>
 
         <section id="go-deeper" data-toc="Go deeper">
           <SectionHeading

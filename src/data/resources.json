@@ -1,12 +1,6 @@
 {
   "get-it": [
     {
-      "title": "A day in the life",
-      "audience": "Everyone",
-      "body": "The connection, the tools, plays for reps and for managers and VPs, a prompt library, setup, and support, in one deck.",
-      "items": [{ "pdf": "dayInTheLife", "label": "Deck" }]
-    },
-    {
       "title": "Take the tour for yourself",
       "audience": "Everyone",
       "body": "A one-minute interactive product tour of Backstory MCP at work. Share it with anyone who wants to see it before they connect.",
@@ -45,6 +39,12 @@
       ]
     },
     {
+      "title": "Stop toggling. Start knowing.",
+      "audience": "Managers and execs",
+      "body": "Backstory MCP on one page: answers where your team already works, grounded in every email, meeting, and call, not just CRM fields.",
+      "items": [{ "pdf": "onePager", "label": "One-pager" }]
+    },
+    {
       "title": "The business case",
       "audience": "Managers and execs",
       "body": "Why GTM teams connect AI to Backstory, what changes by role, and eight questions to ask before you invest.",
@@ -63,9 +63,21 @@
       "audience": "Everyone",
       "body": "Five principles for using AI with customer data, where data can go, and what to do if something goes wrong.",
       "items": [{ "pdf": "aiEthics", "label": "Two-pager" }]
+    },
+    {
+      "title": "Three gaps call recording MCPs don't close",
+      "audience": "Buyers and evaluators",
+      "body": "Why scope, cadence, and shape decide whether an agent's answers about your deals can be trusted, and the question to ask every MCP vendor.",
+      "items": [{ "pdf": "threeGaps", "label": "Two-pager" }]
     }
   ],
   "use-it": [
+    {
+      "title": "A day in the life",
+      "audience": "Everyone",
+      "body": "The connection, the tools, plays for reps and for managers and VPs, a prompt library, setup, and support, in one deck.",
+      "items": [{ "pdf": "dayInTheLife", "label": "Deck" }]
+    },
     {
       "title": "Build better prompts",
       "audience": "End users",
