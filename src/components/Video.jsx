@@ -16,11 +16,12 @@ function source(url) {
 }
 
 // A native video. With `autoPlay` it starts once half of it is on screen and pauses when
-// scrolled away, until the viewer takes over (any click on it). Browsers only allow autoplay
-// with sound after the visitor has interacted with the site, so it tries with sound first and
-// falls back to muted with a "Turn on sound" button, which restarts it from the top.
-// `silent` marks a recording with no audio track, where the browser greys out the speaker,
-// so viewers aren't left hunting for a setting.
+// scrolled away, until the viewer takes over. Browsers only allow autoplay with sound after
+// the visitor has interacted with the site, so it tries with sound first and falls back to
+// muted. While it plays muted, a click anywhere above the control bar turns the sound on and
+// restarts it from the top (a plain click on a video would only pause it).
+// `silent` marks a recording with no audio track, where the browser greys out the speaker:
+// it autoplays muted, never offers sound, and says "No sound" so nobody hunts for a setting.
 function FileVideo({ src, title, poster, autoPlay, silent }) {
   const ref = useRef(null);
   // Hold a 16:9 box until metadata arrives, then match the recording exactly.
@@ -31,27 +32,30 @@ function FileVideo({ src, title, poster, autoPlay, silent }) {
   useEffect(() => {
     const v = ref.current;
     if (!auto || !v || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const playMuted = () => {
+      v.muted = true;
+      if (!silent) setMuted(true);
+      v.play().catch(() => {});
+    };
     const io = new IntersectionObserver(
       ([e]) => {
         if (!e.isIntersecting) return v.pause();
         if (!v.paused) return;
-        v.play().catch(() => {
-          v.muted = true;
-          setMuted(true);
-          v.play().catch(() => {});
-        });
+        if (silent) return playMuted();
+        v.play().catch(playMuted);
       },
       { threshold: 0.5 },
     );
     io.observe(v);
     return () => io.disconnect();
-  }, [auto]);
+  }, [auto, silent]);
 
   const soundOn = () => {
     const v = ref.current;
     setAuto(false);
     setMuted(false);
     v.muted = false;
+    v.volume = 1;
     v.currentTime = 0;
     v.play().catch(() => {});
   };
@@ -81,12 +85,16 @@ function FileVideo({ src, title, poster, autoPlay, silent }) {
         </span>
       )}
       {muted && (
+        // Covers the picture but not the bottom control bar, so seeking and fullscreen still work.
         <button
           type="button"
           onClick={soundOn}
-          className="absolute left-4 top-4 inline-flex items-center gap-2 rounded-full bg-ac-horizon-900/85 px-4 py-2 text-[13.5px] font-semibold text-white shadow-card backdrop-blur transition-colors hover:bg-ac-horizon-900"
+          aria-label="Play with sound from the beginning"
+          className="group absolute inset-x-0 top-0 bottom-14 grid cursor-pointer place-items-center rounded-t-xl"
         >
-          <Volume2 size={16} /> Turn on sound
+          <span className="inline-flex items-center gap-2.5 rounded-full bg-ac-horizon-900/85 px-5 py-3 text-[15px] font-semibold text-white shadow-card backdrop-blur transition-colors group-hover:bg-ac-horizon-900">
+            <Volume2 size={20} /> Click for sound
+          </span>
         </button>
       )}
     </div>

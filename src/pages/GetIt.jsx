@@ -146,7 +146,7 @@ export function GetIt() {
             title="See the difference"
             intro="One meeting, the same question asked twice in Gemini Enterprise: first with only the public web, then with Backstory connected."
           />
-          <Video url={site.geminiVideo.url} poster={site.geminiVideo.poster} silent={site.geminiVideo.silent} title="Meeting prep in Gemini Enterprise, with and without Backstory" />
+          <Video url={site.geminiVideo.url} poster={site.geminiVideo.poster} silent={site.geminiVideo.silent} autoPlay title="Meeting prep in Gemini Enterprise, with and without Backstory" />
         </section>
 
         <section id="ways" data-toc="Three ways to use it">
