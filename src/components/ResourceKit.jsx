@@ -1,7 +1,7 @@
 import { ArrowDown, ExternalLink, FolderDown } from 'lucide-react';
 import { resources, site } from '../lib/content';
 import { Button } from './ui/Button';
-import { ResourceButton, ResourceThumb } from './Resource';
+import { ResourceButton, ResourceDownload, ResourceThumb } from './Resource';
 
 // An item opens in the resource window when it's a PDF or the tour; help articles open in a
 // new tab, because the Help Center can't be shown inside another page.
@@ -37,7 +37,10 @@ export function ResourceCard({ r }) {
         {header}
         <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3">
           {views.map((item) => (
-            <ResourceThumb key={item.label} id={viewId(item)} label={item.label} aspect="aspect-[4/3]" />
+            <div key={item.label}>
+              <ResourceThumb id={viewId(item)} label={item.label} aspect="aspect-[4/3]" />
+              <ResourceDownload id={viewId(item)} label="Download" className="mt-1 text-[12px]" />
+            </div>
           ))}
         </div>
         {/* `links` adds a text link per file, for small sets where thumbnails alone are easy to miss. */}
@@ -64,6 +67,7 @@ export function ResourceCard({ r }) {
       {header}
       <div className="mt-auto flex flex-wrap gap-x-4 gap-y-1.5 border-t border-ac-light-gray pt-3 text-[13.5px]">
         {item && <ResourceButton id={viewId(item)} inline label={actionLabel(item)} />}
+        {item && <ResourceDownload id={viewId(item)} />}
         <HelpLinks items={r.items} />
       </div>
     </div>
@@ -78,8 +82,8 @@ export function ResourceKit({ stage }) {
       <div className="eyebrow mb-2 !text-ac-coral-dark">Take it to your team</div>
       <h2 className="font-display text-[22px] font-bold leading-tight tracking-[-0.01em] sm:text-[25px]">Leave-behind resources</h2>
       <p className="mt-2 max-w-3xl text-[15px] leading-7 text-ac-dark-secondary">
-        We built these for you to share with your team. Use them for training, refreshers, and adoption. Select any one to
-        open it right here.
+        We built these for you to share with your team. Use them for training, refreshers, and adoption. Open any one right
+        here, or download the PDF to share.
       </p>
       <div className="mt-6 grid gap-4 md:grid-cols-2">
         {resources[stage].map((r) => (

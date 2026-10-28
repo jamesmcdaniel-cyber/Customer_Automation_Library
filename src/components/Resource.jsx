@@ -1,14 +1,16 @@
 import { useState } from 'react';
 import { Description, Title } from '@radix-ui/react-dialog';
-import { Eye, Maximize2, Minimize2, X } from 'lucide-react';
+import { Download, Eye, Maximize2, Minimize2, X } from 'lucide-react';
 import { Dialog, DialogClose, DialogContent, DialogTrigger } from './ui/Dialog';
 import { Button } from './ui/Button';
 import { downloads, pages, site } from '../lib/content';
 import { assetUrl, cn } from '../lib/cn';
 
-// Leave-behind resources open in a small window on the page, never as a download. A PDF shows
-// as its pages, pre-rendered to images in public/assets/resources/<id>/ (p01.jpg, ... plus
-// thumb.jpg for cards), sized from src/data/pages.json. The tour shows as its live embed.
+// Leave-behind resources open in a small window on the page, and every PDF can also be
+// downloaded (the files in public/assets/downloads/, from src/data/downloads.json). In the
+// window a PDF shows as its pages, pre-rendered to images in public/assets/resources/<id>/
+// (p01.jpg, ... plus thumb.jpg for cards), sized from src/data/pages.json. The tour shows as
+// its live embed.
 const TOUR = 'tour';
 
 export const thumbUrl = (id) => assetUrl(`assets/resources/${id}/thumb.jpg`);
@@ -17,6 +19,33 @@ const pageCount = (id) => {
   const n = pages[id].count;
   return `${n} page${n === 1 ? '' : 's'}`;
 };
+
+export const pdfUrl = (id) => assetUrl(`assets/downloads/${downloads[id].file}`);
+const pdfName = (id) => `Backstory MCP - ${downloads[id].title.replace(/[:/]/g, ' -')}.pdf`;
+
+// A link that saves the resource's PDF. Inline by default; `button` gives the secondary button.
+export function ResourceDownload({ id, label = 'Download PDF', button = false, tone, className }) {
+  if (id === TOUR) return null;
+  const props = { href: pdfUrl(id), download: pdfName(id), 'aria-label': `Download ${resourceTitle(id)} (PDF)` };
+  if (button) {
+    return (
+      <Button
+        as="a"
+        {...props}
+        variant="secondary"
+        size="sm"
+        className={cn('shrink-0', tone === 'dark' && 'border-white/30 bg-transparent text-white hover:border-white', className)}
+      >
+        <Download size={14} /> {label}
+      </Button>
+    );
+  }
+  return (
+    <a {...props} className={cn('inline-flex items-center gap-1.5 font-medium text-ac-coral-dark hover:underline', className)}>
+      {label} <Download size={13} />
+    </a>
+  );
+}
 
 export function resourceTitle(id) {
   return id === TOUR ? 'A day in the life with Backstory MCP' : downloads[id].title;
@@ -48,6 +77,17 @@ export function ResourceDialog({ id, children }) {
             </Description>
           </div>
           <div className="flex shrink-0 items-center gap-1">
+            {!tour && (
+              <a
+                href={pdfUrl(id)}
+                download={pdfName(id)}
+                className="inline-flex h-8 items-center gap-1.5 rounded-lg px-2 text-[13px] font-medium text-ac-coral-dark hover:bg-ac-cream"
+                aria-label={`Download ${title} (PDF)`}
+                title="Download PDF"
+              >
+                <Download size={16} /> <span className="hidden sm:inline">Download PDF</span>
+              </a>
+            )}
             <button
               type="button"
               onClick={() => setLarge((v) => !v)}
@@ -89,7 +129,8 @@ export function ResourceDialog({ id, children }) {
   );
 }
 
-// A button or inline link that opens one resource in the window.
+// A button or inline link that opens one resource in the window. The button form sits next to
+// a matching download button for PDFs; the inline form is for running text, so it doesn't.
 export function ResourceButton({ id, label, tone, inline = false, className }) {
   const meta = id === TOUR ? null : pageCount(id);
   if (inline) {
@@ -102,17 +143,20 @@ export function ResourceButton({ id, label, tone, inline = false, className }) {
     );
   }
   return (
-    <ResourceDialog id={id}>
-      <Button
-        type="button"
-        variant="secondary"
-        size="sm"
-        className={cn('shrink-0', tone === 'dark' && 'border-white/30 bg-transparent text-white hover:border-white', className)}
-      >
-        <Eye size={14} /> {label}
-        {meta && <span className="font-mono text-[10.5px] font-medium opacity-70">{meta}</span>}
-      </Button>
-    </ResourceDialog>
+    <span className="inline-flex flex-wrap items-center gap-2">
+      <ResourceDialog id={id}>
+        <Button
+          type="button"
+          variant="secondary"
+          size="sm"
+          className={cn('shrink-0', tone === 'dark' && 'border-white/30 bg-transparent text-white hover:border-white', className)}
+        >
+          <Eye size={14} /> {label}
+          {meta && <span className="font-mono text-[10.5px] font-medium opacity-70">{meta}</span>}
+        </Button>
+      </ResourceDialog>
+      <ResourceDownload id={id} button tone={tone} />
+    </span>
   );
 }
 
