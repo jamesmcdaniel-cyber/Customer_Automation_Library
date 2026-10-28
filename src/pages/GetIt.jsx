@@ -6,6 +6,8 @@ import { NextStep } from '../components/NextStep';
 import { ResourceKit, ResourceKitLink } from '../components/ResourceKit';
 import { TocLayout } from '../components/PageToc';
 import { SectionHeading } from '../components/SectionHeading';
+import { Video } from '../components/Video';
+import { site } from '../lib/content';
 import { AfterDiagram, BeforeDiagram } from '../components/IntegrationDiagram';
 
 // Each drawer is one group of Backstory tools.
@@ -137,6 +139,14 @@ export function GetIt() {
               <BeforeAfter />
             </Analogy>
           </div>
+        </section>
+
+        <section id="see-it" data-toc="See the difference">
+          <SectionHeading
+            title="See the difference"
+            intro="One meeting, the same question asked twice in Gemini Enterprise: first with only the public web, then with Backstory connected."
+          />
+          <Video url={site.geminiVideo.url} poster={site.geminiVideo.poster} title="Meeting prep in Gemini Enterprise, with and without Backstory" />
         </section>
 
         <section id="ways" data-toc="Three ways to use it">

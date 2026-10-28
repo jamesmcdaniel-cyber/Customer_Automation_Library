@@ -2,6 +2,7 @@
   "mcpUrl": "https://mcp.backstory.ai/mcp",
   "tourUrl": "https://demo.people.ai/share/MCP",
   "introVideo": { "url": "/assets/videos/mcp-intro.mp4", "poster": "/assets/videos/mcp-intro-poster.jpg" },
+  "geminiVideo": { "url": "/assets/videos/gemini-enterprise.mp4", "poster": "/assets/videos/gemini-enterprise-poster.jpg" },
   "dayInTheLifeVideo": { "url": "/assets/videos/day-in-the-life.mp4", "poster": "/assets/videos/day-in-the-life-poster.jpg" },
   "overviewVideoUrl": "https://share.zight.com/01a0d722-0a89-79a8-98d7-af191fc4fc3a",
   "fullLibraryUrl": "https://backstory-workflows.vercel.app/#/flows",
