@@ -54,10 +54,11 @@ export async function stats(days) {
       left join visitors v on v.link_code = l.code
       left join sessions s on s.visitor_id = v.id and s.started_at >= ${since}
       left join events e on e.visitor_id = v.id and e.type = 'download' and e.at >= ${since}
+    where l.kind = 'shared'
     group by 1 order by people desc, links desc`;
 
   const people = await sql`
-    select v.id, v.first_seen, v.last_seen, l.code as link_code, l.name, l.email, l.company as link_company, l.csm,
+    select v.id, v.first_seen, v.last_seen, l.code as link_code, l.kind as link_kind, l.name, l.email, l.company as link_company, l.csm,
       first_s.channel as first_channel, first_s.source as first_source,
       last_s.country, last_s.city, last_s.org, last_s.org_kind,
       (select count(*) from sessions s where s.visitor_id = v.id and s.started_at >= ${since}) as sessions,

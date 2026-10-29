@@ -2,9 +2,10 @@ import { sql, ensureSchema } from './_lib/db.js';
 import { body, clientIp, geo, json, text, validId } from './_lib/http.js';
 import { classifyChannel, deviceOf, isBot } from './_lib/classify.js';
 import { lookupOrg } from './_lib/org.js';
+import { identityCode, verifyIdentity } from './_lib/identity.js';
 
 // Visit tracking from src/lib/track.js. Four message kinds:
-//   session  a visit starts (where it came from, which shared link, if any)
+//   session  a visit starts (where it came from, which shared link or signed identity, if any)
 //   pv       a page view starts
 //   dur      the active time on a page view so far (sent as it grows and on leave)
 //   ev       an action: download, resource opened, video played
@@ -28,16 +29,31 @@ export default async function handler(req, res) {
   if (m.t === 'session') {
     if (!validId(m.sid)) return json(res, 400, { error: 'sid' });
     const code = text(m.ref, 64);
-    const [link] = code ? await sql`select code, csm from links where code = ${code}` : [];
+    const [link] = code ? await sql`select code, csm from links where code = ${code} and kind = 'shared'` : [];
+    // A signed identity link names the person outright, and wins over an earlier shared link
+    // (which may have been forwarded). Anything that fails to verify is ignored.
+    const identity = verifyIdentity(m.id, process.env.IDENTITY_LINK_SECRET);
+    let identityLink = null;
+    if (identity) {
+      [identityLink] = await sql`
+        insert into links (code, name, email, company, note, kind)
+        values (${identityCode(identity.email)}, ${identity.name || identity.email}, ${identity.email}, ${identity.company},
+          ${`Backstory ${identity.src}`}, 'identity')
+        on conflict (code) do update set
+          name = coalesce(${identity.name}, links.name), company = coalesce(${identity.company}, links.company)
+        returning code`;
+    }
     const utm = { source: text(m.utm?.source, 100), medium: text(m.utm?.medium, 100), campaign: text(m.utm?.campaign, 100) };
-    const { channel, source } = classifyChannel({ link, referrer: m.referrer, utm, host: req.headers.host });
+    const { channel, source } = classifyChannel({ link, identity, referrer: m.referrer, utm, host: req.headers.host });
     const where = geo(req);
     const org = await lookupOrg(clientIp(req));
-    await sql`insert into visitors (id, link_code) values (${m.vid}, ${link?.code || null})
-      on conflict (id) do update set last_seen = now(), link_code = coalesce(visitors.link_code, excluded.link_code)`;
+    const tagCode = identityLink?.code || link?.code || null;
+    await sql`insert into visitors (id, link_code) values (${m.vid}, ${tagCode})
+      on conflict (id) do update set last_seen = now(),
+        link_code = case when ${!!identityLink} then excluded.link_code else coalesce(visitors.link_code, excluded.link_code) end`;
     await sql`insert into sessions (id, visitor_id, channel, source, landing, link_code, utm_source, utm_medium, utm_campaign,
         country, region, city, org, org_kind, device)
-      values (${m.sid}, ${m.vid}, ${channel}, ${source}, ${text(m.landing)}, ${link?.code || null}, ${utm.source}, ${utm.medium},
+      values (${m.sid}, ${m.vid}, ${channel}, ${source}, ${text(m.landing)}, ${tagCode}, ${utm.source}, ${utm.medium},
         ${utm.campaign}, ${where.country}, ${where.region}, ${where.city}, ${org.name}, ${org.kind}, ${deviceOf(ua)})
       on conflict (id) do nothing`;
     return res.status(204).end();

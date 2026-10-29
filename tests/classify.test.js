@@ -9,6 +9,11 @@ test('a valid shared-link code wins over everything else', () => {
   assert.deepEqual(c, { channel: 'shared_link', source: 'Sam' });
 });
 
+test('a verified Backstory identity marks the Backstory app channel, after a CSM link', () => {
+  assert.deepEqual(classifyChannel({ identity: { src: 'app' }, referrer: 'https://www.google.com/', host: SITE }), { channel: 'backstory_app', source: 'app' });
+  assert.deepEqual(classifyChannel({ link: { code: 'k7x2', csm: 'Sam' }, identity: { src: 'app' }, host: SITE }), { channel: 'shared_link', source: 'Sam' });
+});
+
 test('utm parameters mark a campaign, and email mediums mark email', () => {
   assert.deepEqual(classifyChannel({ utm: { source: 'linkedin', medium: 'paid' }, host: SITE }), { channel: 'campaign', source: 'linkedin' });
   assert.deepEqual(classifyChannel({ utm: { source: 'hubspot', medium: 'email' }, host: SITE }), { channel: 'email', source: 'hubspot' });

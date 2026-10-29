@@ -27,8 +27,9 @@ const shortHost = (host) => {
   return host;
 };
 
-export function classifyChannel({ link, referrer, utm = {}, host }) {
+export function classifyChannel({ link, identity, referrer, utm = {}, host }) {
   if (link) return { channel: 'shared_link', source: link.csm || null };
+  if (identity) return { channel: 'backstory_app', source: identity.src || null };
   if (utm.source || utm.medium || utm.campaign) {
     const email = /e-?mail|newsletter/i.test(utm.medium || '');
     return { channel: email ? 'email' : 'campaign', source: utm.source || utm.campaign || null };

@@ -1,7 +1,8 @@
 // First-party visit tracking for the /admin panel (server side: api/t.js).
 // - A random visitor id lives in localStorage; a visit (session) ends after 30 idle minutes.
-// - ?r=<code> is a shared link from the admin panel: it ties this browser to that contact and
-//   starts a new visit. utm_* also start a new visit. Both are removed from the address bar.
+// - ?r=<code> is a shared link from the admin panel, and ?bsid=<token> a signed identity link
+//   from the Backstory app (docs/identity-links.md). Either ties this browser to that person and
+//   starts a new visit. utm_* also start a new visit. All are removed from the address bar.
 // - Time on a page counts only while the tab is visible.
 // Skipped for the admin pages, the admin's own browser, automated browsers, and visitors who
 // send Global Privacy Control.
@@ -70,8 +71,9 @@ function startVisit() {
   }
   const params = new URLSearchParams(location.search);
   const ref = params.get('r');
+  const id = params.get('bsid');
   const utm = { source: params.get('utm_source'), medium: params.get('utm_medium'), campaign: params.get('utm_campaign') };
-  const fresh = ref || utm.source || utm.medium || utm.campaign;
+  const fresh = ref || id || utm.source || utm.medium || utm.campaign;
 
   let session = null;
   try {
@@ -83,13 +85,13 @@ function startVisit() {
     sid = session.id;
   } else {
     sid = rid();
-    send({ t: 'session', ref, utm, referrer: document.referrer, landing: location.pathname });
+    send({ t: 'session', ref, id, utm, referrer: document.referrer, landing: location.pathname });
   }
   touch();
 
   // Recorded once, then removed, so a reload or a restored tab isn't counted as a new visit.
   if (fresh) {
-    for (const k of ['r', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content']) params.delete(k);
+    for (const k of ['r', 'bsid', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content']) params.delete(k);
     const q = params.toString();
     history.replaceState(history.state, '', `${location.pathname}${q ? `?${q}` : ''}${location.hash}`);
   }

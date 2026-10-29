@@ -27,6 +27,7 @@ const api = async (action, { method = 'GET', body, query = '' } = {}) => {
 
 const CHANNELS = {
   shared_link: 'CSM shared link',
+  backstory_app: 'Backstory app (signed in)',
   direct: 'Direct (typed, bookmark, or app)',
   search: 'Search engine',
   ai_assistant: 'AI assistant',
@@ -289,7 +290,7 @@ function Overview({ s, openVisitor }) {
     <div className="space-y-6">
       <div className="grid grid-cols-2 gap-3 md:grid-cols-3 xl:grid-cols-6">
         <Stat label="Visitors" value={num(s.kpi.visitors)} note={`${num(s.kpi.sessions)} visits`} />
-        <Stat label="Known people" value={num(s.kpi.identified)} note="from shared links" />
+        <Stat label="Known people" value={num(s.kpi.identified)} note="from shared links or Backstory" />
         <Stat label="Companies" value={num(s.kpi.companies)} note="named or detected" />
         <Stat label="Downloads" value={num(s.kpi.downloads)} />
         <Stat label="Avg visit" value={dur(s.kpi.avgVisitMs)} note="active time" />
@@ -399,7 +400,11 @@ function PeopleTable({ people, openVisitor, title = 'Visitors' }) {
         rows={people.map((p) => [
           <div key="w">
             <div className={cn('font-medium', !p.name && 'text-ac-dark-secondary')}>{p.name || 'Anonymous'}</div>
-            {(p.email || p.csm) && <div className="text-[12px] text-ac-med-gray">{[p.email, p.csm && `via ${p.csm}`].filter(Boolean).join(' · ')}</div>}
+            {(p.email || p.csm || p.link_kind === 'identity') && (
+              <div className="text-[12px] text-ac-med-gray">
+                {[p.email, p.csm && `via ${p.csm}`, p.link_kind === 'identity' && 'signed in via Backstory'].filter(Boolean).join(' · ')}
+              </div>
+            )}
           </div>,
           p.company || '–',
           channelLabel(p.first_channel),

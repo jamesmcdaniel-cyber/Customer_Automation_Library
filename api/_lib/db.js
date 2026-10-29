@@ -8,6 +8,8 @@ const SCHEMA = [
   `create table if not exists links (
      code text primary key, name text not null, email text, company text, csm text, note text,
      created_at timestamptz not null default now())`,
+  // kind: 'shared' (a CSM's shared link) or 'identity' (a signed Backstory identity link).
+  `alter table links add column if not exists kind text not null default 'shared'`,
   `create table if not exists visitors (
      id text primary key, link_code text references links(code) on delete set null,
      first_seen timestamptz not null default now(), last_seen timestamptz not null default now())`,

@@ -56,6 +56,7 @@ const links = () => sql`
   select l.*, count(distinct v.id) as visitors, max(v.last_seen) as last_seen,
     (select count(*) from events e join visitors v2 on v2.id = e.visitor_id where v2.link_code = l.code and e.type = 'download') as downloads
   from links l left join visitors v on v.link_code = l.code
+  where l.kind = 'shared'
   group by l.code order by l.created_at desc`;
 
 const DAYS = new Set([7, 30, 90, 365]);
@@ -84,7 +85,7 @@ export default async function handler(req, res) {
   if (action === 'links' && !post) return json(res, 200, { links: await links() });
   if (action === 'links' && post) return createLink(req, res);
   if (action === 'link-delete' && post) {
-    await sql`delete from links where code = ${text(body(req).code, 64)}`;
+    await sql`delete from links where code = ${text(body(req).code, 64)} and kind = 'shared'`;
     return json(res, 200, { ok: true });
   }
   return json(res, 404, { error: 'Unknown action' });
