@@ -25,6 +25,10 @@ export function Layout() {
             <BrandMark /> Backstory
           </span>
           <span className="text-ac-med-gray">Public starter guide. For account-specific help, contact your Backstory team.</span>
+          <span className="w-full text-[12px] text-ac-med-gray">
+            We record which pages and resources are used on this site, and where visits come from, to improve these guides. No
+            ads or ad trackers.
+          </span>
         </div>
       </footer>
     </TooltipProvider>

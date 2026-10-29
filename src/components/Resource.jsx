@@ -5,6 +5,7 @@ import { Dialog, DialogClose, DialogContent, DialogTrigger } from './ui/Dialog';
 import { Button } from './ui/Button';
 import { downloads, pages, site } from '../lib/content';
 import { assetUrl, cn } from '../lib/cn';
+import { trackEvent } from '../lib/track';
 
 // Leave-behind resources open in a small window on the page, and every PDF can also be
 // downloaded (the files in public/assets/downloads/, from src/data/downloads.json). In the
@@ -66,7 +67,12 @@ export function ResourceDialog({ id, children }) {
   const title = resourceTitle(id);
   const [large, setLarge] = useState(false);
   return (
-    <Dialog onOpenChange={(open) => !open && setLarge(false)}>
+    <Dialog
+      onOpenChange={(open) => {
+        if (open) trackEvent('open', id, title);
+        else setLarge(false);
+      }}
+    >
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent padded={false} hideClose size={SIZES[tour ? 'tour' : 'pdf'][large ? 'large' : 'small']}>
         <div className="sticky top-0 z-10 flex items-center justify-between gap-3 rounded-t-2xl border-b border-ac-light-gray bg-ac-card px-5 py-3.5">

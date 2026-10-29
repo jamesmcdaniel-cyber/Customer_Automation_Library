@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { PlayCircle, Volume2, VolumeX } from 'lucide-react';
+import { trackEvent } from '../lib/track';
 
 // Zight share links play as a native <video> straight from the MP4, so the frame
 // hugs the recording with no player chrome or padding around it.
@@ -28,6 +29,7 @@ function FileVideo({ src, title, poster, autoPlay, silent }) {
   const [ratio, setRatio] = useState(null);
   const [auto, setAuto] = useState(autoPlay);
   const [muted, setMuted] = useState(false);
+  const played = useRef(false);
 
   useEffect(() => {
     const v = ref.current;
@@ -71,6 +73,13 @@ function FileVideo({ src, title, poster, autoPlay, silent }) {
         playsInline
         preload={autoPlay ? 'auto' : 'metadata'}
         onPointerDown={() => setAuto(false)}
+        onTimeUpdate={(ev) => {
+          // Counted as watched once 10 seconds have played, however it started (autoplay
+          // included), once per page view.
+          if (played.current || ev.currentTarget.currentTime < 10) return;
+          played.current = true;
+          trackEvent('video_play', src.split('/').pop().split(/[?#]/)[0], title);
+        }}
         onVolumeChange={(ev) => !ev.currentTarget.muted && setMuted(false)}
         onLoadedMetadata={(ev) => {
           const v = ev.currentTarget;
